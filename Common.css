@@ -67,26 +67,7 @@ table { width: 100%}
 
 #selector { text-align: right; }
 
-.uneven { background-color: grey; }
-/* grauer Hintergrund für jede zweite Zeile */
-
-#header { background-image: url(images/header.png); background-repeat: no-repeat; }
-
-/*Buttons */
-input[type=submit] { width: 130px; margin-left: 5px; }
-#buttons { text-align: right; }
-
-/* Tabellen Ausrichtung */
-#faellig_td { width: 20%; }
-
-#due_date_td { width: 20%; }
-#due_date { width: 100%; }
-
-#title_td { width: 60%; }
-#title { width: 100%; }
-
-#notes_td { width: 80%; }
-#notes { width: 100%}
+.
 
 td { vertical-align: top; padding: 3px; white-space: nowrap: }
 
