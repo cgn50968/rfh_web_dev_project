@@ -1,5 +1,4 @@
-rfh_web_dev_project
-===================
+RFH Web Development Projekt
 
 Austauschplattform für das Web-Dev-Projekt
 
