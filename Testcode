@@ -1,9 +1,6 @@
 if [ "${key}" = "Disk Space Free" ]; then
 			freeunit=${field[@]:4}
-			free=${freeunit:0:-2}
-			unit=${freeunit#$free}
-			if [ "$unit" != "GB" ]; then
-				Exit UNKNOWN "unknown disk space size $freeunit"
+			n disk space size $freeunit"
 			fi
 			free=$(echo "${free} / 1" | bc -q)
 			if [ $free -lt $freegb ]; then
