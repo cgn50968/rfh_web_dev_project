@@ -1,0 +1,5 @@
+RewriteEngine on 
+
+RewriteRule ^todos$ RequestHandler.php?command=GetTodosCommand
+
+# Hierdurch lässt sich die Seite über folgende URL aufrufen: http://localhost/ordonr/4%20SERVICE/todos

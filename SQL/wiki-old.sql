@@ -27,13 +27,13 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `wiki` (
-  `category` varchar(20) NULL,
-  `title_id` int(10) NULL,
-  `title` varchar(50) NULL,
-  `version` int(10) NULL,
-  `notes` text NULL,
-  `creation_date` date NULL,
-  `expiration_date` date NULL
+  `category` varchar(20) NOT NULL,
+  `title_id` int(20) NOT NULL,
+  `title` varchar(50) NOT NULL,
+  `text` text NOT NULL,
+  `version` int(11) NOT NULL,
+  `creation_date` date NOT NULL,
+  `expiration_date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

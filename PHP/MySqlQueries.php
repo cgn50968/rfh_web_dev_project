@@ -5,8 +5,25 @@
 	$host = "localhost";
 	$db_usr = "root";
 	$db_pwd = "";
-	$database = "todo";
+	$database = "wiki";
+	
+	
+	
+	
 	$sql_statement = $sql_statement = "SELECT * FROM todo WHERE id=2";
+	
+	
+	$sql_statement = 	"INSERT INTO wiki SET ".
+						"category = '$item[category]' ".
+						"title_id = '$item[title_id]' ".
+						"title = '$item[title]', ".
+						"version = '$item[version]', ".
+						"notes= '$item[notes]'";
+						"creation_date = CURDATE(), ".
+						"expiration_date = '$item[due_date]', ";	
+							
+							
+	
 	
 	
 	/* Funktionsaufruf */
