@@ -48,4 +48,10 @@
 		mysqli_close($link);															// Datenbankverbindung schließen
 		return $datasets;																// Rückgabe aller Datensätze
 	}
+	
+	function connect() {
+		$link = mysqli_connect("localhost","root","","todolist");
+		mysqli_set_charset($link, "utf8");
+		return $link;
+  }
 ?>	
