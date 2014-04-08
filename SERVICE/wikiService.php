@@ -1,64 +1,83 @@
 <?php
 
-class WikiService {
+/* WikiService - beinhaltet alle Basis Methoden des Programms */
 
-	//Konstante für Error deklarieren
+class WikiService {
+	/* -----#_Deklarationsbereich_#----- */
+	
+	/* --- Konstanten für Error-Messages --- */
 	const ERROR = "ERROR";			
 	
-	// Zugangsdaten zur MySQL Datenbank
-	$sqlHost = "localhost";
-	$sqlUser = "root";
-	$sqlPwd = "";
-	$sqlDB = "wiki";
+	/* --- MySQL Datenbank --- */
+	public $sqlHost = "localhost";
+	public $sqlUser = "root";
+	public $sqlPwd = "";
+	public $sqlDB = "wiki";
 	
-	// Funktion - Link zur MySQL-Datenbank
-	public function sqlQuery()
+	/* --------------------------------------------------------------------- */
+	
+	/* ----- #_Funktionsbereich_#----- */
+	
+	/* --- readWiki - Ausgabe aller Wiki Einträge --- */
+	
+	public function readWiki()
 	{
-		// @ um Fehlermeldungen zu unterdrücken
-		@$link = new mysqli($sqlHost,$sqlUser,$sqlPwd,$sqlDB);		
+		@$link = new mysqli("localhost","root","","wiki");		// @ um Fehlermeldungen zu unterdrücken
 	
-		// Bei DB Verbindungsfehler > Fehlermeldung
-		if($link->connect_error != NULL) {
+		if($link->connect_error != NULL) {							// Fehlermeldung bei Verbindungsfehler
 			return self::ERROR;
 			}
 	
-	
-	// Zeichencode "UTF8 für DB Verbindung festlegen
-	$succeeded = $link->set_charset("utf8");
-
-	
-	if($succeeded == FALSE) {
-		$link->close();
-		return self::ERROR;
-		}
-			
-			$sql_statement = 	"SELECT id, created_date, due_date, due_date <= CURDATE() as due, author, title, notes ".	
-								"FROM todo ".													
-								"ORDER BY due_date ASC";
-			$result_set = $link->query($sql_statement);
-			$todos = array();	
-			$todo = $result_set->fetch_object("Todo");
-			while($todo != NULL) {
-				$todos[] = $todo;
-				$todo = $result_set->fetch_object("Todo");
+		$succeeded = $link->set_charset("utf8");					// Zuweisung des Zeichencode "utf8"
+		if($succeeded == FALSE) {									// Bei Zuweisungsfehler...
+			$link->close();											// DB Verbindung schließen...
+			return self::ERROR;										// Rückgabe: Error-Message: Zuweisung utf8 fehlgeschlagen
 			}
-			$link->close();
-			return $todos;			
 			
+		$sql_statement = 	"SELECT * ".	
+							"FROM wiki";													
+								
+		$result_set = $link->query($sql_statement);
+		$wikis = array();										// Deklaration: wikis = Array
+		$wiki = $result_set->fetch_object("Wiki");
+		while($wiki != NULL) {
+			$wikis[] = $wiki;
+			$wiki = $result_set->fetch_object("Wiki");
+			}
+		$link->close();
+		return $wikis;			
+		}
+		
+		
+	
+	public function readWikis()
+	{
+		@$link = new mysqli($sqlHost,$sqlUser,$sqlPwd,$sqlDB);		// @ um Fehlermeldungen zu unterdrücken
+	
+		if($link->connect_error != NULL) {							// Fehlermeldung bei Verbindungsfehler
+			return self::ERROR;
+			}
+	
+		$succeeded = $link->set_charset("utf8");					// Zuweisung des Zeichencode "utf8"
+		if($succeeded == FALSE) {									// Bei Zuweisungsfehler...
+			$link->close();											// DB Verbindung schließen...
+			return self::ERROR;										// Rückgabe: Error-Message: Zuweisung utf8 fehlgeschlagen
+			}
 			
-			/*
-			$todo->id = 1;							
-			$todo->created_date = "2014-03-29"; 
-			$todo->due_date = "2014-06-29";
-			$todo->due = FALSE;
-			$todo->author = "Roger Ordon";
-			$todo->title = "Es geht los"; 
-			$todo->notes = "Dies ist ein Test";
-			*/
-			
-			
-			
-	}
+		$sql_statement = 	"SELECT * ".	
+							"FROM wiki";													
+								
+		
+		$result_set = $link->query($sql_statement);
+		$wikis = array();										// Deklaration: wikis = Array
+		$wiki = $result_set->fetch_object("Wiki");
+		while($wiki != NULL) {
+			$wikis[] = $wiki;
+			$wiki = $result_set->fetch_object("Wiki");
+			}
+		$link->close();
+		return $wikis;			
+		}
 }
 ?>
 

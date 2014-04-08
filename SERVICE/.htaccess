@@ -1,5 +1,18 @@
 RewriteEngine on 
 
-RewriteRule ^todos$ RequestHandler.php?command=GetTodosCommand
+# Hierdurch lässt sich die Seite über folgende URL aufrufen: http://localhost/ordonr/service/wikis
 
-# Hierdurch lässt sich die Seite über folgende URL aufrufen: http://localhost/ordonr/4%20SERVICE/todos
+RewriteCond %{REQUEST_METHOD} GET
+RewriteRule ^wikis$ RequestHandler.php?command=GetWikisCommand
+
+RewriteCond %{REQUEST_METHOD} GET
+RewriteRule ^wikis/(.+)$ RequestHandler.php?command=GetWikiCommand&id=$1
+
+RewriteCond %{REQUEST_METHOD} POST
+RewriteRule ^wikis$ RequestHandler.php?command=CreateWikiCommand
+
+RewriteCond %{REQUEST_METHOD} DELETE
+RewriteRule ^twikis/(.+)$ RequestHandler.php?command=DeleteWikiCommand&id=$1
+
+RewriteCond %{REQUEST_METHOD} PUT
+RewriteRule ^wikis/(.+)$ RequestHandler.php?command=UpdateWikiCommand&id=$1
