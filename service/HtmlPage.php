@@ -54,7 +54,7 @@ class HtmlPage {
 		?>
 		 <div>
 		  <!-- <form action="test.php" method="post"> -->
-		  <form action=<?php echo (json_encode("RequestHandler.php?command=GetWikisCommand")) ?> method="post">
+		  <form action="RequestHandler.php" method="get">
 			<table>
 			  <tr>
 				<td>
@@ -78,7 +78,7 @@ class HtmlPage {
 			  </tr>
 			  <tr>
 				<td id="buttons" colspan="4">
-				  <input type="submit" name="edit" value="Bearbeiten"/>
+				  <input type="submit" name="command" value="GetWikisCommand"/>  <!-- Lösung -->
 				  <td id="buttons" colspan="4">
 				  <input type="submit" name="delete" value="Löschen"/>
 				</td>
