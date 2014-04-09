@@ -47,5 +47,88 @@ class HtmlPage {
 		</html>
 		<?php
 	}
+	
+	/* SHOW Details */
+	public function showDetails($wikis) {
+		foreach($wikis as $wiki) {
+		?>
+		 <div>
+		  <!-- <form action="test.php" method="post"> -->
+		  <form action=<?php echo (json_encode("RequestHandler.php?command=GetWikisCommand")) ?> method="post">
+			<table>
+			  <tr>
+				<td>
+				  <label for="due_date">Fällig</label><span class="label">, </span>
+				  <label for="author">Autor:</label></td>
+				<td id="due_date_td">                                  
+				  <input type="text" name="due_date" id="due_date" value=<?php echo(json_encode($wiki->creation_date)); ?> readonly="readonly" disabled="true"/>
+				</td>
+				<td id="created_date_td">                                  
+				  <input type="text" name="created_date" id="created_date" value=<?php echo(json_encode($wiki->expiration_date)); ?> readonly="readonly" disabled="true"/>
+				</td>
+				<td id="author_td">                                 
+				  <input type="text" name="author" id="author" value=<?php echo(json_encode($wiki->author)); ?> readonly="readonly" disabled="true" />
+				</td>
+			  </tr>
+			  <tr>
+				<td><label for="notes">Beschreibung:</label></td>
+				<td colspan="3">
+				  <textarea name="notes" id="notes" rows="10" cols="10" readonly="readonly" disabled="true"><?php echo(json_encode($wiki->notes)); ?></textarea>
+				</td>
+			  </tr>
+			  <tr>
+				<td id="buttons" colspan="4">
+				  <input type="submit" name="edit" value="Bearbeiten"/>
+				  <td id="buttons" colspan="4">
+				  <input type="submit" name="delete" value="Löschen"/>
+				</td>
+				</td>
+			  </tr>
+			</table>
+		  </form>
+		</div>
+		<?php
+		}
+	}
+	
+	/* EDIT Details */
+	public function editDetails($wikis) {
+		foreach($wikis as $wiki) {
+		?>
+		 <div>
+		  <form action="..." method="post">
+			<table>
+			  <tr>
+				<td>
+				  <label for="due_date">Fällig</label><span class="label">, </span>
+				  <label for="author">Autor:</label></td>
+				<td id="due_date_td">                                  
+				  <input type="text" name="due_date" id="due_date" value=<?php echo(json_encode($wiki->creation_date)); ?> />
+				</td>
+				<td id="created_date_td">                                  
+				  <input type="text" name="created_date" id="created_date" value=<?php echo(json_encode($wiki->expiration_date)); ?> />
+				</td>
+				<td id="author_td">                                 
+				  <input type="text" name="author" id="author" value=<?php echo(json_encode($wiki->author)); ?> />
+				</td>
+			  </tr>
+			  <tr>
+				<td><label for="notes">Beschreibung:</label></td>
+				<td colspan="3">
+				  <textarea name="notes" id="notes" rows="10" cols="10" ><?php echo(json_encode($wiki->notes)); ?></textarea>
+				</td>
+			  </tr>
+			  <tr>
+				<td id="buttons" colspan="4">
+				  <input type="submit" name="delete" value="Löschen"/>
+				</td>
+			  </tr>
+			</table>
+		  </form>
+		</div>
+		<?php
+		}
+	}
+	
 }
 ?>

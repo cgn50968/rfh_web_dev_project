@@ -26,12 +26,29 @@
 			$result = $command->execute($request);		// Ausführen der Funktion execute()
 			
 			if($result !== NULL) {						// Falls die Rückgabe ungleich NULL ist (!== bedeutet, dass nur NULL den Fehler erzeugt)
-				//echo(json_encode($result));				// AUSGABE: als JSON-Zeichenkette
-				$html_page = new HtmlPage;
+			
+			//	Testbereich...
+			
+				$html_page = new HtmlPage;				// Klassenobjekt erstellen
 				
+				if(isset($_REQUEST["edit"])) {		/* Falls Anfrage = cancel > dann öffnen der Seite TodoList.php */
+					header("Location: RequestHandler.php");
+					$html_page->editDetails($result);	
+					}
+					
 				$html_page->writeHtmlHeader();
-				$html_page->writeTable($result);
+				//$html_page->writeTable($result);
+				$html_page->showDetails($result);
+				
+				if(isset($_REQUEST["edit"])) {		/* wie kann abgefragt werden, dass der Edit Button gedrückt wurde? */
+					$html_page->editDetails($result);	
+					}
+					
 				$html_page->writeHtmlBottom();
+			//	Ende - Testbereich!
+			
+				echo(json_encode($result));				// AUSGABE: als JSON-Zeichenkette
+				
 			}
 		}
 	}

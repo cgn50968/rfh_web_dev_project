@@ -1,11 +1,5 @@
 <?php
 
-class Test 
-{
+	echo "Hello World";
 
-	public function execute() {
-		echo "Hello World";
-		}
-		
-}
 ?>
