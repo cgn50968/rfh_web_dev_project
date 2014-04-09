@@ -1,25 +1,37 @@
 <?php
 
-	/* RequestHandler: Zentrale Verarbeitungsfunktion */
+	/* RequestHandler: Zentrale Verarbeitungsklasse */
 
 
 	/* Einbindung der einzelnen Klassen */
 	require "Wiki.php";
 	require "GetWikisCommand.php";
 	require "WikiService.php";
-	require "table.php";
+	require "HtmlPage.php";
 	
-	// Java * - Definition eines Konstruktors mit der Funktion construct() möglich
+	
 	class RequestHandler {
+	
+	/* PROGRAMMAUFRUF:	http://localhost/rfh_dev_project/service/RequestHandler.php?command=[class_name] 
+	
+		Die Funktion handleRequest() erwartet, dass die angegebene Klasse eine Funktion execute() besitzt. */
+	
 		public function handleRequest() {
-			$command = new GetWikisCommand();			// zentrale Funktionssteuerung - Ausführung von Unterfunktionen
-			$wikis = $command->execute();				// Ausführung der Funktion execute().
-														// Jede eingebundene Klasse muss hierzu eine Standardfunktion execute() besitzten.
+			$request = $_REQUEST;						// Übergabe der POST Argumente an $request
+						
+			$class_name = $request["command"];			// Auslesen des Klassennamens in $class_name
 			
-			if($wikis !== NULL) {						// Falls die Rückgabe ungleich NULL ist (!== bedeutet, dass nur NULL den Fehler erzeugt)
-				//echo(json_encode($wikis));				// AUSGABE: formatiert insbesondere Objekte und Arrays als JSON-Zeichenkette
-				writeTable($wikis);
+			$command = new $class_name;					// Klassenobjekt erstellen
+		
+			$result = $command->execute($request);		// Ausführen der Funktion execute()
+			
+			if($result !== NULL) {						// Falls die Rückgabe ungleich NULL ist (!== bedeutet, dass nur NULL den Fehler erzeugt)
+				//echo(json_encode($result));				// AUSGABE: als JSON-Zeichenkette
+				$html_page = new HtmlPage;
 				
+				$html_page->writeHtmlHeader();
+				$html_page->writeTable($result);
+				$html_page->writeHtmlBottom();
 			}
 		}
 	}

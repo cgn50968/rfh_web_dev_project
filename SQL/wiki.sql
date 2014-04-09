@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 28. Mrz 2014 um 13:44
+-- Erstellungszeit: 08. Apr 2014 um 16:02
 -- Server Version: 5.6.16
 -- PHP-Version: 5.5.9
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Datenbank: `wdht`
+-- Datenbank: `wiki`
 --
 
 -- --------------------------------------------------------
@@ -32,6 +32,7 @@ CREATE TABLE IF NOT EXISTS `wiki` (
   `title` varchar(50) NOT NULL,
   `version` int(11) NOT NULL,
   `notes` text NOT NULL,
+  `author` varchar(50) NOT NULL,
   `creation_date` date NOT NULL,
   `expiration_date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
