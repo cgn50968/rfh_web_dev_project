@@ -7,7 +7,7 @@ class GetWikisCommand {
 		
 		$wiki_service = new WikiService();						// Konstruktor - neues Objekt: WikiService
 	
-		$wikis = $wiki_service->readWiki();						// Funktionsaufruf: readWiki()
+		$wikis = $wiki_service->readWikis();						// Funktionsaufruf: readWiki()
 		
 		if($wikis == WikiService::ERROR) {						// Gibt Fehlercode 500 an Browser zurück...
 			header("HTTP/1.1 500");

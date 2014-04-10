@@ -6,6 +6,7 @@
 	/* Einbindung der einzelnen Klassen */
 	require "Wiki.php";
 	require "GetWikisCommand.php";
+	require "GetWikiCommand.php";
 	require "WikiService.php";
 	require "HtmlPage.php";
 	
@@ -36,15 +37,16 @@
 					$html_page->editDetails($result);	
 					}
 					
-				$html_page->writeHtmlHeader();
+				//$html_page->writeHtmlHeader();
 				//$html_page->writeTable($result);
-				$html_page->showDetails($result);
+				//$html_page->showDetails($result);
 				
-				if(isset($_REQUEST["edit"])) {		/* wie kann abgefragt werden, dass der Edit Button gedrückt wurde? */
-					$html_page->editDetails($result);	
-					}
+				//if(isset($_REQUEST["edit"])) {		/* wie kann abgefragt werden, dass der Edit Button gedrückt wurde? */
+				//	$html_page->editDetails($result);	
+				//	}
 					
-				$html_page->writeHtmlBottom();
+				//$html_page->writeHtmlBottom();
+			
 			//	Ende - Testbereich!
 			
 				echo(json_encode($result));				// AUSGABE: als JSON-Zeichenkette
