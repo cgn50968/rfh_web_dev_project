@@ -1,0 +1,104 @@
+body { font-family: Calibri; 
+	   /* background-color: #dee0f1; */
+	   width: 800px;
+	   position: relative;
+}
+/* Formatierung des Dokumentenkörpers */
+
+h1 { color: #0212a0; 
+    text-align: center; 
+   }
+/* Formatierung der Überschrift */
+
+a { color: black; 
+   text-decoration: none;
+  }
+/* Formatierung der Links, Farbe und Textdekoration */
+
+.round{ border-radius:0.4em;
+		border: 0.5px solid silver;}
+
+.disabled { color: grey; }
+/* Formatierung für alle Elemente, welche <xxx class="disabled"> verwenden */
+
+.due  *{ color: red; }
+/* Formatierung für alle Elemente, der Klasse Fällig <xxx class="due"> verwenden */
+
+.abstand  { margin-left: 10px; }
+
+a:hover { text-decoration: underline; }
+/* Formatierung der Links mit Pseudoklasse, wenn Maus auf Element zeigt, dann unterstreichen */
+
+th { text-align: left; }
+/* Tabellenüberschrift links ausrichten */
+
+div { border-width: 1px; border-style: solid; border-color: silver; 
+	
+	border-radius:0.4em;	/* Abgerundete Ecken */
+	
+     margin-left: 5px;		/* Außenabstand */
+	 margin-right: 5px;
+	 margin-top: 5px;
+	 margin-bottom: 5px;
+	 
+	 padding-top: 20px;				/* padding = Innenabstand - Box Modell */
+	 padding-left: 5px;
+	 padding-right: 5px;
+	 padding-bottom: 5px;
+	 }
+/* Formatierung für div = division = Abschnitt : margin = Rand */
+
+input[type=text] { border: 1px solid silver; }
+/* Formatierung nur für Tag input mit dem [type=text] */
+/* angesprochen wird nur <input type="text"..> aber nicht <input type="image"..> */
+
+img { border: none; }
+/* Kein Rahmen um Bilder */
+
+
+#pagesize_selector { margin-left: 10px; float: right; }
+/* position: absolute; right: 5px; */
+
+
+
+table { width: 100%}
+/* Tabelle soll 100% der verfügbaren Breite einnehmen (minus Ränder) */
+
+#home { position: absolute; top: 10px; left: 10px; }
+/* Über Klassen die position bestimmen - Relativ zum nächsten übergeordneten Element */
+/* position hat folgenden Möglichkeiten: static, realative, absolute */
+
+#logon { position: absolute; top: 10px; right: 10px; }
+#logoff { position: absolute; top: 10px; right: 10px; }
+/* Die Formatierung muss aus dem Formular heraus erfolgen. Dazu muss dieser Umweg gewählt werden */
+
+
+/* Formatierung des Textfeldes */
+#username { position: absolute; right: 5px; }
+/* Textfeld nach rechts */
+
+#selector { text-align: right; }
+
+.uneven { background-color: grey; }
+/* grauer Hintergrund für jede zweite Zeile */
+
+#header { background-image: url(images/header.png); background-repeat: no-repeat; }
+
+/*Buttons */
+input[type=submit] { width: 130px; margin-left: 5px; }
+#buttons { text-align: right; }
+
+/* Tabellen Ausrichtung */
+#faellig_td { width: 20%; }
+
+#due_date_td { width: 20%; }
+#due_date { width: 100%; }
+
+#title_td { width: 60%; }
+#title { width: 100%; }
+
+#notes_td { width: 80%; }
+#notes { width: 100%}
+
+td { vertical-align: top; padding: 3px; white-space: nowrap: }
+

@@ -1,0 +1,21 @@
+border-radius:		Abgerundete Ecken
+
+CSS Syntax
+border-radius: 1-4 length|% / 1-4 length|%|initial|inherit;
+
+Note: The four values for each radii are given in the order top-left, top-right, bottom-right, bottom-left. If bottom-left is omitted it is the same as top-right. If bottom-right is omitted it is the same as top-left. If top-right is omitted it is the same as top-left.
+Value 		Description 	Play it
+length 		Defines the shape of the corners. Default value is 0 
+% 			Defines the shape of the corners in % 
+initial 	Sets this property to its default value. Read about initial 	
+inherit 	Inherits this property from its parent element. Read about inherit 	
+
+Example 1
+border-radius:2em;
+
+is equivalent to:
+
+border-top-left-radius:2em;
+border-top-right-radius:2em;
+border-bottom-right-radius:2em;
+border-bottom-left-radius:2em; 
