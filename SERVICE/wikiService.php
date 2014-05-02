@@ -13,11 +13,10 @@ class WikiService {
 	const VERSION_OUTDATED = "VERSION_OUTDATED";
 
 	
-	/* --------------------------------------------------------------------- */
-	
-	/* ----- #_Funktionsbereich_#----- */
-	
-	/* --------------------------------------------------------------------- */
+/* --------------------------------------------------------------------- */
+/* Funktionsbereich                                                      */	
+/* --------------------------------------------------------------------- */
+
 	/* <<-- readWiki - Ausgabe eines Wiki Eintrags -->> */
 	public function readWiki($id)
 	{
@@ -94,13 +93,14 @@ class WikiService {
 		return $result;
 	}
 	
-		$link = new mysqli("localhost","root","","todolist");
+		@$link = new mysqli("localhost","root","","wiki");
 		$link->set_charset("utf8");
 		$sql_statement = 		"INSERT INTO wiki SET ".
 								"version = 1, ".												// Version startet mit 1
 								"category = '$wiki->category', ".				
 								"title = '$wiki->title', ".
-								"notes= '$wiki->notes', ".
+								"notes = '$wiki->notes', ".
+								//"author = '$wiki->author' ".
 								"creation_date = CURDATE(), ".
 								"expiration_date = DATE_ADD(CURDATE(), INTERVAL 1 YEAR)";		//	Aktuelles Datum + 1 Jahr: "SELECT DATE_ADD(CURDATE(), INTERVAL 1 YEAR) AS Datum"
 								
@@ -108,9 +108,9 @@ class WikiService {
 		$link->query($sql_statement);				// Einfügen des Datensatzes
 		$id = $link->insert_id;						// ID als Rückgabe des INSERT Statements
 		$link->close();								// DB Verbindung schließen
-		$result = new CreateTodoResult();
+		/* $result = new CreateWikiResult();
 		$result->status_code = self::OK;
-		$result->id = $id;
+		$result->id = $id; */
 		return $result;								// Rückgabe ID
 	
 	}

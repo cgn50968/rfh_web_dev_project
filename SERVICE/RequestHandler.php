@@ -7,6 +7,7 @@
 	require "Wiki.php";
 	require "GetWikisCommand.php";
 	require "GetWikiCommand.php";
+	require "CreateWikiCommand.php";
 	require "WikiService.php";
 	require "HtmlPage.php";
 	
