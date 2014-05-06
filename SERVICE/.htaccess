@@ -1,6 +1,6 @@
 RewriteEngine on 
 
-# Hierdurch lässt sich die Seite über folgende URL aufrufen: http://localhost/ordonr/service/wikis
+# Hierdurch lässt sich die Seite über folgende URL aufrufen: http://localhost/rfh_web_dev_project/service/wikis
 
 RewriteCond %{REQUEST_METHOD} GET
 RewriteRule ^wikis$ RequestHandler.php?command=GetWikisCommand

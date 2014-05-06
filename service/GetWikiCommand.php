@@ -10,7 +10,7 @@
 			$id = $request["id"];
 			// Konstruktor - neues Klassenobjekt TodoService
 			$wiki_service = new WikiService();
-			// Speichern des Ergebnisses der Funktions readTodos in $todo
+			// Speichern des Ergebnisses der Funktions readWiki in $wiki
 			$wiki = $wiki_service->readWiki($id);
 			// Variable id wieder leeren und nicht mit ausgeben
 			unset($wiki->id);
