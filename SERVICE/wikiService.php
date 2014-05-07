@@ -1,23 +1,33 @@
 <?php
 
-/* WikiService - beinhaltet alle Basis Methoden des Programms */
+/* --------------------------------------------------------------------- */
+/* <<-- wikiService - beinhaltet Basis-Methoden des Programms -->>       */	
+/* --------------------------------------------------------------------- */
 
 class WikiService {
-	/* -----#_Deklarationsbereich_#----- */
+
+/* --------------------------------------------------------------------- */
+/* <<-- Attribute -->>                                                   */	
+/* --------------------------------------------------------------------- */
 	
-	/* --- Konstanten für Error-Messages --- */
+	/* --------------------------------------- */
+	/* <<-- Konstanten für Error-Messages -->> */
+	/* --------------------------------------- */
+	
 	const ERROR = "ERROR";			
 	const NOT_FOUND = "NOT_FOUND";
 	const INVALID_INPUT = "INVALID_INPUT";
 	const OK = "OK";
 	const VERSION_OUTDATED = "VERSION_OUTDATED";
 
-	
 /* --------------------------------------------------------------------- */
-/* Funktionsbereich                                                      */	
+/* <<-- Methoden -->>                                                    */	
 /* --------------------------------------------------------------------- */
 
+	/* ------------------------------------------------ */
 	/* <<-- readWiki - Ausgabe eines Wiki Eintrags -->> */
+	/* ------------------------------------------------ */
+	
 	public function readWiki($id)
 	{
 		@$link = new mysqli("localhost","root","","wiki");			// @ um Fehlermeldungen zu unterdrücken
@@ -42,8 +52,8 @@ class WikiService {
 			return self::NOT_FOUND;									// Rückgabe der Fehlermeldung...
 			}
 	
-		$affected_rows = $link->affected_rows;				// Wieviele Datensätze sind betroffen
-		if($affected_rows == 0) {
+		$affected_rows = $link->affected_rows;						// Wieviele Datensätze sind betroffen
+		if($affected_rows == 0) {									// Fehlermeldung: sofern keine Datensätze gefunden wurden
 			return self::NOT_FOUND;
 		}
 		
@@ -51,8 +61,10 @@ class WikiService {
 		return $wiki;			
 		}
 		
-	/* --------------------------------------------------------------------- */
+	/* ------------------------------------------------ */
 	/* <<-- readWiki - Ausgabe aller Wiki Einträge -->> */
+	/* ------------------------------------------------ */
+	
 	public function readWikis()
 	{
 		@$link = new mysqli("localhost","root","","wiki");			// @ um Fehlermeldungen zu unterdrücken
@@ -72,18 +84,26 @@ class WikiService {
 		
 		$result_set = $link->query($sql_statement);
 		
-		$wikis = array();										// Deklaration: wikis = Array
+		$wikis = array();											// Deklaration: wikis = Array
 		$wiki = $result_set->fetch_object("Wiki");
 		while($wiki != NULL) {
 			$wikis[] = $wiki;
 			$wiki = $result_set->fetch_object("Wiki");
 			}
+		
+		$affected_rows = $link->affected_rows;						// Wieviele Datensätze sind betroffen
+		if($affected_rows == 0) {									// Fehlermeldung: sofern keine Datensätze gefunden wurden
+			return self::NOT_FOUND;
+		}
+		
 		$link->close();
 		return $wikis;			
 		}
 		
-	/* --------------------------------------------------------------------- */	
+	/* --------------------------------------------------- */	
 	/* <<-- createWiki - Neuen Wiki Eintrag erstellen -->> */
+	/* --------------------------------------------------- */	
+	
 	public function createWiki($wiki) {
 	
 	if($wiki->title == "") {
@@ -93,10 +113,16 @@ class WikiService {
 		return $result;
 	}
 	
-		@$link = new mysqli("localhost","root","","wiki");
-		$link->set_charset("utf8");
+		@$link = new mysqli("localhost","root","","wiki");			// @ um Fehlermeldungen zu unterdrücken
+		
+		$succeeded = $link->set_charset("utf8");					// Zuweisung des Zeichencode "utf8"
+		if($succeeded == FALSE) {									// Bei Zuweisungsfehler...
+			$link->close();											// DB Verbindung schließen...
+			return self::ERROR;										// Rückgabe: Error-Message: Zuweisung utf8 fehlgeschlagen
+			}
+			
 		$sql_statement = 		"INSERT INTO wiki SET ".
-								"version = 1, ".												// Version startet mit 1
+								"version = 1, ".					// Neuer Datensatz startet mit Version = 1
 								"category = '$wiki->category', ".				
 								"title = '$wiki->title', ".
 								"notes = '$wiki->notes', ".
@@ -114,11 +140,11 @@ class WikiService {
 		return $result;								// Rückgabe ID
 	
 	}
-	/* --------------------------------------------------------------------- */
-	
-	/* ----- #_Infobereich_#----- */
-	
-	/*
+/* --------------------------------------------------------------------- */
+/* <<-- Infobereich -->>                                                 */	
+/* --------------------------------------------------------------------- */
+
+/*
 	HTML Aufruf:
 	
 		Standardaufruf:
@@ -133,9 +159,8 @@ class WikiService {
 		readWikis()
 			http://localhost/rfh_web_dev_project/service/wikis	
 	
-	*/
-	
-	
+*/
+		
 }
 ?>
 
