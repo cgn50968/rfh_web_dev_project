@@ -35,11 +35,14 @@ class WikiService {
 		if($link->connect_error != NULL) {							// Fehlermeldung bei Verbindungsfehler
 			return self::ERROR;
 			}
-	
-		$succeeded = $link->set_charset("utf8");					// Zuweisung des Zeichencode "utf8"
-		if($succeeded == FALSE) {									// Bei Zuweisungsfehler...
-			$link->close();											// DB Verbindung schließen...
-			return self::ERROR;										// Rückgabe: Error-Message: Zuweisung utf8 fehlgeschlagen
+		
+		/* ------------------------------------------------ */
+		/* <<-- ERROR Handling: Zuweisungsfehler utf8 -->>  */
+		/* ------------------------------------------------ */	
+		$succeeded = $link->set_charset("utf8");					// Zuweisung:	Zeichencode = "utf8"
+		if($succeeded == FALSE) {									// Prüfung:		Zuweisung nicht erfolgreich
+			$link->close();											// Aktion:		DB Verbindung schließen...
+			return self::ERROR;										// Rückgabe: 	ERROR
 			}
 			
 		$sql_statement = 	"SELECT id, category, title_id, title, version, notes, author, creation_date, expiration_date FROM wiki WHERE id = $id";
@@ -47,23 +50,30 @@ class WikiService {
 		$result_set = $link->query($sql_statement);					// Ausführung der SQL Abfrage
 		$wiki = $result_set->fetch_object("Wiki");					// Übergabe des SQL-Statements
 		
-		if($wiki === NULL) {										// Fehlermeldung: Falls kein Ergebnis übergeben wurde
-			header("HTTP/1.1 404");									// HTTP Header: Fehlercode 404
-			return self::NOT_FOUND;									// Rückgabe der Fehlermeldung...
+		
+		/* -------------------------------------*/
+		/* <<-- ERROR Handling: Array leer -->> */
+		/* -------------------------------------*/
+		if($wiki === NULL) {										// Prüfung:		Wenn kein Datensatz zurückgegeben wurde...
+			header("HTTP/1.1 404");									// Fehler:		HTTP Status Code 404
+			return self::NOT_FOUND;									// Rückgabe: 	NOT_FOUND
 			}
-	
-		$affected_rows = $link->affected_rows;						// Wieviele Datensätze sind betroffen
-		if($affected_rows == 0) {									// Fehlermeldung: sofern keine Datensätze gefunden wurden
-			return self::NOT_FOUND;
-		}
+		
+		/* ------------------------------------------------ */
+		/* <<-- ERROR Handling: Betroffene Zeilen = 0 -->>  */
+		/* ------------------------------------------------ */		
+		$affected_rows = $link->affected_rows;						// Abfrage:		Wieviele Datensätze sind betroffen
+		if($affected_rows == 0) {									// Prüfung: 	Wurde keine Spalte/Datensatze zurückgegeben?
+			return self::NOT_FOUND;									// Rückgabe:	NOT_FOUND
+		} 
 		
 		$link->close();
 		return $wiki;			
 		}
 		
-	/* ------------------------------------------------ */
-	/* <<-- readWiki - Ausgabe aller Wiki Einträge -->> */
-	/* ------------------------------------------------ */
+	/* ------------------------------------------------- */
+	/* <<-- readWikis - Ausgabe aller Wiki Einträge -->> */
+	/* ------------------------------------------------- */
 	
 	public function readWikis()
 	{
@@ -79,8 +89,7 @@ class WikiService {
 			return self::ERROR;										// Rückgabe: Error-Message: Zuweisung utf8 fehlgeschlagen
 			}
 			
-		$sql_statement = 	"SELECT * ".	
-							"FROM wiki";													
+		$sql_statement = 	"SELECT * FROM wiki";													
 		
 		$result_set = $link->query($sql_statement);
 		

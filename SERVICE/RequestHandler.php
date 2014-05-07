@@ -20,9 +20,7 @@
 
 	class RequestHandler {
 	
-
-	
-		Die Funktion handleRequest() erwartet, dass die angegebene Klasse eine Funktion execute() besitzt. */
+		/* Die Funktion handleRequest() erwartet, dass die angegebene Klasse eine Funktion execute() besitzt. */
 	
 		public function handleRequest() {
 			$request = $_REQUEST;						// Übergabe der POST Argumente an $request
@@ -39,7 +37,7 @@
 			
 				$html_page = new HtmlPage;				// Klassenobjekt erstellen
 				
-				if(isset($_REQUEST["edit"])) {		/* Falls Anfrage = cancel > dann öffnen der Seite TodoList.php */
+				if(isset($_REQUEST["edit"])) {			// Falls Anfrage = cancel > dann öffnen der Seite TodoList.php */
 					header("Location: RequestHandler.php");
 					$html_page->editDetails($result);	
 					}

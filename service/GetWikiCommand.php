@@ -1,29 +1,45 @@
 <?php
 
+/* --------------------------------------------------------------------- */
+/* <<-- Klasse: GetWikiCommand -->>                                      */	
+/* --------------------------------------------------------------------- */
+
 	class GetWikiCommand {
+	
+/* --------------------------------------------------------------------- */
+/* <<-- Methoden -->>                                                    */	
+/* --------------------------------------------------------------------- */
+	
 		public function execute($request) {
-			if(isset($request["id"]) == FALSE) {			// isset überprüft, ob variable gesetzt ist...
-				header("HTTP/1.1 400");						// header setzt den Fehlercode, Falls ein Fehler auftritt
-				return;
+			
+			/* -----------------------------------*/
+			/* <<-- ERROR Handling: Keine id -->> */
+			/* -----------------------------------*/
+			if(isset($request["id"]) == FALSE) {			// Prüfung: 	Wenn der Parameter "id" nicht gesetzt wurde...
+				header("HTTP/1.1 400");						// Rückgabe: 	HTTP Status Code 400
+				return;										// Return:		Verarbeitung beenden
 				}
 
-			$id = $request["id"];
-			// Konstruktor - neues Klassenobjekt TodoService
-			$wiki_service = new WikiService();
-			// Speichern des Ergebnisses der Funktions readWiki in $wiki
-			$wiki = $wiki_service->readWiki($id);
-			// Variable id wieder leeren und nicht mit ausgeben
-			unset($wiki->id);
+			$id = $request["id"];							// Übergabe des Parameters "id"
+			$wiki_service = new WikiService();				// Konstruktor:	neues Klassenobjekt "WikiService"
+			$wiki = $wiki_service->readWiki($id);			// Funktionsaufruf: readWicki($id)
 			
-			//Etag header setzen - Für die Kontrolle der Version
+			/* ------------------------------------*/
+			/* <<-- ERROR Handling: NOT_FOUND -->> */
+			/* ------------------------------------*/
+			if($wiki == WikiService::NOT_FOUND) {			// Prüfung: 	Wenn WikiService NOT_FOUND zurückgibt...
+			header("HTTP/1.1 404");							// Rückgabe: 	HTTP Status Code 404
+			return $wiki;									// Return:		Verarbeitung beenden
+			}
+			
+			unset($wiki->id);								// Variable $id zurücksetzen
+			
+//Etag header setzen - Für die Kontrolle der Version
 			header("Etag: $wiki->version");
-			//Etag wieder leeren
+//Etag wieder leeren
 			unset($wiki->version);
-			
-			// Rückgabe des Arrays
-			return $wiki;
+			return $wiki;									// Rückgabe des Arrays (Datensatz)
 		}
 	}
-
 
 ?>
