@@ -1,20 +1,26 @@
 <?php
+/* ------------------------------------------------------ */
+/* <<-- RequestHandler: Zentrale Verarbeitungsklasse -->> */
+/* ------------------------------------------------------ */
 
-	/* RequestHandler: Zentrale Verarbeitungsklasse */
-
-
-	/* Einbindung der einzelnen Klassen */
+/* ------------------------------------------------------- */
+/* <<-- Einbindung zusätzlicher PHP Dateien (Klassen) -->> */	
+/* ------------------------------------------------------- */
 	require "Wiki.php";
 	require "GetWikisCommand.php";
 	require "GetWikiCommand.php";
 	require "CreateWikiCommand.php";
+	require "CreateWikiResult.php";
 	require "WikiService.php";
 	require "HtmlPage.php";
 	
-	
+/* ------------------------------------------------------- */
+/* <<-- Klasse: RequestHandler -->>                        */	 
+/* ------------------------------------------------------- */
+
 	class RequestHandler {
 	
-	/* PROGRAMMAUFRUF:	http://localhost/rfh_dev_project/service/RequestHandler.php?command=[class_name] 
+
 	
 		Die Funktion handleRequest() erwartet, dass die angegebene Klasse eine Funktion execute() besitzt. */
 	
@@ -50,16 +56,25 @@
 			
 			//	Ende - Testbereich!
 			
-				echo(json_encode($result));				// AUSGABE: als JSON-Zeichenkette
+				echo(json_encode($result));				// Ausgabe als "JSON-Zeichenkette"
 				
 			}
 		}
 	}
+
+/* --------------------------------------------------------------------- */
+/* <<-- Programmaufruf -->>                                              */	
+/* --------------------------------------------------------------------- */
+
+	$request_handler = new RequestHandler();			// Klassen-Objekt instanzieren (erstellen)
 	
-	// Objekt instanzieren (erstellen)
-	$request_handler = new RequestHandler();
-	
-	// Aufruf der Methode eines Objekts ebenfalls per Pflei-Opterator
-	$request_handler->handleRequest();
-	
+	$request_handler->handleRequest(); 					// Aufruf der zentralen Funktion "handleRequest()"
+
+/* --------------------------------------------------------------------- */
+/* <<-- Infobereich -->>                                                 */	
+/* --------------------------------------------------------------------- */
+
+/*
+	Programmaufruf:		http://localhost/rfh_dev_project/service/RequestHandler.php?command=[class_name] 
+*/
 ?>

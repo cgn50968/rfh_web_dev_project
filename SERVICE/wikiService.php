@@ -1,7 +1,7 @@
 <?php
 
 /* --------------------------------------------------------------------- */
-/* <<-- wikiService - beinhaltet Basis-Methoden des Programms -->>       */	
+/* <<-- class: wikiService - Basis-Methoden des Programms -->>           */	
 /* --------------------------------------------------------------------- */
 
 class WikiService {
@@ -106,13 +106,31 @@ class WikiService {
 	
 	public function createWiki($wiki) {
 	
-	if($wiki->title == "") {
-		$result = new CreateWikiResult();
-		$result->status_code = self::INVALID_INPUT;
-		$result->validation_messages["title"] = "Bitte geben Sie einen Titel an.";	
-		return $result;
-	}
+		/* ------------------------------------------------ */	
+		/* <<-- ERROR Handling - Eingabe unvollständig -->> */
+		/* ------------------------------------------------ */
+		
+		if($wiki->category == "") {
+			$result = new CreateWikiResult();
+			$result->status_code = self::INVALID_INPUT;
+			$result->validation_messages["category"] = "Bitte geben Sie eine Kategorie an.";	
+			return $result;
+		}
 	
+		if($wiki->title == "") {
+			$result = new CreateWikiResult();
+			$result->status_code = self::INVALID_INPUT;
+			$result->validation_messages["title"] = "Bitte geben Sie einen Titel an.";	
+			return $result;
+		}
+		
+		if($wiki->notes == "") {
+			$result = new CreateWikiResult();
+			$result->status_code = self::INVALID_INPUT;
+			$result->validation_messages["notes"] = "Es wurde kein Beschreibungstext eingetragen.";	
+			return $result;
+		}
+		
 		@$link = new mysqli("localhost","root","","wiki");			// @ um Fehlermeldungen zu unterdrücken
 		
 		$succeeded = $link->set_charset("utf8");					// Zuweisung des Zeichencode "utf8"
@@ -121,22 +139,22 @@ class WikiService {
 			return self::ERROR;										// Rückgabe: Error-Message: Zuweisung utf8 fehlgeschlagen
 			}
 			
-		$sql_statement = 		"INSERT INTO wiki SET ".
-								"version = 1, ".					// Neuer Datensatz startet mit Version = 1
-								"category = '$wiki->category', ".				
-								"title = '$wiki->title', ".
-								"notes = '$wiki->notes', ".
-								//"author = '$wiki->author' ".
-								"creation_date = CURDATE(), ".
-								"expiration_date = DATE_ADD(CURDATE(), INTERVAL 1 YEAR)";		//	Aktuelles Datum + 1 Jahr: "SELECT DATE_ADD(CURDATE(), INTERVAL 1 YEAR) AS Datum"
-								
-								
+		$sql_statement = 	"INSERT INTO wiki SET ".
+							"version = 1, ".					// Neuer Datensatz startet mit Version = 1
+							"category = '$wiki->category', ".				
+							"title = '$wiki->title', ".
+							"notes = '$wiki->notes', ".
+							//"author = '$wiki->author' ".		// Author wird aus Formular ausgelesen (OFFEN)
+							"creation_date = CURDATE(), ".
+							"expiration_date = DATE_ADD(CURDATE(), INTERVAL 1 YEAR)";		//	Aktuelles Datum + 1 Jahr: "SELECT DATE_ADD(CURDATE(), INTERVAL 1 YEAR) AS Datum"
+															
 		$link->query($sql_statement);				// Einfügen des Datensatzes
 		$id = $link->insert_id;						// ID als Rückgabe des INSERT Statements
 		$link->close();								// DB Verbindung schließen
-		/* $result = new CreateWikiResult();
+		
+		$result = new CreateWikiResult();
 		$result->status_code = self::OK;
-		$result->id = $id; */
+		$result->id = $id;
 		return $result;								// Rückgabe ID
 	
 	}
@@ -158,6 +176,9 @@ class WikiService {
 		
 		readWikis()
 			http://localhost/rfh_web_dev_project/service/wikis	
+			
+		createWiki()
+			http://localhost/rfh_web_dev_project/service/RequestHandler.php?command=CreateWikiCommand&category=PHP&title=Der%20Titel&notes=Das%20ist%20der%20Text
 	
 */
 		
