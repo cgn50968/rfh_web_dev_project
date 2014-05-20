@@ -34,10 +34,9 @@
 			
 			unset($wiki->id);								// Variable $id zurücksetzen
 			
-//Etag header setzen - Für die Kontrolle der Version
-			header("Etag: $wiki->version");
+			header("Etag: $wiki->version");					// Die Version des Datensatzes wird im Etag Header gespeichert (z.B. Etag: 1)
 //Etag wieder leeren
-			unset($wiki->version);
+			//unset($wiki->version);						// Die Version wird in der Ausgabe nicht mehr benötigt
 			return $wiki;									// Rückgabe des Arrays (Datensatz)
 		}
 	}

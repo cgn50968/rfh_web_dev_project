@@ -45,8 +45,8 @@ class WikiService {
 			return self::ERROR;										// Rückgabe: 	ERROR
 			}
 			
-		$sql_statement = 	"SELECT id, category, title_id, title, version, notes, author, creation_date, expiration_date FROM wiki WHERE id = $id";
-															
+		$sql_statement = 	"SELECT * FROM wiki WHERE id = $id";
+		
 		$result_set = $link->query($sql_statement);					// Ausführung der SQL Abfrage
 		$wiki = $result_set->fetch_object("Wiki");					// Übergabe des SQL-Statements
 		
@@ -89,7 +89,7 @@ class WikiService {
 			return self::ERROR;										// Rückgabe: Error-Message: Zuweisung utf8 fehlgeschlagen
 			}
 			
-		$sql_statement = 	"SELECT * FROM wiki";													
+		$sql_statement = "SELECT * FROM wiki";													
 		
 		$result_set = $link->query($sql_statement);
 		
@@ -157,16 +157,43 @@ class WikiService {
 							"creation_date = CURDATE(), ".
 							"expiration_date = DATE_ADD(CURDATE(), INTERVAL 1 YEAR)";		//	Aktuelles Datum + 1 Jahr: "SELECT DATE_ADD(CURDATE(), INTERVAL 1 YEAR) AS Datum"
 															
-		$link->query($sql_statement);				// Einfügen des Datensatzes
-		$id = $link->insert_id;						// ID als Rückgabe des INSERT Statements
-		$link->close();								// DB Verbindung schließen
+		$link->query($sql_statement);							// Einfügen des Datensatzes
+		$id = $link->insert_id;									// ID als Rückgabe des INSERT Statements
+		$link->close();											// DB Verbindung schließen
 		
 		$result = new CreateWikiResult();
 		$result->status_code = self::OK;
-		$result->id = $id;
-		return $result;								// Rückgabe ID
+		$result->id = $id;										// Übergabe der neuen ID an $result
+		return $result;											// Rückgabe ID
+		}
+		
+	/* -------------------------------------------*/	
+	/* <<-- updateWiki - Wiki Eintrag ändern -->> */
+	/* -------------------------------------------*/
+		public function updateWiki($wiki) {
+		
+			@$link = new mysqli("localhost","root","","wiki");			// @ um Fehlermeldungen zu unterdrücken
+			
+			$succeeded = $link->set_charset("utf8");					// Zuweisung des Zeichencode "utf8"
+			if($succeeded == FALSE) {									// Bei Zuweisungsfehler...
+				$link->close();											// DB Verbindung schließen...
+				return self::ERROR;										// Rückgabe: Error-Message: Zuweisung utf8 fehlgeschlagen
+				}
+				
+			$sql_statement = 	"UPDATE wiki SET ".
+								"version = version + 1, ".						// Neuer Datensatz startet mit Version = 1
+								"category = '$wiki->category', ".				
+								"title = '$wiki->title', ".
+								"notes = '$wiki->notes', ".
+								//"author = '$wiki->author' ".									// Author wird aus Formular ausgelesen (OFFEN)
+								"expiration_date = DATE_ADD(CURDATE(), INTERVAL 1 YEAR)".		//	Aktuelles Datum + 1 Jahr: "SELECT DATE_ADD(CURDATE(), INTERVAL 1 YEAR) AS Datum"
+								"WHERE id = '$wiki->id'";
+			$link->query($sql_statement);				// Einfügen des Datensatzes
+			$id = $link->insert_id;						// ID als Rückgabe des INSERT Statements
+			$link->close();								// DB Verbindung schließen
+		}
 	
-	}
+	
 /* --------------------------------------------------------------------- */
 /* <<-- Infobereich -->>                                                 */	
 /* --------------------------------------------------------------------- */
@@ -189,6 +216,8 @@ class WikiService {
 		createWiki()
 			http://localhost/rfh_web_dev_project/service/RequestHandler.php?command=CreateWikiCommand&category=PHP&title=Der%20Titel&notes=Das%20ist%20der%20Text
 	
+		updateWiki()
+			http://localhost/rfh_web_dev_project/service/RequestHandler.php?command=UpdateWikiCommand&id=1&category=HTML&title=Der%20Titel&notes=Das%20ist%20der%20Text
 */
 		
 }

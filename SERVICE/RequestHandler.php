@@ -10,6 +10,7 @@
 	require "GetWikisCommand.php";
 	require "GetWikiCommand.php";
 	require "CreateWikiCommand.php";
+	require "UpdateWikiCommand.php";
 	require "CreateWikiResult.php";
 	require "WikiService.php";
 	require "HtmlPage.php";
@@ -23,21 +24,24 @@
 		/* Die Funktion handleRequest() erwartet, dass die angegebene Klasse eine Funktion execute() besitzt. */
 	
 		public function handleRequest() {
-			$request = $_REQUEST;						// Übergabe der POST Argumente an $request
-						
-			$class_name = $request["command"];			// Auslesen des Klassennamens in $class_name
 			
-			$command = new $class_name;					// Klassenobjekt erstellen
+			$request = $_REQUEST;										// Übergabe der POST Argumente an $request
+			
+			$request_headers = apache_request_headers();				// Request Header per apache_request_headers() auslesen und Methode execute übergeben
+			
+			$class_name = $request["command"];							// Auslesen des Klassennamens in $class_name
+			
+			$command = new $class_name;									// Klassenobjekt erstellen
 		
-			$result = $command->execute($request);		// Ausführen der Funktion execute()
+			$result = $command->execute($request, $request_headers);	// Ausführen der Funktion execute()
 			
-			if($result !== NULL) {						// Falls die Rückgabe ungleich NULL ist (!== bedeutet, dass nur NULL den Fehler erzeugt)
+			if($result !== NULL) {										// Falls die Rückgabe ungleich NULL ist (!== bedeutet, dass nur NULL den Fehler erzeugt)
 			
 			//	Testbereich...
 			
 				$html_page = new HtmlPage;				// Klassenobjekt erstellen
 				
-				if(isset($_REQUEST["edit"])) {			// Falls Anfrage = cancel > dann öffnen der Seite TodoList.php */
+				if(isset($_REQUEST["edit"])) {			// Falls Anfrage = cancel > dann öffnen der Seite WikiList.php */
 					header("Location: RequestHandler.php");
 					$html_page->editDetails($result);	
 					}
