@@ -192,7 +192,31 @@ class WikiService {
 			$id = $link->insert_id;						// ID als Rückgabe des INSERT Statements
 			$link->close();								// DB Verbindung schließen
 		}
-	
+
+	/* --------------------------------------------*/	
+	/* <<-- deleteWiki - Wiki Eintrag löschen -->> */
+	/* --------------------------------------------*/
+		public function deleteWiki($id) {
+		
+			@$link = new mysqli("localhost","root","","wiki");			// @ um Fehlermeldungen zu unterdrücken
+					
+			$succeeded = $link->set_charset("utf8");					// Zuweisung des Zeichencode "utf8"
+			if($succeeded == FALSE) {									// Bei Zuweisungsfehler...
+				$link->close();											// DB Verbindung schließen...
+				return self::ERROR;										// Rückgabe: Error-Message: Zuweisung utf8 fehlgeschlagen
+				}
+			$sql_statement = 	"DELETE FROM wiki ".
+								"WHERE id = $id";
+		
+			$link->query($sql_statement);
+			$affected_rows = $link->affected_rows;						// Wieviele Datensätze sind betroffen
+			$link->close();
+
+			if($affected_rows == 0) {
+				return self::NOT_FOUND;
+			}
+		
+	}
 	
 /* --------------------------------------------------------------------- */
 /* <<-- Infobereich -->>                                                 */	
@@ -218,6 +242,9 @@ class WikiService {
 	
 		updateWiki()
 			http://localhost/rfh_web_dev_project/service/RequestHandler.php?command=UpdateWikiCommand&id=1&category=HTML&title=Der%20Titel&notes=Das%20ist%20der%20Text
+		
+		deleteWiki()
+			http://localhost/rfh_web_dev_project/service/RequestHandler.php?command=DeleteWikiCommand&id=20
 */
 		
 }

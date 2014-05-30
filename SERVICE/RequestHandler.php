@@ -11,6 +11,7 @@
 	require "GetWikiCommand.php";
 	require "CreateWikiCommand.php";
 	require "UpdateWikiCommand.php";
+	require "DeleteWikiCommand.php";
 	require "CreateWikiResult.php";
 	require "WikiService.php";
 	require "HtmlPage.php";

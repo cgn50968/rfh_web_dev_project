@@ -1,10 +1,15 @@
 <?php
 
+/* --------------------------------------------------------------------- */
+/* <<-- class: CreateWikiCommand -->>                                    */	
+/* --------------------------------------------------------------------- */
+
 class CreateWikiCommand {
 
 
 		public function execute($request) {
-												// Konstruktor - Klassenobjekt: Wiki
+			
+			$wiki = new Wiki();													// Konstruktor - Klassenobjekt: Wiki
 		
 			if(isset($request["category"]) == TRUE) {							// Übergabe der Werte nur, wenn Werte in HTML Formular gesetzt wurden.
 				$wiki->category = $request["category"];
