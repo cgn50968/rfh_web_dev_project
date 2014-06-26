@@ -1,0 +1,9 @@
+/* Klassen template und todo_details verstecken */
+.template, #todo_details {
+  display: none;
+}
+
+/* Cursor "Pointer" für die Klasse todo bei Hover Over anzeigen */
+.todo {
+  cursor: pointer; 
+}
