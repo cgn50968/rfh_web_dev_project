@@ -50,7 +50,6 @@ class WikiService {
 		$result_set = $link->query($sql_statement);					// Ausführung der SQL Abfrage
 		$wiki = $result_set->fetch_object("Wiki");					// Übergabe des SQL-Statements
 		
-		
 		/* -------------------------------------*/
 		/* <<-- ERROR Handling: Array leer -->> */
 		/* -------------------------------------*/
@@ -58,7 +57,7 @@ class WikiService {
 			header("HTTP/1.1 404");									// Fehler:		HTTP Status Code 404
 			return self::NOT_FOUND;									// Rückgabe: 	NOT_FOUND
 			}
-		
+	
 		/* ------------------------------------------------ */
 		/* <<-- ERROR Handling: Betroffene Zeilen = 0 -->>  */
 		/* ------------------------------------------------ */		
@@ -181,18 +180,39 @@ class WikiService {
 				}
 				
 			$sql_statement = 	"UPDATE wiki SET ".
-								"version = version + 1, ".						// Neuer Datensatz startet mit Version = 1
+								"version = version + 1, ".										// Neuer Datensatz startet mit Version = 1
 								"category = '$wiki->category', ".				
 								"title = '$wiki->title', ".
 								"notes = '$wiki->notes', ".
 								//"author = '$wiki->author' ".									// Author wird aus Formular ausgelesen (OFFEN)
-								"expiration_date = DATE_ADD(CURDATE(), INTERVAL 1 YEAR)".		//	Aktuelles Datum + 1 Jahr: "SELECT DATE_ADD(CURDATE(), INTERVAL 1 YEAR) AS Datum"
-								"WHERE id = '$wiki->id'";
-			$link->query($sql_statement);				// Einfügen des Datensatzes
-			$id = $link->insert_id;						// ID als Rückgabe des INSERT Statements
-			$link->close();								// DB Verbindung schließen
+								"expiration_date = DATE_ADD(CURDATE(), INTERVAL 1 YEAR)".		// Aktuelles Datum + 1 Jahr: "SELECT DATE_ADD(CURDATE(), INTERVAL 1 YEAR) AS Datum"
+								"WHERE id = '$wiki->id' AND version = $wiki->version";			// ID und Versionsnummer müssen übereinstimmen
+								
+			$link->query($sql_statement);														// Einfügen des Datensatzes
+			
+			/* ----------------------------------------------------- */	
+			/* <<-- Prüfung: Wieviele Datensätze betroffen sind -->> */
+			/* ----------------------------------------------------- */
+			$affected_rows = $link->affected_rows;												// Wieviele Datensätze sind betroffen?
+			
+			if($affected_rows == 0) {
+				$sql_statement = "SELECT COUNT(*) FROM todo WHERE id = $wiki->id";				// Fehler nur zurückgeben, sofern zur ID ein Wiki existiert, ansonsten NOT_FOUND
+				$result_set = $link->query($sql_statement);										// Rückgabe
+				$row = $result_set->fetch_row();												// Übergabe der Anzahl der betroffenen Datensätze
+				$count = $row[0];					
+				$link->close();
+			if($count == 1) {
+				return self::VERSION_OUTDATED;													// Falls kein Datensatz betroffen ist... 
+				}
+			return self::NOT_FOUND;
+			}
+			else {
+				$link->close();																	// Falls affected_rows größer 0 
+				$id = $link->insert_id;															// ID als Rückgabe des INSERT Statements
+				$link->close();																	// DB Verbindung schließen
+			}
 		}
-
+		
 	/* --------------------------------------------*/	
 	/* <<-- deleteWiki - Wiki Eintrag löschen -->> */
 	/* --------------------------------------------*/

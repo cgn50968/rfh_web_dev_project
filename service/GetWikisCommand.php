@@ -1,6 +1,8 @@
 <?php
 
-/* Auslesen aller Wiki Einträge */
+/* --------------------------------------------------------------------- */
+/* <<-- class: GetWikisCommand -->>                                    */	
+/* --------------------------------------------------------------------- */
 
 class GetWikisCommand {
 	public function execute() {
@@ -9,7 +11,7 @@ class GetWikisCommand {
 	
 		$wikis = $wiki_service->readWikis();						// Funktionsaufruf: readWiki()
 		
-		if($wikis == WikiService::ERROR) {							// Gibt Fehlercode 500 an Browser zurück...
+		if($wikis == WikiService::ERROR) {							// Fehlercode 500, sofern in WikiService die DB Verbdindung fehlgeschlagen ist.
 			header("HTTP/1.1 500");
 			return;													// Beendung der Verarbeitung
 			}

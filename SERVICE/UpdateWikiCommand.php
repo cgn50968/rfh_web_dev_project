@@ -36,10 +36,10 @@
 			$wiki_service = new WikiService();				// Konstruktor - neues Objekt TodoService 
 			$result = $wiki_service->updateWiki($wiki);		// Aufruf der Funktion updateTodo()
 		
-			if($result == WikiService::VERSION_OUTDATED) {
+			if($result == WikiService::VERSION_OUTDATED) {	// Falls sich die Versionsnummern bereits geändert hat.
 				header("HTTP/1.1 412");
 			}
-			if($result == WikiService::NOT_FOUND) {
+			if($result == WikiService::NOT_FOUND) {			// Falls der Datensatz nicht gefunden werden konnte.
 				header("HTTP/1.1 404");
 			
 			return "updated";								// TEST-Ausgabe
