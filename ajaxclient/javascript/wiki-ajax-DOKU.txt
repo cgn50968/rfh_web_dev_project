@@ -1,0 +1,43 @@
+Doku - ajax
+
+wikiDetails()	???
+
+
+
+
+Widget:	wiki.wikiDetails
+------------------------
+
+File: wiki.wikidetails.js
+Aufgabe: Auslesen eines Wikis [SERVICE: readWiki()]und Übergabe an [index.html <div id="todo_details"> ]
+
+Attribute:
+----------
+wikiUrl			URL für Aufruf: /http://localhost/rfh_web_dev_project/service/wikis/$id
+
+Methoden:
+---------
+load: function(wikiUrl)
+
+
+
+
+
+
+Widget: wiki.wikiList
+-------
+
+File: wiki.wikilist.js
+Aufgabe: 
+
+Attribute:
+----------
+url			URL für Aufruf: /http://localhost/rfh_web_dev_project/service/wikis/
+
+Methoden:
+---------
+
+
+
+
+

@@ -8,12 +8,12 @@ $(function() {
 	// ----------------------
 	$(document).ajaxError(function(event, request) {					// Gibt den Response Status Text bei Fehlern wieder.
 		$("#error_dialog").errorDialog("open", request.statusText);		// Methode Open des Error Dialogs
-		$("#todo_details").hide();										// Bei Fehler #todo_details nicht anzeigen
-		$("#todo_list").show();											// Bei Fehler #todo_list wieder anzeigen
+		$("#wiki_details").hide();										// Bei Fehler #todo_details nicht anzeigen
+		$("#wiki_list").show();											// Bei Fehler #todo_list wieder anzeigen
 		
 		
 		if (request.status == 404) {									// Reload der #todo_list bei Fehlercode 404
-			$("#todo_list").todoList("reload");
+			$("#wiki_list").wikiList("reload");
 			}
 		//alert(request.statusText);									// Wiedergabe des Status Text über request.statusText
 	});
@@ -22,26 +22,26 @@ $(function() {
 	
 	$("#error_dialog").errorDialog();									// Instanzierung des Widgets für Fehlerbehandlung
 	$("#delete_dialog").deleteDialog( {									// Instanzierung des Widgets für den Löschdialog
-		onTodoDeleted: function() {
-			$("#todo_list").todoList("reload");		
+		onWikiDeleted: function() {
+			$("#wiki_list").wikiList("reload");		
 		}
 	});
 	
-	$("#todo_list").todoList(
+	$("#wiki_list").wikiList(
 	{
 		// Was passiert wenn das Click Ereignis ausgelöst wird?
-		onTodoClicked: function(event, todoUrl) 
+		onWikiClicked: function(event, wikiUrl) 
 		{
-			$("#todo_list").hide();										// DIV Element ausblenden
-			$("#todo_details").show();
-			$("#todo_details").todoDetails("load", todoUrl);
+			$("#wiki_list").hide();										// DIV Element ausblenden
+			$("#wiki_details").show();
+			$("#wiki_details").wikiDetails("load", wikiUrl);
 		},
 		
-		onDeleteTodoClicked: function(event, todo) {
-			$("#delete_dialog").deleteDialog("open", todo);				// Anzeigen des Löschen Dialogs
+		onDeleteWikiClicked: function(event, wiki) {
+			$("#delete_dialog").deleteDialog("open", wiki);				// Anzeigen des Löschen Dialogs
 		}
 	});																	// Instanzierung Widgets "todolist" aus todo.todolist.js für die HTML id "todo_list" in index.html
 	
-	$("#todo_details").todoDetails();									// Instanzierung "todo.todoDetails.js"
+	$("#wiki_details").wikiDetails();									// Instanzierung "wiki.wikiDetails.js"
 });
 
