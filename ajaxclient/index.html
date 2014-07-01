@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8"/>
-    <title>Todo-Liste</title>
+    <title>Wiki-Liste</title>
 	
 	<!-- Referenzierung und Laden der Javascript Dateien -->
     <link rel="stylesheet" href="./css/jquery-ui-1.10.4.custom.css" />
@@ -25,23 +25,29 @@
 	<div id="wiki_list" class="ui-widget">  <!-- verlinkung mit application.js -->
       Roger Ordon - Javascript Training    
 		<div class="wiki template">		<!-- 2 Klassen - todo und template -->
-			<span>Wer?</span>
+			<span>Autor</span>
 			<span class="author"></span>
 			<span>|</span>
-			<span>Wann</span>
-			<span class="due_date"></span>
+			<span>Erstelldatum</span>
+			<span class="creation_date"></span>
+			<span>Ablaufdatum</span>
+			<span class="expiration_date"></span>
+			<span class="category"></span>
 			<span class="title"></span>
+			<a class="edit_wiki" href="#">Bearbeiten</a>		<!-- Tag für Bearbeiten -->
 			<a class="delete_wiki" href="#">Löschen</a>
 		</div>
 	</div>
 	
 	<!-- Div für Details -->
 	<div id="wiki_details" class="ui-widget">
-		<span>Wer?</span>
+		<span>Autor</span>
 		<span class="author"></span>
 		<span>|</span>
-		<span>Wann</span>
-		<span class="due_date"></span>
+		<span>Erstelldatum</span>
+		<span class="creation_date"></span>
+		<span>Ablaufdatum</span>
+		<span class="expiration_date"></span>
 		<span class="title"></span>
 		<span class="notes"></span>
 	</div>
@@ -55,6 +61,30 @@
 	<div id="delete_dialog" title="Wiki löschen" class="ui-widget">
 		<div> Möchten Sie das Wiki wirklich löschen?</div>
 	</div>
+	
+	<!-- Div für Bearbeiten - wird in Widget geladen -->
+	<div id="edit_dialog" title="Wiki bearbeiten" class="ui-widget">
+      <form>
+        <table>
+          <tr>
+            <td/>
+            <td colspan="2"><span class="validation_message ui-state-error-text"></span></td>
+          </tr>
+          <tr>
+            <td>
+              <label for="due_date_field">Fällig</label>,
+              <label for="title_field">Titel</label>:
+            </td>
+            <td><input id="due_date_field" type="text"/></td>
+            <td><input id="title_field" type="text"/></td>
+          </tr>
+          <tr>
+            <td><label for="notes_field">Inhalt:</label></td>
+            <td colspan="2"><textarea id="notes_field"></textarea></td>
+          </tr>
+        </table>
+      </form>
+    </div>
 	
   </body>
   

@@ -22,8 +22,11 @@ $.widget("wiki.wikiList", {  																// Beginn des Javascritp Objekts (W
 				var wikiElement = this.element.find(".template").clone().removeClass("template");	
 
 				wikiElement.find(".author").text(wiki.author);								// Wiedergabe über eigene Funktion... siehe Unterlagen
-				wikiElement.find(".due_date").text(wiki.due_date);	
-				wikiElement.find(".title").text(wiki.title);	
+				wikiElement.find(".category").text(wiki.category);	
+				wikiElement.find(".creation_date").text(wiki.creation_date);	
+				wikiElement.find(".expiration_date").text(wiki.expiration_date);	
+				wikiElement.find(".title").text(wiki.title);		
+				wikiElement.find(".notes").text(wiki.notes);	
 
 				// Festlegung der Click Eigenschaft für alle Elemente der class todo
 				wikiElement.click(wiki.url, function(event) {									// Click Ereignis (wiki.url = Übergabe der URL
@@ -60,8 +63,11 @@ $.widget("wiki.wikiList", {  																// Beginn des Javascritp Objekts (W
 				var wikiElement = this.element.find(".template").clone().removeClass("template");	
 
 				wikiElement.find(".author").text(wiki.author);									// Wiedergabe über eigene Funktion... siehe Unterlagen
-				wikiElement.find(".due_date").text(wiki.due_date);	
-				wikiElement.find(".title").text(wiki.title);	
+				wikiElement.find(".category").text(wiki.category);	
+				wikiElement.find(".creation_date").text(wiki.creation_date);	
+				wikiElement.find(".expiration_date").text(wiki.expiration_date);	
+				wikiElement.find(".title").text(wiki.title);		
+				wikiElement.find(".notes").text(wiki.notes);
 
 				// Festlegung der Click Eigenschaft für alle Elemente der class todo
 				wikiElement.click(wiki.url, function(event) {									// Click Ereignis (todo.url = Übergabe der URL

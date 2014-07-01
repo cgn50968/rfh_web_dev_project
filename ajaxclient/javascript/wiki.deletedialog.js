@@ -24,14 +24,20 @@ $.widget("wiki.deleteDialog", $.ui.dialog, {
 		var that = this;								// Übergabe des Objektes this an that (that hat einen anderen Wert ... WARUM NUR??)
 		
 		this.options.buttons = [
+			//----
+			// OK
+			//----
 			{
 				text: "OK",
 				click: function() {						// click = reagiert auf Benutzerinteraktion
-					that._deleteWiki();					// Aufruf: Wiki löschen
+					that._deleteWiki();					// Wiki löschen
 					alert("gelöscht");
 				}
 			},
 			
+			//-----------
+			// Abbrechen
+			//-----------
 			{
 				text: "Abbrechen",
 				click: function() {						// click = reagiert auf Benutzerinteraktion
@@ -43,7 +49,7 @@ $.widget("wiki.deleteDialog", $.ui.dialog, {
 	},
 	
 	//-------------------
-	// Löschen des Wikis (Aufruf bei click: function [_deleteWiki()])
+	// Löschen des Wikis (Aufruf bei OK - click: function [_deleteWiki()])
 	//-------------------
 	_deleteWiki: function() {
 		this.close();
