@@ -9,11 +9,12 @@
 	<link rel="stylesheet" href="./css/application.css" />
     <script src="./javascript/jquery-1.10.2.js" type="text/javascript"></script>
     <script src="./javascript/jquery-ui-1.10.4.custom.js" type="text/javascript"></script>
-    <script src="./javascript/todo.todolist.js" type="text/javascript"></script>
-	<script src="./javascript/todo.tododetails.js" type="text/javascript"></script>		
-    <script src="./javascript/todo.errordialog.js" type="text/javascript"></script>
-	<script src="./javascript/todo.deletedialog.js" type="text/javascript"></script>		
-	<script src="./javascript/application.js" type="text/javascript"></script>
+    <script src="./javascript/wiki.wikilist.js" type="text/javascript"></script>
+	<script src="./javascript/wiki.wikidetails.js" type="text/javascript"></script>		
+    <script src="./javascript/wiki.errordialog.js" type="text/javascript"></script>
+	<script src="./javascript/wiki.deletedialog.js" type="text/javascript"></script>		
+	<script src="./javascript/wiki-application.js" type="text/javascript"></script>				<!-- Als letztes laden, da hier die Widgets erst aufgerufen werden -->
+	
 	<!-- Reihenfolge der Referenzierung DRINGEND beachten - Es darf nur auf bereits geladene Dateien referenziert werden. -->
 	
   </head>
@@ -21,21 +22,21 @@
   <body>  
     
 	<!-- Div für Liste -->
-	<div id="todo_list" class="ui-widget">  <!-- verlinkung mit application.js -->
+	<div id="wiki_list" class="ui-widget">  <!-- verlinkung mit application.js -->
       Roger Ordon - Javascript Training    
-		<div class="todo template">		<!-- 2 Klassen - todo und template -->
+		<div class="wiki template">		<!-- 2 Klassen - todo und template -->
 			<span>Wer?</span>
 			<span class="author"></span>
 			<span>|</span>
 			<span>Wann</span>
 			<span class="due_date"></span>
 			<span class="title"></span>
-			<a class="delete_todo" href="#">Löschen</a>
+			<a class="delete_wiki" href="#">Löschen</a>
 		</div>
 	</div>
 	
 	<!-- Div für Details -->
-	<div id="todo_details" class="ui-widget">
+	<div id="wiki_details" class="ui-widget">
 		<span>Wer?</span>
 		<span class="author"></span>
 		<span>|</span>
@@ -51,8 +52,8 @@
 	</div>
 	
 	<!-- Div für Löschen -->
-	<div id="delete_dialog" title="Todo löschen" class="ui-widget">
-		<div> Möchten Sie das Todo wirklich löschen?</div>
+	<div id="delete_dialog" title="Wiki löschen" class="ui-widget">
+		<div> Möchten Sie das Wiki wirklich löschen?</div>
 	</div>
 	
   </body>

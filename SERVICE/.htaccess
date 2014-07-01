@@ -12,7 +12,7 @@ RewriteCond %{REQUEST_METHOD} POST
 RewriteRule ^wikis$ RequestHandler.php?command=CreateWikiCommand
 
 RewriteCond %{REQUEST_METHOD} DELETE
-RewriteRule ^twikis/(.+)$ RequestHandler.php?command=DeleteWikiCommand&id=$1
+RewriteRule ^wikis/(.+)$ RequestHandler.php?command=DeleteWikiCommand&id=$1
 
 RewriteCond %{REQUEST_METHOD} PUT
 RewriteRule ^wikis/(.+)$ RequestHandler.php?command=UpdateWikiCommand&id=$1

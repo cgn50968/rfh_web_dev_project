@@ -17,7 +17,7 @@ class GetWikisCommand {
 			}
 		
 		foreach($wikis as $wiki) {									// Zuweisen einer URL pro ID
-			$wiki->url = "/service/wikis/$wiki->id"; 
+			$wiki->url = "/rfh_web_dev_project/service/wikis/$wiki->id"; 
 			unset($wiki->id);										// Löscht das Attribut aus dem Objekt
 		}
 		

@@ -44,7 +44,7 @@ class CreateWikiCommand {
 				}
 					
 			header("HTTP/1.1 201");												// Nach POST Aufruf ist der HTTP Status Code 201 zu setzten.
-			header("Location: /service/wikis/$result->id");		
+			header("Location: rfh_web_dev_project/service/wikis/$result->id");		
 			
 			// ACHTUNG !! Ausgabe nur fürs Debugging..
 			return $result->id;

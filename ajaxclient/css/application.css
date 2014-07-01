@@ -1,9 +1,9 @@
-/* Klassen template und todo_details verstecken */
-.template, #todo_details {
+/* Klassen template und wiki_details verstecken */
+.template, #wiki_details {
   display: none;
 }
 
-/* Cursor "Pointer" für die Klasse todo bei Hover Over anzeigen */
-.todo {
+/* Cursor "Pointer" für die Klasse wiki bei Hover Over anzeigen */
+.wiki {
   cursor: pointer; 
 }

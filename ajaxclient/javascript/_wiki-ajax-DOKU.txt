@@ -1,5 +1,10 @@
 Doku - ajax
 
+index.html --> <div> Element für Liste (jQuery) --> Skript ausführen --> Widget erzeugen und HTML Element zuweisen --> HTTP Anfrage (SERVICE)
+
+
+
+
 wikiDetails()	???
 
 

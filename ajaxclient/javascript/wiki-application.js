@@ -1,32 +1,42 @@
 $(function() {
 // -------------------------------------
-// Control - zentrale Steuerungsfunktion
+// CONTROL - Zentrale Steuerungsfunktion
 // -------------------------------------
 
-	// ----------------------
-	// Fehlerbehandlung
-	// ----------------------
+// ----------------
+//  ERROR HANDLING
+// ----------------
 	$(document).ajaxError(function(event, request) {					// Gibt den Response Status Text bei Fehlern wieder.
-		$("#error_dialog").errorDialog("open", request.statusText);		// Methode Open des Error Dialogs
+		$("#error_dialog").errorDialog("open", request.statusText);		// Methode Open des Error Dialogs (Wiedergabe des Request Status über request.statusText
 		$("#wiki_details").hide();										// Bei Fehler #todo_details nicht anzeigen
 		$("#wiki_list").show();											// Bei Fehler #todo_list wieder anzeigen
 		
-		
 		if (request.status == 404) {									// Reload der #todo_list bei Fehlercode 404
 			$("#wiki_list").wikiList("reload");
-			}
-		//alert(request.statusText);									// Wiedergabe des Status Text über request.statusText
+		}
 	});
 	
-	// Instanzieren der Widgets
+// ----------------------------
+//  INSTANZIIERUNG DER WIDGETS
+// ----------------------------
 	
+	// ----------------------------
+	//  Instanziierung errorDialog
+	// ----------------------------
 	$("#error_dialog").errorDialog();									// Instanzierung des Widgets für Fehlerbehandlung
+	
+	// -----------------------------
+	//  Instanziierung deleteDialog
+	// -----------------------------
 	$("#delete_dialog").deleteDialog( {									// Instanzierung des Widgets für den Löschdialog
 		onWikiDeleted: function() {
 			$("#wiki_list").wikiList("reload");		
 		}
 	});
 	
+	// -------------------------
+	//  Instanziierung wikiList
+	// -------------------------
 	$("#wiki_list").wikiList(
 	{
 		// Was passiert wenn das Click Ereignis ausgelöst wird?
