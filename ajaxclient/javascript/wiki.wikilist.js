@@ -4,7 +4,7 @@
 
 
 																							// widget - die Funktion muss extra in der index.html aufgerufen werden. - wie ein Konstruktor
-$.widget("wiki.wikiList", {  																// Beginn des Javascritp Objekts (Widget - todoListe) {
+$.widget("wiki.wikiList", {  																// Beginn des Javascritp Objekts (Widget - wikiListe) {
 
 	// -----------------
 	// Function _create
@@ -36,6 +36,13 @@ $.widget("wiki.wikiList", {  																// Beginn des Javascritp Objekts (W
 					that._trigger("onDeleteWikiClicked", null, event.data);						// Löst Funktion in applicaton.js aus...
 					return false;																// Keine weitere Bearbeitung durch False
 				});
+				
+				// Click für Bearbeiten eines Wikis
+				wikiElement.find(".edit_wiki").click(wiki, function(event) {
+					that._trigger("onEditWikiClicked", null, event.data);						// Löst Funktion in applicaton.js aus...
+					return false;																// Keine weitere Bearbeitung durch False
+				});
+				
 				this.element.append(wikiElement);
 			}
 		},
