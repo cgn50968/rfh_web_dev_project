@@ -45,7 +45,7 @@ class WikiService {
 			return self::ERROR;										// Rückgabe: 	ERROR
 			}
 			
-		$sql_statement = 	"SELECT * FROM wiki WHERE id = $id";
+		$sql_statement = 	"SELECT id, version, category, title, notes, author, creation_date, expiration_date FROM wiki WHERE id = $id";
 		
 		$result_set = $link->query($sql_statement);					// Ausführung der SQL Abfrage
 		$wiki = $result_set->fetch_object("Wiki");					// Übergabe des SQL-Statements
@@ -88,8 +88,8 @@ class WikiService {
 			return self::ERROR;										// Rückgabe: Error-Message: Zuweisung utf8 fehlgeschlagen
 			}
 			
-		$sql_statement = "SELECT * FROM wiki";													
-		
+		$sql_statement = "SELECT id, version, category, title, notes, author, creation_date, expiration_date FROM wiki";
+									
 		$result_set = $link->query($sql_statement);
 		
 		$wikis = array();											// Deklaration: wikis = Array
@@ -170,7 +170,7 @@ class WikiService {
 	/* <<-- updateWiki - Wiki Eintrag ändern -->> */
 	/* -------------------------------------------*/
 		public function updateWiki($wiki) {
-		
+			
 			@$link = new mysqli("localhost","root","","wiki");			// @ um Fehlermeldungen zu unterdrücken
 			
 			$succeeded = $link->set_charset("utf8");					// Zuweisung des Zeichencode "utf8"
@@ -186,8 +186,11 @@ class WikiService {
 								"notes = '$wiki->notes', ".
 								//"author = '$wiki->author' ".									// Author wird aus Formular ausgelesen (OFFEN)
 								"expiration_date = DATE_ADD(CURDATE(), INTERVAL 1 YEAR)".		// Aktuelles Datum + 1 Jahr: "SELECT DATE_ADD(CURDATE(), INTERVAL 1 YEAR) AS Datum"
-								"WHERE id = '$wiki->id' AND version = $wiki->version";			// ID und Versionsnummer müssen übereinstimmen
-								
+								"WHERE id = '$wiki->id'"; 
+								//AND version = $wiki->version";			// ID und Versionsnummer müssen übereinstimmen
+			
+			echo($sql_statement);
+			
 			$link->query($sql_statement);														// Einfügen des Datensatzes
 			
 			/* ----------------------------------------------------- */	
@@ -217,7 +220,7 @@ class WikiService {
 	/* <<-- deleteWiki - Wiki Eintrag löschen -->> */
 	/* --------------------------------------------*/
 		public function deleteWiki($id) {
-		
+	
 			@$link = new mysqli("localhost","root","","wiki");			// @ um Fehlermeldungen zu unterdrücken
 					
 			$succeeded = $link->set_charset("utf8");					// Zuweisung des Zeichencode "utf8"

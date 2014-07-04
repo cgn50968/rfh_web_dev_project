@@ -1,76 +1,107 @@
-// --------------------
-//  Widget: editDialog
-// --------------------
+//--------------------
+// Widget: editDialog
+//--------------------
 
 $.widget("wiki.editDialog",$.ui.dialog, {
  
+	//--------------------------------------------------
 	// Festlegung der Standard Optionen (Konfiguration)
+	//--------------------------------------------------
 	options: {
 		autoOpen: false,		// Soll nicht automatisch geöffnet werden.
 		modal: true,			// "modal" bedeutet, wenn der Anwender neben den Dialog klickt, behält das Objekt dennoch den Focus
 		width: 800				// Festlegen der Breite in Pixel (Da Dialog sonst zu klein)
 	},
   
+	//-------------------
+	//Öffnen des Widgets
+	//-------------------
 	open: function(wiki) {
-		this._wiki = wiki;											// neues lokales Attribut _todo erstellen und die Werte aus todo übergeben (damit auch nach dem Instanzieren auf die Werte von todo zugegriffen werden kann)
+		this._wiki = wiki;															// neues lokales Attribut _todo erstellen und die Werte aus todo übergeben (damit auch nach dem Instanzieren auf die Werte von todo zugegriffen werden kann)
 		
-		// Zurücksetzen der Werte
-		this.element.find(".validation_message").empty(); 			// Text des Widgets leeren
-		this.element.find("#title_field").removeClass("ui-state-error").focus();	// ui-state-error Klasse entfernen
+		//-------------------------------------------
+		// Werte für validation_message zurücksetzen
+		//-------------------------------------------
+		this.element.find(".validation_message").empty(); 					
 		
-		this.element.find("#title_field").val(wiki.title);			// Ersetzt den Titel im Widget
-		this.element.find("#creation_date_field").val(wiki.creation_date);	// Ersetzt das Due_Date im Widget
+		//---------------------------------
+		// ui-state-error Klasse entfernen
+		//---------------------------------
+		this.element.find("#title_field").removeClass("ui-state-error").focus();	
+		
+		//----------------------------------------------------------------------------------------------
+		// Übergabe der Werte aus Array "wiki"
+		// val() weist Eingabefeldern Werte zu.
+		// Bei Aufruf ohne Übergabeparameter werden die aktuellen Werte der Eingabefelder zurückgegeben.
+		//-----------------------------------------------------------------------------------------------
+		this.element.find("#title_field").val(wiki.title);							
+		this.element.find("#creation_date_field").val(wiki.creation_date);			
 		this.element.find("#expiration_date_field").val(wiki.expiration_date);
 		this.element.find("#category_field").val(wiki.category);
-		this.element.find("#notes_field").val(wiki.notes);			// Ersetzt die Notes im Widget
+		this.element.find("#notes_field").val(wiki.notes);							
 		this._super();								
-	
-	
 	},
   
-  
-	// _Create wird ausgeführt, um Anpassungen am Widget durchzuführen 
-	_create: function() {								// Button konfigurieren
-		var that = this;								// Übergabe des Objektes this an that (that hat einen anderen Wert ... WARUM NUR??)
+	//----------------------------
+	// Widget: Buttons hinzufügen
+	//----------------------------
+	_create: function() {			
+		var that = this;			
 		
-		this.options.buttons = [						// Buttons erstellen
-			{											// Button - OK
+		//-------------------
+		// Buttons erstellen
+		//-------------------
+		this.options.buttons = [						
+			//-----------
+			// OK Button
+			//-----------
+			{
 				text: "OK",
 				click: function() {						// click = reagiert auf Benutzerinteraktion
-					that._updateWiki();					// Aufruf: Wiki aktualisieren
+					that._updateWiki();					// Aufruf: _updateWiki
 				}
 			},
 			
-			{											// Button - Abbrechen
+			//------------------
+			// Abbrechen Button
+			//------------------
+			{					
 				text: "Abbrechen",
 				click: function() {						// click = reagiert auf Benutzerinteraktion
 					that.close();						// Fehlerdialog schließen
 				}
 			}
 		];
-			
 		this._super();									// Aufruf des übergeordneten jQuery-Widgets (in diesem Fall _create)
 	},
-
-	// Funktion - Ändern des Todos
+	
+	//-----------------------------------------------------
+	// Funktion: updateWiki - Änderungen am Wiki speichern
+	//-----------------------------------------------------
 	_updateWiki: function() {	
-		var wiki = {									// Übergabe der Werte/Felder aus dem Widget an das Objekt todo, damit die neuen Werte aus dem Widget übergeben werden.
-			title: this.element.find("#title_field").val(),		// Attribut title wird angelegt und Wert aus Widget übergeben
-			due_date: this.element.find("#due_date_field").val(),
-			notes: this.element.find("#notes_field").val()
+	
+		var wiki = {									// Übergabe der Werte aus dem Widget an das Objekt "wiki"
+			
+			title: this.element.find("#title_field").val(),							
+			//creation_date: this.element.find("#creation_date_field").val(),			
+			expiration_date: this.element.find("#expiration_date_field").val(),
+			//category: this.element.find("#category_field").val(),
+			notes: this.element.find("#notes_field").val()	
 			//author: "Roger"				// !!!! Im Service anpassen !!!!
+			
 		};
 		
 		$.ajax({
 			type: "PUT",								// HTML Übergabe Typ festlegen
-			url: this._wiki.url,						// Ruft die in todo gespeicherte URL auf (die URL wird in todo.todolist.js festgelegt)
+			url: this._wiki.url,						// Ruft die in wiki gespeicherte URL auf (die URL wird in wiki.wikilist.js festgelegt)
 			headers: {"If-Match": this._wiki.version },	// Definierung des If-Match Wertes im Header (wird vom "Service" erwartet.
-			data: wiki,									// todo wird an das data Attribut übergeben
+			data: wiki,									// wiki wird an das data Attribut übergeben
 			
 			success: function() {						// Bei Erfolg, function ausführen
 				this.close();							// Widget schließen
 				this._trigger("onWikiEdited");			// Aufruf, um Liste neu zu laden
 			},
+			
 			
 			// ----------------------------
 			// SPEZIFISCHE FEHLERBEHANDLUNG
