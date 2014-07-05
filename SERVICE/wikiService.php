@@ -210,7 +210,7 @@ class WikiService {
 			return self::NOT_FOUND;
 			}
 			else {
-				$link->close();																	// Falls affected_rows größer 0 
+				//$link->close();																	// Falls affected_rows größer 0 
 				$id = $link->insert_id;															// ID als Rückgabe des INSERT Statements
 				$link->close();																	// DB Verbindung schließen
 			}

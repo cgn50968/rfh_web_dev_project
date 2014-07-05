@@ -27,7 +27,7 @@
 		public function handleRequest() {
 			
 			$request = $_REQUEST;										// Übergabe der POST Argumente an $request
-			
+						 
 			if ($_SERVER["REQUEST_METHOD"] == "PUT") {
 				parse_str(file_get_contents("php://input"), $body_parameters);
 				$request = $request + $body_parameters;
@@ -51,7 +51,7 @@
 			$command = new $class_name;									// Klassenobjekt erstellen
 		
 			$result = $command->execute($request, $request_headers);	// Ausführen der Funktion execute()
-			
+						
 			if($result !== NULL) {										// Falls die Rückgabe ungleich NULL ist (!== bedeutet, dass nur NULL den Fehler erzeugt)
 			
 			//	Testbereich...
@@ -76,7 +76,7 @@
 			//	Ende - Testbereich!
 			
 				echo(json_encode($result));				// Ausgabe als "JSON-Zeichenkette"
-				
+								
 			}
 		}
 	}
@@ -84,16 +84,14 @@
 /* --------------------------------------------------------------------- */
 /* <<-- Programmaufruf -->>                                              */	
 /* --------------------------------------------------------------------- */
-
-	$request_handler = new RequestHandler();			// Klassen-Objekt instanzieren (erstellen)
 	
+	$request_handler = new RequestHandler();			// Klassen-Objekt instanzieren (erstellen)
+
 	$request_handler->handleRequest(); 					// Aufruf der zentralen Funktion "handleRequest()"
 
 /* --------------------------------------------------------------------- */
 /* <<-- Infobereich -->>                                                 */	
 /* --------------------------------------------------------------------- */
+//Programmaufruf:		http://localhost/rfh_dev_project/service/RequestHandler.php?command=[class_name] 
 
-/*
-	Programmaufruf:		http://localhost/rfh_dev_project/service/RequestHandler.php?command=[class_name] 
-*/
 ?>

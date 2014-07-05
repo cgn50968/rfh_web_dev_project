@@ -45,7 +45,7 @@
 			if($result == WikiService::NOT_FOUND) {				// Falls der Datensatz nicht gefunden werden konnte.
 				header("HTTP/1.1 404");
 			
-			return "updated";									// TEST-Ausgabe
+			return "UpdateWikiCommand.php - UPDATED";									// TEST-Ausgabe
 			}
 		}
 	}

@@ -68,7 +68,6 @@ $(function() {
 	// -----------------------------
 	$("#edit_dialog").editDialog( {										// Das # versteckt das HTML Element beim ersten Aufruf
 		onWikiEdited: function() {		
-			alert("RELOAD");
 			$("#wiki_list").wikiList("reload");							// Reload der Seite - Aufruf aus "wiki.editdialog.js"
 		}
 	});

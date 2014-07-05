@@ -17,6 +17,11 @@ $.widget("wiki.editDialog",$.ui.dialog, {
 	//Öffnen des Widgets
 	//-------------------
 	open: function(wiki) {
+
+//DEBUG		
+alert("wiki.editdialog.js : open");
+//DEBUG		
+
 		this._wiki = wiki;															// neues lokales Attribut _todo erstellen und die Werte aus todo übergeben (damit auch nach dem Instanzieren auf die Werte von todo zugegriffen werden kann)
 		
 		//-------------------------------------------
@@ -58,6 +63,9 @@ $.widget("wiki.editDialog",$.ui.dialog, {
 			{
 				text: "OK",
 				click: function() {						// click = reagiert auf Benutzerinteraktion
+//DEBUG		
+alert("wiki.editdialog.js : _create: function - OK");
+//DEBUG		
 					that._updateWiki();					// Aufruf: _updateWiki
 				}
 			},
@@ -79,9 +87,13 @@ $.widget("wiki.editDialog",$.ui.dialog, {
 	// Funktion: updateWiki - Änderungen speichern
 	//-----------------------------------------------------
 	_updateWiki: function() {	
+
+//DEBUG		
+alert("wiki.editdialog.js : _updateWiki: function() - Übergabe <INPUT> an var wiki, ");
+//DEBUG	
 	
 		var wiki = {									// Übergabe der Werte aus dem Widget an das Objekt "wiki"
-			
+
 			title: this.element.find("#title_field").val(),							
 			creation_date: this.element.find("#creation_date_field").val(),			
 			expiration_date: this.element.find("#expiration_date_field").val(),
@@ -90,14 +102,11 @@ $.widget("wiki.editDialog",$.ui.dialog, {
 			//author: "Roger"				// !!!! Im Service anpassen !!!!
 			
 		};
-		
-		// DEBUGGING
-		alert(this._wiki.url);
-		alert(wiki.expiration_date);
-		alert(wiki.title);
-		alert(wiki.notes);
-		alert(this._wiki.version);
-		
+
+//DEBUG		
+alert("wiki.editdialog.js : _updateWiki: function() - PUT an UpdateWikiCommand wenn headers VERSION=VERSION");
+//DEBUG	
+
 		$.ajax({
 			type: "PUT",								// HTML Übergabe Typ festlegen
 			url: this._wiki.url,						// Ruft die in wiki gespeicherte URL auf (die URL wird in wiki.wikilist.js festgelegt)
@@ -106,8 +115,11 @@ $.widget("wiki.editDialog",$.ui.dialog, {
 			
 			success: function() {						// Bei Erfolg, function ausführen
 				this.close();							// Widget schließen
-				alert("wiki.editdialog.js - 109 - PUT erhalten");
-			
+				
+
+				//DEBUG		
+alert("wiki.editdialog.js : _updateWiki: function() - Trigger - onWikiEdited");
+//DEBUG	
 				this._trigger("onWikiEdited");			// Aufruf, um Liste neu zu laden
 			},
 			
