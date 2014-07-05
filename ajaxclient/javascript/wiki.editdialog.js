@@ -76,20 +76,27 @@ $.widget("wiki.editDialog",$.ui.dialog, {
 	},
 	
 	//-----------------------------------------------------
-	// Funktion: updateWiki - Änderungen am Wiki speichern
+	// Funktion: updateWiki - Änderungen speichern
 	//-----------------------------------------------------
 	_updateWiki: function() {	
 	
 		var wiki = {									// Übergabe der Werte aus dem Widget an das Objekt "wiki"
 			
 			title: this.element.find("#title_field").val(),							
-			//creation_date: this.element.find("#creation_date_field").val(),			
+			creation_date: this.element.find("#creation_date_field").val(),			
 			expiration_date: this.element.find("#expiration_date_field").val(),
-			//category: this.element.find("#category_field").val(),
+			category: this.element.find("#category_field").val(),
 			notes: this.element.find("#notes_field").val()	
 			//author: "Roger"				// !!!! Im Service anpassen !!!!
 			
 		};
+		
+		// DEBUGGING
+		alert(this._wiki.url);
+		alert(wiki.expiration_date);
+		alert(wiki.title);
+		alert(wiki.notes);
+		alert(this._wiki.version);
 		
 		$.ajax({
 			type: "PUT",								// HTML Übergabe Typ festlegen
@@ -99,6 +106,8 @@ $.widget("wiki.editDialog",$.ui.dialog, {
 			
 			success: function() {						// Bei Erfolg, function ausführen
 				this.close();							// Widget schließen
+				alert("wiki.editdialog.js - 109 - PUT erhalten");
+			
 				this._trigger("onWikiEdited");			// Aufruf, um Liste neu zu laden
 			},
 			
@@ -109,13 +118,13 @@ $.widget("wiki.editDialog",$.ui.dialog, {
 			error: function(request) {
 			
 			// Zurücksetzen der Werte
-			this.element.find(".validation_message").empty(); 			// Text des Widgets leeren
+			this.element.find(".validation_message").empty(); 							// Text des Widgets leeren
 			this.element.find("#title_field").removeClass("ui-state-error").focus();	// ui-state-error Klasse entfernen
 			if (request.status == 400) {									
 		
-				var validationMessages = $.parseJSON(request.responseText); // Reload der #todo_list bei Fehlercode 400
+				var validationMessages = $.parseJSON(request.responseText); 			// Reload der #todo_list bei Fehlercode 400
 				
-				if(validationMessages.title) {								// Falls Hinweis zum Titel ausgegeben wird...
+				if(validationMessages.title) {											// Falls Hinweis zum Titel ausgegeben wird...
 					this.element.find(".validation_message").text(validationMessages.title); // Übergabe des Errors aus RequestHandler.php Zeile 25
 					this.element.find("#title_field").addClass("ui-state-error").focus();	// Rot umranden und Focus auf Element setzen
 					}

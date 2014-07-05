@@ -28,10 +28,11 @@ $.widget("wiki.wikiList", {  																// Beginn des Javascritp Objekts (W
 				wikiElement.find(".title").text(wiki.title);		
 				wikiElement.find(".notes").text(wiki.notes);	
 
-				// Festlegung der Click Eigenschaft für alle Elemente der class todo
+				// Festlegung der Click Eigenschaft für alle Elemente der class Wiki
 				wikiElement.click(wiki.url, function(event) {									// Click Ereignis (wiki.url = Übergabe der URL
 					that._trigger("onWikiClicked", null, event.data);							// Übergabe der URL mit korrekter ID des Datensatzes
 				});
+				
 				wikiElement.find(".delete_wiki").click(wiki, function(event) {
 					that._trigger("onDeleteWikiClicked", null, event.data);						// Löst Funktion in applicaton.js aus...
 					return false;																// Keine weitere Bearbeitung durch False

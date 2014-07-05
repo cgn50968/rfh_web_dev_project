@@ -28,6 +28,22 @@
 			
 			$request = $_REQUEST;										// Übergabe der POST Argumente an $request
 			
+			if ($_SERVER["REQUEST_METHOD"] == "PUT") {
+				parse_str(file_get_contents("php://input"), $body_parameters);
+				$request = $request + $body_parameters;
+				
+				//-------------------------------------
+				// Falls der Titel nicht gesetzt wurde
+				//-------------------------------------
+				if ($request["title"] == "") {
+					header("HTTP/1.1 400");
+					$validation_messages = array();
+					$validation_messages["title"] = "Der Titel ist eine Pflichtangabe. Bitte geben Sie einen Titel an.";
+					echo json_encode($validation_messages);
+					return;
+				}		
+			}
+			
 			$request_headers = apache_request_headers();				// Request Header per apache_request_headers() auslesen und Methode execute übergeben
 			
 			$class_name = $request["command"];							// Auslesen des Klassennamens in $class_name
