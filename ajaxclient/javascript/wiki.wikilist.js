@@ -10,17 +10,25 @@ $.widget("wiki.wikiList", {  																// Beginn des Javascritp Objekts (W
 	// Function _create
 	// -----------------
 	_create: function() {																	//Instanzieren der Methode des Objekts
+//DEBUG
+alert("wiki.wikilist - _create - (List)");
+//DEBUG
 		$.ajax({
 		url: "/rfh_web_dev_project/service/wikis",											// Aufruf der JSON Webseite und Übergabe der Rückgabe an das Array (wikis) (aus WikiService.php)
 		dataType: "json",
-		  
+
 		success: function(wikis) {		// nur HTML Code 200 zurückkommt.
+//DEBUG
+alert("wiki.wikilist - GET > (GetWikisCommand)");
+//DEBUG	
 			var that = this;
 			for(var i = 0; i < wikis.length; i++) {
 				var wiki = wikis[i];
 				// Finde HTML Element "template" und kopiere es, anschließend entferne HTML Klasse "template"
 				var wikiElement = this.element.find(".template").clone().removeClass("template");	
-
+//DEBUG
+alert("wiki.wikilist - Append HTML Element: template");
+//DEBUG	
 				wikiElement.find(".author").text(wiki.author);								// Wiedergabe über eigene Funktion... siehe Unterlagen
 				wikiElement.find(".category").text(wiki.category);	
 				wikiElement.find(".creation_date").text(wiki.creation_date);	
@@ -55,21 +63,28 @@ $.widget("wiki.wikiList", {  																// Beginn des Javascritp Objekts (W
 	// Function reload
 	// -----------------
 	reload: function() {
-		
+//DEBUG
+alert("wiki.wikilist - reload");
+//DEBUG		
 		this.element.find(".wiki:not(.template)").remove();									// das HTML Elemente todo soll gelöscht werden, bis auf das HTML Element template (siehe Folie ... ab 400 ?)
 		
 		$.ajax({
 		dataType: "json",
 		url: "/rfh_web_dev_project/service/wikis",
-		
+
 		success: function(wikis) {															// Bei Erfolg: HTML Code 200
+//DEBUG
+alert("wiki.wikilist - GET > (GetWikisCommand)");
+//DEBUG	
 			var that = this;
 			for(var i = 0; i < wikis.length; i++) {
 				var wiki = wikis[i];
 				
 				// Finde HTML Element "template" und kopiere es, anschließend entferne HTML Klasse "template"
 				var wikiElement = this.element.find(".template").clone().removeClass("template");	
-
+//DEBUG
+alert("wiki.wikilist - Append HTML Element: template");
+//DEBUG	
 				wikiElement.find(".author").text(wiki.author);									// Wiedergabe über eigene Funktion... siehe Unterlagen
 				wikiElement.find(".category").text(wiki.category);	
 				wikiElement.find(".creation_date").text(wiki.creation_date);	

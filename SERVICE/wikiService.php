@@ -220,7 +220,7 @@ class WikiService {
 	/* <<-- deleteWiki - Wiki Eintrag löschen -->> */
 	/* --------------------------------------------*/
 		public function deleteWiki($id) {
-	
+			
 			@$link = new mysqli("localhost","root","","wiki");			// @ um Fehlermeldungen zu unterdrücken
 					
 			$succeeded = $link->set_charset("utf8");					// Zuweisung des Zeichencode "utf8"
@@ -228,8 +228,8 @@ class WikiService {
 				$link->close();											// DB Verbindung schließen...
 				return self::ERROR;										// Rückgabe: Error-Message: Zuweisung utf8 fehlgeschlagen
 				}
-			$sql_statement = 	"DELETE FROM wiki ".
-								"WHERE id = $id";
+				
+			$sql_statement = "DELETE FROM wiki WHERE id = $id";
 		
 			$link->query($sql_statement);
 			$affected_rows = $link->affected_rows;						// Wieviele Datensätze sind betroffen
@@ -238,8 +238,10 @@ class WikiService {
 			if($affected_rows == 0) {
 				return self::NOT_FOUND;
 			}
-		
-	}
+			//DEBUG
+			return ("wikiService.php - deleteWiki()");
+			//DEBUG
+		}
 	
 /* --------------------------------------------------------------------- */
 /* <<-- Infobereich -->>                                                 */	

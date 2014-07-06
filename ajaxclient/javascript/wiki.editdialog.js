@@ -64,7 +64,7 @@ alert("wiki.editdialog.js : open");
 				text: "OK",
 				click: function() {						// click = reagiert auf Benutzerinteraktion
 //DEBUG		
-alert("wiki.editdialog.js : _create: function - OK");
+alert("wiki.editdialog.js : _create: OK - CALL: _updateWiki");
 //DEBUG		
 					that._updateWiki();					// Aufruf: _updateWiki
 				}
@@ -76,6 +76,9 @@ alert("wiki.editdialog.js : _create: function - OK");
 			{					
 				text: "Abbrechen",
 				click: function() {						// click = reagiert auf Benutzerinteraktion
+//DEBUG		
+alert("wiki.editdialog.js : _create: CANCEL - .close");
+//DEBUG	
 					that.close();						// Fehlerdialog schließen
 				}
 			}
@@ -89,7 +92,7 @@ alert("wiki.editdialog.js : _create: function - OK");
 	_updateWiki: function() {	
 
 //DEBUG		
-alert("wiki.editdialog.js : _updateWiki: function() - Übergabe <INPUT> an var wiki, ");
+alert("wiki.editdialog.js : _updateWiki");
 //DEBUG	
 	
 		var wiki = {									// Übergabe der Werte aus dem Widget an das Objekt "wiki"
@@ -100,13 +103,11 @@ alert("wiki.editdialog.js : _updateWiki: function() - Übergabe <INPUT> an var w
 			category: this.element.find("#category_field").val(),
 			notes: this.element.find("#notes_field").val()	
 			//author: "Roger"				// !!!! Im Service anpassen !!!!
-			
 		};
 
 //DEBUG		
-alert("wiki.editdialog.js : _updateWiki: function() - PUT an UpdateWikiCommand wenn headers VERSION=VERSION");
+alert("wiki.editdialog.js : _updateWiki: PUT");
 //DEBUG	
-
 		$.ajax({
 			type: "PUT",								// HTML Übergabe Typ festlegen
 			url: this._wiki.url,						// Ruft die in wiki gespeicherte URL auf (die URL wird in wiki.wikilist.js festgelegt)
@@ -116,9 +117,8 @@ alert("wiki.editdialog.js : _updateWiki: function() - PUT an UpdateWikiCommand w
 			success: function() {						// Bei Erfolg, function ausführen
 				this.close();							// Widget schließen
 				
-
-				//DEBUG		
-alert("wiki.editdialog.js : _updateWiki: function() - Trigger - onWikiEdited");
+//DEBUG		
+alert("wiki.editdialog.js : _updateWiki: CALL: onWikiEdited");
 //DEBUG	
 				this._trigger("onWikiEdited");			// Aufruf, um Liste neu zu laden
 			},
