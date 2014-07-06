@@ -14,7 +14,7 @@ $.widget("wiki.errorDialog", $.ui.dialog, {
 	//-------------
 	open: function(message) {							// Als Parameter wird request.statusText übergeben
 //DEBUG
-alert("wiki.errordialog - open");
+alert("wiki.errordialog.js\n # open: errorDialog");
 //DEBUG	
 		this.element.find(".message").text(message);	// Suche die HTML class message und über gebe den Fehlercode 
 		this._super();
@@ -25,7 +25,7 @@ alert("wiki.errordialog - open");
 	//---------------------
 	_create: function() {								// Button konfigurieren
 //DEBUG
-alert("wiki.errordialog - _create (Button)");
+alert("wiki.errordialog.js\n # _create: Buttons");
 //DEBUG	
 		var that = this;								// Übergabe des Objektes this an that (that hat einen anderen Wert ... WARUM NUR??)
 		this.options.buttons = [
@@ -33,7 +33,7 @@ alert("wiki.errordialog - _create (Button)");
 				text: "Schliessen",
 				click: function() {						// click = reagiert auf Benutzerinteraktion
 //DEBUG
-alert("wiki.errordialog - _create .close");
+alert("wiki.errordialog.js\n # .close");
 //DEBUG	
 					that.close();						// Fehlerdialog schließen
 				}

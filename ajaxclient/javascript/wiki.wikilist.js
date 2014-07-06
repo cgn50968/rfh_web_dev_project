@@ -11,7 +11,7 @@ $.widget("wiki.wikiList", {  																// Beginn des Javascritp Objekts (W
 	// -----------------
 	_create: function() {																	//Instanzieren der Methode des Objekts
 //DEBUG
-alert("wiki.wikilist - _create - (List)");
+alert("wiki.wikilist.js\n # _create: wikiList");
 //DEBUG
 		$.ajax({
 		url: "/rfh_web_dev_project/service/wikis",											// Aufruf der JSON Webseite und Übergabe der Rückgabe an das Array (wikis) (aus WikiService.php)
@@ -19,7 +19,7 @@ alert("wiki.wikilist - _create - (List)");
 
 		success: function(wikis) {		// nur HTML Code 200 zurückkommt.
 //DEBUG
-alert("wiki.wikilist - GET > (GetWikisCommand)");
+alert("wiki.wikilist.js\n # GET: GetWikisCommand");
 //DEBUG	
 			var that = this;
 			for(var i = 0; i < wikis.length; i++) {
@@ -27,7 +27,7 @@ alert("wiki.wikilist - GET > (GetWikisCommand)");
 				// Finde HTML Element "template" und kopiere es, anschließend entferne HTML Klasse "template"
 				var wikiElement = this.element.find(".template").clone().removeClass("template");	
 //DEBUG
-alert("wiki.wikilist - Append HTML Element: template");
+alert("wiki.wikilist.js\n # wikiElement.find(HTML Element).text");
 //DEBUG	
 				wikiElement.find(".author").text(wiki.author);								// Wiedergabe über eigene Funktion... siehe Unterlagen
 				wikiElement.find(".category").text(wiki.category);	
@@ -64,7 +64,7 @@ alert("wiki.wikilist - Append HTML Element: template");
 	// -----------------
 	reload: function() {
 //DEBUG
-alert("wiki.wikilist - reload");
+alert("wiki.wikilist.js\n # reload: wikiList");
 //DEBUG		
 		this.element.find(".wiki:not(.template)").remove();									// das HTML Elemente todo soll gelöscht werden, bis auf das HTML Element template (siehe Folie ... ab 400 ?)
 		
@@ -74,7 +74,7 @@ alert("wiki.wikilist - reload");
 
 		success: function(wikis) {															// Bei Erfolg: HTML Code 200
 //DEBUG
-alert("wiki.wikilist - GET > (GetWikisCommand)");
+alert("wiki.wikilist.js\n # GET: GetWikisCommand");
 //DEBUG	
 			var that = this;
 			for(var i = 0; i < wikis.length; i++) {
@@ -83,7 +83,7 @@ alert("wiki.wikilist - GET > (GetWikisCommand)");
 				// Finde HTML Element "template" und kopiere es, anschließend entferne HTML Klasse "template"
 				var wikiElement = this.element.find(".template").clone().removeClass("template");	
 //DEBUG
-alert("wiki.wikilist - Append HTML Element: template");
+alert("wiki.wikilist.js\n # wikiElement.find(HTML Element).text");
 //DEBUG	
 				wikiElement.find(".author").text(wiki.author);									// Wiedergabe über eigene Funktion... siehe Unterlagen
 				wikiElement.find(".category").text(wiki.category);	

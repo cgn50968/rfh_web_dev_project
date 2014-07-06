@@ -3,23 +3,23 @@
 /* <<-- RequestHandler: Zentrale Verarbeitungsklasse -->> */
 /* ------------------------------------------------------ */
 
-/* ------------------------------------------------------- */
-/* <<-- Einbindung zusätzlicher PHP Dateien (Klassen) -->> */	
-/* ------------------------------------------------------- */
-	require "Wiki.php";
-	require "GetWikisCommand.php";
+	/* ------------------------------------------------------- */
+	/* <<-- Einbindung zusätzlicher PHP Dateien (Klassen) -->> */	
+	/* ------------------------------------------------------- */
+	require "wiki.php";
+	require "wikiService.php";
 	require "GetWikiCommand.php";
+	require "GetWikisCommand.php";
 	require "CreateWikiCommand.php";
 	require "UpdateWikiCommand.php";
 	require "DeleteWikiCommand.php";
 	require "CreateWikiResult.php";
-	require "WikiService.php";
-	require "HtmlPage.php";
 	
-/* ------------------------------------------------------- */
-/* <<-- Klasse: RequestHandler -->>                        */	 
-/* ------------------------------------------------------- */
-
+	//require "HtmlPage.php";
+	
+	/* --------------------------------- */
+	/* <<-- Klasse: RequestHandler -->>  */	 
+	/* --------------------------------- */
 	class RequestHandler {
 	
 		/* Die Funktion handleRequest() erwartet, dass die angegebene Klasse eine Funktion execute() besitzt. */
@@ -27,14 +27,17 @@
 		public function handleRequest() {
 			
 			$request = $_REQUEST;										// Übergabe der POST Argumente an $request
-						 
+
+			/* -------------------------------------------------------------------------- */
+			/* <<-- PUT METHOD - Erweiterung von $request um Attribute (Datenfelder) -->> */
+			/* -------------------------------------------------------------------------- */		
 			if ($_SERVER["REQUEST_METHOD"] == "PUT") {
 				parse_str(file_get_contents("php://input"), $body_parameters);
 				$request = $request + $body_parameters;
 				
-				//-------------------------------------
-				// Falls der Titel nicht gesetzt wurde
-				//-------------------------------------
+				/* --------------------------------------------- */
+				/* <<-- Falls der Titel nicht gesetzt wurde -->> */
+				/* --------------------------------------------- */
 				if ($request["title"] == "") {
 					header("HTTP/1.1 400");
 					$validation_messages = array();
@@ -56,24 +59,21 @@
 			
 			//	Testbereich...
 			
-				$html_page = new HtmlPage;				// Klassenobjekt erstellen
+				/*$html_page = new HtmlPage;				// Klassenobjekt erstellen
 				
 				if(isset($_REQUEST["edit"])) {			// Falls Anfrage = cancel > dann öffnen der Seite WikiList.php */
-					header("Location: RequestHandler.php");
+				/*	header("Location: RequestHandler.php");
 					$html_page->editDetails($result);	
 					}
 					
-				//$html_page->writeHtmlHeader();
-				//$html_page->writeTable($result);
-				//$html_page->showDetails($result);
-				
+			*/	
 				//if(isset($_REQUEST["edit"])) {		/* wie kann abgefragt werden, dass der Edit Button gedrückt wurde? */
 				//	$html_page->editDetails($result);	
 				//	}
 					
 				//$html_page->writeHtmlBottom();
 			
-			//	Ende - Testbereich!
+			//	Ende - Testbereich! */
 			
 				echo(json_encode($result));				// Ausgabe als "JSON-Zeichenkette"
 								

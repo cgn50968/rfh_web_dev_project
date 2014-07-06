@@ -8,7 +8,7 @@ $(function() {
 // ----------------
 	$(document).ajaxError(function(event, request) {					// Gibt den Response Status Text bei Fehlern wieder.
 //DEBUG
-alert("wiki.application.js - .ajaxError");
+alert("wiki.application.js\n # .ajaxError");
 //DEBUG
 		$("#error_dialog").errorDialog("open", request.statusText);		// Methode Open des Error Dialogs (Wiedergabe des Request Status über request.statusText
 		$("#wiki_details").hide();										// Bei Fehler #todo_details nicht anzeigen
@@ -34,7 +34,7 @@ alert("wiki.application.js - .ajaxError");
 	$("#delete_dialog").deleteDialog( {									// Instanzierung des Widgets für den Löschdialog
 		onWikiDeleted: function() {
 //DEBUG
-alert("wiki.application.js - onWikiDeleted - wikiList(reload)");
+alert("wiki.application.js\n # onWikiDeleted: .wikiList(reload)");
 //DEBUG
 			$("#wiki_list").wikiList("reload");		
 		}
@@ -48,7 +48,7 @@ alert("wiki.application.js - onWikiDeleted - wikiList(reload)");
 		// Was passiert wenn das Click Ereignis ausgelöst wird?
 		onWikiClicked: function(event, wikiUrl) {
 //DEBUG
-alert("wiki.application.js - onWikiClicked");
+alert("wiki.application.js\n # onWikiClicked: wikiDetails(load, wikiUrl)");
 //DEBUG
 			$("#wiki_list").hide();										// DIV Element ausblenden
 			$("#wiki_details").show();
@@ -58,15 +58,15 @@ alert("wiki.application.js - onWikiClicked");
 		// Funktion: Laden des Widgets deleteDialog
 		onDeleteWikiClicked: function(event, wiki) {
 //DEBUG
-alert("wiki.application.js - onDeleteWikiClicked");
+alert("wiki.application.js\n # onDeleteWikiClicked: deleteDialog(open)");
 //DEBUG
 			$("#delete_dialog").deleteDialog("open", wiki);				// Anzeigen des Löschen Dialogs
 		},
 		
-		// FUnktion: Laden des Widgets editDialog
+		// Funktion: Laden des Widgets editDialog
 		onEditWikiClicked: function(event, wiki) {
 //DEBUG
-alert("wiki.application.js - onEditWikiClicked");
+alert("wiki.application.js\n # onEditWikiClicked: editDialog(open, wiki)");
 //DEBUG
 			$("#edit_dialog").editDialog("open", wiki);					// Anzeigen des Bearbeiten Dialogs durch "open", Übergabe der Ereignis-Parameter mit "wiki"
 		}
@@ -83,7 +83,7 @@ alert("wiki.application.js - onEditWikiClicked");
 	$("#edit_dialog").editDialog( {										// Das # versteckt das HTML Element beim ersten Aufruf
 		onWikiEdited: function() {	
 //DEBUG
-alert("wiki.application.js - onWikiEdited");
+alert("wiki.application.js\n # onWikiEdited: .wikiList(reload)");
 //DEBUG		
 			$("#wiki_list").wikiList("reload");							// Reload der Seite - Aufruf aus "wiki.editdialog.js"
 		}

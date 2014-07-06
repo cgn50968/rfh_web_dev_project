@@ -5,7 +5,7 @@
 $.widget("wiki.wikiDetails", {
 	load: function(wikiUrl) {
 //DEBUG
-alert("wiki.details.js - wikiDetails");
+alert("wiki.details.js\n # load: wikiDetails");
 //DEBUG
 		$.ajax({
 		  url: wikiUrl,																	// URL als Übergabeparameter für Aufruf "/rfh_web_dev_project/service/wikis/$id"
@@ -21,7 +21,7 @@ alert("wiki.details.js - wikiDetails");
 			this.element.find(".notes").text(wiki.notes);	
 
 //DEBUG
-alert("wiki.details.js - Return from: /service/wikis/$id");
+alert("wiki.details.js\n # GET: GetWikiCommand");
 //DEBUG
 		  },
 		  context: this																	// Referenzieren dieses Widgets
