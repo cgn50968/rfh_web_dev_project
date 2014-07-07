@@ -27,10 +27,11 @@ alert("wiki.createdialog.js\n # open: createDialog");
 		/* ------------------------------------------- */
 		this.element.find(".validation_message").empty(); 					
 		
+		
 		/* --------------------------------- */
 		/*  ui-state-error Klasse entfernen  */
 		/* --------------------------------- */
-		this.element.find("#title_field").removeClass("ui-state-error").focus();								
+		this.element.find("#title_field").removeClass("ui-state-error").focus();	
 		this._super();								
 	},
   
@@ -101,7 +102,6 @@ alert("wiki.createdialog.js\n # POST: CreateWikiCommand");
 		$.ajax({
 			type: "POST",								// HTML Übergabe Typ festlegen
 			url: "/wiki/service/wikis",						
-			//headers: {"If-Match": this._wiki.version },	// Definierung des If-Match Wertes im Header (wird vom "Service" erwartet.
 			data: wiki,									// wiki wird an das data Attribut übergeben
 			
 			success: function() {						// Bei Erfolg, function ausführen
