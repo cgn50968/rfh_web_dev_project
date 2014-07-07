@@ -19,18 +19,47 @@ alert("wiki.application.js\n # .ajaxError");
 		}
 	});
 	
-// ----------------------------
-//  INSTANZIIERUNG DER WIDGETS
-// ----------------------------
+/* ------------------------------------- */
+/*  <<-- INSTANZIIERUNG DER WIDGETS -->> */
+/* ------------------------------------- */
 	
-	// ----------------------------
-	//  Instanziierung "wiki.errordialog.js" .errorDialog
-	// ----------------------------
+	/* --------------------------------------------------- */
+	/*  Instanziierung "wiki.errordialog.js" .errorDialog  */
+	/* --------------------------------------------------- */
 	$("#error_dialog").errorDialog();									// Instanzierung des Widgets für Fehlerbehandlung
 	
-	// -----------------------------
-	//  Instanziierung deleteDialog
-	// -----------------------------
+	/* ------------------------------------------- */
+	/*  Instanziierung "wiki.menubar.js" .menuBar  */
+	/* ------------------------------------------- */
+	$("#menu_bar").menuBar( {
+	
+		/* ------------------------------ */
+		/*  Funktion: onShowWikisClicked  */
+		/* ------------------------------ */
+		onShowWikisClicked: function() {
+//DEBUG
+alert("wiki.application.js\n# onShowWikisClicked:\n# .wiki_details.hide\n# .wiki_list.show\n# .wiki_list.reload");
+//DEBUG
+			$("#wiki_details").hide();
+			$("#wiki_list").show();
+			$("#wiki_list").todoList("reload");
+		},
+		
+		onCreateWikisClicked: function() {
+//DEBUG
+alert("wiki.application.js\n# onCreateWikisClicked:");
+//DEBUG
+		}
+		
+	});
+
+	
+	
+	
+	
+	/* ----------------------------------------------------- */
+	/*  Instanziierung "wiki.deletedialog.js" .deleteDialog  */
+	/* ----------------------------------------------------- */
 	$("#delete_dialog").deleteDialog( {									// Instanzierung des Widgets für den Löschdialog
 		onWikiDeleted: function() {
 //DEBUG

@@ -203,6 +203,7 @@ a:hover, a:active {
  widht: 100px;
 }
 
+
 /* Tabelle */
 table { width: 100%}												/* Tag: Tabelle soll 100% der verfügbaren Breite einnehmen (minus Ränder) */
 
