@@ -1,7 +1,29 @@
+/* Klassen template und wiki_details verstecken */
+.template, #wiki_details {
+  display: none;
+}
+
+/* Cursor "Pointer" für die Klasse wiki bei Hover Over anzeigen */
+.wiki {
+  cursor: pointer; 
+}
+
+#heading {
+	width: 100px;
+}
+
+#fieldname {
+ widht: 100px;
+}
+
+/*------------------*/
 /* CSS Formatierung */
+/*------------------*/
 
 /* Dokumentenkörper */
-body { font-family: Calibri; 									
+body { 
+	font-family: Calibri; 
+	font-size: 12px;								
 	background-color: #ffffff;
 	width: 1024px;
 	position: relative;
@@ -16,41 +38,43 @@ h1 {
 
 /* Division */
 div { 
+/*
 	border-width: 1px; 
 	border-style: solid; 
 	border-color: gray; 
-	border-radius:0.4em;										/* Abgerundete Ecken */
-
+	border-radius:0.4em;										/* Abgerundete Ecken 
+*/
     margin-top: 10px;											/* Außenabstand */
 	margin-left: 5px;
 	margin-right: 5px;
 	margin-bottom: 5px;
 	 
 	}
-
+/*
 .div_outside {
-	padding-top: 10px;											/* Innenabstand - Box Modell */
+	padding-top: 10px;											/* Innenabstand - Box Modell 
 	padding-left: 10px;
 	padding-right: 10px;
 	padding-bottom: 10px;
 	
 	background-color: orange;
-	/* background-image: url(../html/wasser.jpg); */
+	/* background-image: url(../html/wasser.jpg); 
 	}
 
 .div_inside {
-	margin-top: 5px;											/* Außenabstand */
+	margin-top: 5px;											/* Außenabstand 
 	margin-left: 5px;
 	margin-right: 5px;
 	margin-bottom: 5px;
 	
-	padding-top: 10px;											/* Innenabstand - Box Modell */
+	padding-top: 10px;											/* Innenabstand - Box Modell 
 	padding-left: 10px;
 	padding-right: 10px;
 	padding-bottom: 10px;
 	
-	background-color: #ffffff;									/* weiß */ 
+	background-color: #ffffff;									/* weiß 
 	}
+*/
 	
 /* Tabelle */
 table { width: 100%}												/* Tag: Tabelle soll 100% der verfügbaren Breite einnehmen (minus Ränder) */

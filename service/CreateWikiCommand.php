@@ -18,11 +18,14 @@ class CreateWikiCommand {
 			if(isset($request["title"]) == TRUE) {
 				$wiki->title = $request["title"];
 			}
-			/*
-			if(isset($request["author"]) == TRUE) {								// Wie kann der Author aus der Anmeldung ausgelesen werden?
-				$wiki->author = $request["author"];	
+			
+			//-------------------------------------------------------------
+			// Author ist der angemeldete User = $_SERVER["PHP_AUTH_USER"]
+			//-------------------------------------------------------------
+			if(isset($_SERVER["PHP_AUTH_USER"]) == TRUE) {						
+			$wiki->author = $_SERVER["PHP_AUTH_USER"];	
 			}
-			*/
+			
 			if(isset($request["notes"]) == TRUE) {
 				$wiki->notes = $request["notes"];
 			}

@@ -16,3 +16,8 @@ RewriteRule ^wikis/(.+)$ RequestHandler.php?command=DeleteWikiCommand&id=$1
 
 RewriteCond %{REQUEST_METHOD} PUT
 RewriteRule ^wikis/(.+)$ RequestHandler.php?command=UpdateWikiCommand&id=$1
+
+AuthType Basic
+AuthName "WebDev-Wiki"
+AuthUserFile "c:\xampp\htdocs\rfh_web_dev_project\service\.htusers"
+Require valid-user

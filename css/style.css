@@ -1,0 +1,319 @@
+/*
+ * Autor: Heiko Herder, Roger Ordon
+ * 
+ * Datum: 01.06.2014
+ * 
+ * Version: 0.2
+ * 
+ *  
+ */
+ 
+body {
+	/*background: url('../img/bg.gif') repeat-x top left #ffffff;*/
+	background-color: #c5dee1;
+	color: #000000;
+	font-size: 87.5%;											/*Basis-Schriftgräße ist 14px!*/
+	font-family: Arial, 'Lucida Sans Unicode';
+	line-height: 1.5;
+	text-align: left;
+}
+
+
+ 
+  
+a {
+	text-decoration: none;										 /*unterstrichende Links verhindern*/
+}
+
+a:link, a:visited {
+	color: #cf5c3f;
+}
+
+a:hover, a:active {
+	background-color: #cf5c3f;
+	color: #ffffff;
+}
+
+
+/*--------Klassen--------*/
+
+
+.body {
+	margin: 0 auto;
+	width: 70%;
+	clear: both;												/*keine float-Elemente rechts und links erlaubt*/
+}
+ 
+.mainHeader img {
+	width: 30%;
+	height: auto;
+	margin: 2% 0;
+}
+
+.mainHeader nav {
+	background-color: #666;
+	height: 40px;												/*Navigationshöhe 40px als Basiswert*/
+	border-radius: 5px;
+	-moz-border-radius: 5px;									/*für Mozilla-Browser*/
+	-webkit-border-radius: 5px;									/*für Webkit-Browser*/
+} 
+ 
+.mainHeader nav ul {
+	list-style: none;
+	margin: 0 auto;
+} 
+ 
+.mainHeader nav ul li {
+	float: left;												/*links ausgerichtet, automatisch angeordnet*/
+	display: inline;				 							/*noch unklar, ob wirklich gebraucht---------------------------*/
+}
+
+.mainHeader nav a:link, .mainHeader nav a:visited {
+	color: #ffffff;
+	display: inline-block;
+	padding: 10px 25px;											/*von der Navigationshöhe abziehen: 10 oben und 10 unten*/
+	height: 20px; 												/*bleiben 40px-10px-10px=20px als Höhe für den Link-Container*/
+}
+
+.mainHeader nav a:hover, .mainHeader nav a:active {
+	background-color: #cf5c3f;
+}
+ 
+.mainHeader nav ul li a {
+	border-radius: 5px;
+	-moz-border-radius: 5px;									/*für Mozilla-Browser*/
+	-webkit-border-radius: 5px;									/*für Webkit-Browser*/
+}
+
+.mainContent {
+	line-height: 25px;
+	border-radius: 5px;
+	-moz-border-radius: 5px;									/*für Mozilla-Browser*/
+	-webkit-border-radius: 5px;									/*für Webkit-Browser*/
+}
+
+.content {
+	width: 70%;													/*Basiswert für content-Container*/
+	float: left;
+}
+
+.topContent {
+	background-color: #ffffff;
+	border-radius: 5px;
+	-moz-border-radius: 5px;									/*für Mozilla-Browser*/
+	-webkit-border-radius: 5px;									/*für Webkit-Browser*/
+	padding: 3% 5%;
+	margin-top: 2%;
+}
+
+.bottomContent {
+	background-color: #ffffff;
+	border-radius: 5px;
+	-moz-border-radius: 5px;									/*für Mozilla-Browser*/
+	-webkit-border-radius: 5px;									/*für Webkit-Browser*/
+	padding: 3% 5%;
+	margin-top: 2%;
+}
+
+.response-table{
+	font-size: 70%;
+
+
+}
+
+
+.post-info {
+	font-style: italic;
+	font-size: 90%;
+	color: #c4bdbd;
+}
+
+
+
+.top-sidebar {
+	width: 21%;													/*Basiswert für content-Container beachten 70+21+3 (margin-left)+3+3 (padding rechts und links) = 100*/
+	float: left;
+	background-color: #ffffff;
+	border-radius: 5px;
+	-moz-border-radius: 5px;									/*für Mozilla-Browser*/
+	-webkit-border-radius: 5px;									/*für Webkit-Browser*/
+	margin-top: 2%;
+	margin-left: 3%;											/*Basiswert für content-Container beachten 70+21+3 (margin-left)+3+3 (padding rechts und links) = 100*/
+	margin-bottom: 2%;
+	padding: 2% 3%;												/*Innenabstand oben und unten: 2%, rechts und links: 3%*/
+}
+
+.middle-sidebar {
+	width: 21%;													/*gleiche Berechnung wie top-sidebar*/
+	float: left;
+	background-color: #ffffff;
+	border-radius: 5px;
+	-moz-border-radius: 5px;									/*für Mozilla-Browser*/
+	-webkit-border-radius: 5px;									/*für Webkit-Browser*/
+	margin-left: 3%;											
+	margin-bottom: 2%;											
+	padding: 2% 3%;
+}
+
+.bottom-sidebar {
+	width: 21%;													/*gleiche Berechnung wie top-sidebar*/
+	float: left;
+	background-color: #ffffff;
+	border-radius: 5px;
+	-moz-border-radius: 5px;									/*für Mozilla-Browser*/
+	-webkit-border-radius: 5px;									/*für Webkit-Browser*/
+	margin-left: 3%;											
+	margin-bottom: 2%;											
+	padding: 2% 3%;
+}
+
+.mainFooter {
+	width: 100%;
+	height: 40px;
+	float: left;
+	border-radius: 5px;
+	-moz-border-radius: 5px;									/*für Mozilla-Browser*/
+	-webkit-border-radius: 5px;									/*für Webkit-Browser*/
+	background-color: #666;
+	margin-top: 2%;
+	margin-bottom: 2%;
+}
+
+.mainFooter p {
+	width: 92%;
+	margin: 10px auto;
+	color: #ffffff;
+}
+
+/* Klassen template und wiki_details verstecken */
+.template, #wiki_details {
+  display: none;
+}
+
+/* Cursor "Pointer" für die Klasse wiki bei Hover Over anzeigen */
+.wiki {
+  cursor: pointer; 
+}
+
+#heading {
+	width: 100px;
+}
+
+#fieldname {
+ widht: 100px;
+}
+
+/* Tabelle */
+table { width: 100%}												/* Tag: Tabelle soll 100% der verfügbaren Breite einnehmen (minus Ränder) */
+
+#td_author{ width: 20%; }
+#td_title { width: 40%; }										/* id: Breite des <td> Datenfeldes */
+#td_creation_date { width: 20%; }
+#td_expiration_date { width: 20%; }
+
+#author { width: 100%; }									/* id: Breite des <input> Eingabefeldes */
+#title{ width: 100%; }											
+#creation_date { width: 100%; }
+#expiration_date { width: 100%; }
+#notes { width: 100%}
+
+
+
+/*Vorlage für Container-Rand:
+ * border-style: solid;
+	border-width: 1px;
+	border-color: #666;
+	*/
+
+/*overflow: hidden;*/
+
+
+
+
+/*--------Media-Queries--------*/									/*hier stehen nur die abweichenden Werte für mobile Geräte*/
+
+@media only screen and (min-width: 150px) and (max-width: 600px) {
+
+	.body {
+		width: 90%;
+		font-size: 95%;
+	}
+ 
+	.mainHeader img {
+		width: 100%;
+	}
+
+	.mainHeader nav {
+		height: 160px;												/**/
+	} 
+ 
+	.mainHeader nav ul {
+		padding-left: 0;
+	} 
+ 
+	.mainHeader nav ul li {
+		width: 100%;
+		text-align: center;				 							
+	}
+
+	.mainHeader nav a:link, .mainHeader nav a:visited {
+			padding: 10px 25px;											
+			height: 20px;
+			display: block;										/*orange ganz ausgefüllt*/												
+	}
+
+ 
+
+	.mainContent {
+		line-height: 30px;
+	}
+
+	.content {
+		width: 100%;	
+		float: left;
+		margin-top: 2%;
+	}
+
+	.topContent {
+		margin-bottom: 4%;
+	}
+
+	.bottomContent {
+		margin-top: 3%;
+	}
+
+	.post-info {
+		font-size: 75%;
+	}
+
+	.top-sidebar {												/*die Sidebars kann man theoretisch auch zusammenfassen*/
+		width: 94%;													
+		margin-top: 2%;
+		margin-left: 0;
+		margin-bottom: 2%;
+		padding: 2% 3%;												
+	}
+
+	.middle-sidebar {
+		width: 94%;													
+		margin-top: 2%;
+		margin-left: 0;
+		margin-bottom: 2%;
+		padding: 2% 3%;												
+	}
+
+	.bottom-sidebar {
+		width: 94%;													
+		margin-top: 2%;
+		margin-left: 0;
+		margin-bottom: 2%;
+		padding: 2% 3%;												
+	}
+
+
+}
+
+
+
+
+

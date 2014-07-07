@@ -1,9 +1,0 @@
-if [ "${key}" = "Disk Space Free" ]; then
-			freeunit=${field[@]:4}
-			n disk space size $freeunit"
-			fi
-			free=$(echo "${free} / 1" | bc -q)
-			if [ $free -lt $freegb ]; then
-				freegb=$free
-			fi
-		fi

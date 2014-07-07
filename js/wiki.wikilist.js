@@ -27,7 +27,7 @@ alert("wiki.wikilist.js\n # GET: GetWikisCommand");
 				// Finde HTML Element "template" und kopiere es, anschließend entferne HTML Klasse "template"
 				var wikiElement = this.element.find(".template").clone().removeClass("template");	
 //DEBUG
-alert("wiki.wikilist.js\n # wikiElement.find(HTML Element).text");
+//alert("wiki.wikilist.js\n # wikiElement.find(HTML Element).text");
 //DEBUG	
 				wikiElement.find(".author").text(wiki.author);								// Wiedergabe über eigene Funktion... siehe Unterlagen
 				wikiElement.find(".category").text(wiki.category);	
@@ -83,7 +83,7 @@ alert("wiki.wikilist.js\n # GET: GetWikisCommand");
 				// Finde HTML Element "template" und kopiere es, anschließend entferne HTML Klasse "template"
 				var wikiElement = this.element.find(".template").clone().removeClass("template");	
 //DEBUG
-alert("wiki.wikilist.js\n # wikiElement.find(HTML Element).text");
+//alert("wiki.wikilist.js\n # wikiElement.find(HTML Element).text");
 //DEBUG	
 				wikiElement.find(".author").text(wiki.author);									// Wiedergabe über eigene Funktion... siehe Unterlagen
 				wikiElement.find(".category").text(wiki.category);	
