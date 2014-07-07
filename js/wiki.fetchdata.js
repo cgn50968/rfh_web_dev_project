@@ -4,15 +4,15 @@
 
 function fetchData()
 {
-  var url = '/test/SERVICE/search.php';
-  // The jQuery way to do an ajax request
+  var url = '/wiki/index.html';
+  
   $.ajax({            
-    type: "POST",
+    type: "GET",
     url: url,
-    data: "", // Your parameters here. looks like you have none
+    data: "$_GET", // da müssen Parameter rein
     success: function(html){
-      // html contains the literal response from the server
-      $("#showsearch").html(html);
+      
+      $("#showsearch").html(data);
     }
   });
 }

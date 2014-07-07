@@ -11,7 +11,8 @@
     <script src="./js/jquery-1.10.2.js" type="text/javascript"></script>
     <script src="./js/jquery-ui-1.10.4.custom.js" type="text/javascript"></script>
 	<script src="./js/jquery.blockUI.js" type="text/javascript"></script>				<!-- Blocken von Widgets nach Click Event -->
-    <script src="./js/wiki.wikilist.js" type="text/javascript"></script>
+    <script src="./js/wiki.fetchdata.js" type="text/javascript"></script>
+	<script src="./js/wiki.wikilist.js" type="text/javascript"></script>
 	<script src="./js/wiki.wikidetails.js" type="text/javascript"></script>		
     <script src="./js/wiki.errordialog.js" type="text/javascript"></script>
 	<script src="./js/wiki.deletedialog.js" type="text/javascript"></script>		
@@ -45,8 +46,14 @@
 		<div class="content">
 			<article class="topContent">
 				<header>
-					<h1><a href="#" title="First post">Einträge:</a></h1>
+					<h1><a href="#" title="First post">Inhalt</a></h1>
 				</header>
+				
+				<div id="showsearch">
+					<!--Suchergebnis-->
+				</div>
+				
+				
 				<div class="response-table">
 					<!--Hier soll der Inhalt der Requests stehen:-->
 					<!-------------------------------------------
@@ -194,53 +201,10 @@
 			<h2>Schnellsuche</h2>
 			<p>
 				
-				<form action='index.php' method='POST'>
-					<input type='text' name='suchfeld'>
-					<input type='submit' name='suche_enter' value='Suchen'>
+				<form action='SERVICE/search.php' method='GET'>
+					<input type='text' name='search'>
+					<input type='submit' name='submit' value='Suchen'>
 				</form>
-				<br>
-				<?php
-					if (isset($_POST['suche_enter']))
-					{
-						$host = "localhost";
-						$user = "root";
-						$pass = "";
-						$con = mysql_connect($host,$user,$pass) or die(mysql_error());
-						mysql_select_db("wiki",$con) or die(mysql_error());
-						$suchbegriff = trim(htmlentities(stripslashes(mysql_real_escape_string($_POST['suchfeld']))));
-						
-						$sql = "
-							SELECT
-								category, title, notes, author
-							FROM
-								wiki
-							WHERE
-								category LIKE '%$suchbegriff%'
-								OR
-								title LIKE '%$suchbegriff%'
-								OR
-								notes LIKE '%$suchbegriff%'
-								OR
-								author LIKE '%$suchbegriff%'
-							ORDER BY
-								category, title, author, notes
-							";
-						$query = mysql_query($sql);
-						
-						echo "<ul>";
-						while($row = mysql_fetch_assoc($query))
-						{
-							$category = $row['category'];
-							$title = $row['title'];
-							$notes = $row['notes'];
-							$author = $row['author'];
-							
-							echo "<li>$category $title $notes $author</li>";
-						}
-						echo "<ul>";
-					}
-									
-				?>
 			</p>
 		</article>
 	</aside>

@@ -1,12 +1,12 @@
 	<?php
-						if (isset($_POST['suche_enter']))
+						if (isset($_GET['search']))
 						{
 							$host = "localhost";
 							$user = "root";
 							$pass = "";
 							$con = mysql_connect($host,$user,$pass) or die(mysql_error());
 							mysql_select_db("wiki",$con) or die(mysql_error());
-							$suchbegriff = trim(htmlentities(stripslashes(mysql_real_escape_string($_POST['suchfeld']))));
+							$suchbegriff = trim(htmlentities(stripslashes(mysql_real_escape_string($_GET['search']))));
 							
 							$sql = "
 								SELECT
@@ -26,6 +26,12 @@
 								";
 							$query = mysql_query($sql);
 							
+							///////////////////////////////////////////
+														
+							
+							
+							
+							//////////////////////////////////////////////
 							echo "<ul>";
 							while($row = mysql_fetch_assoc($query))
 							{
