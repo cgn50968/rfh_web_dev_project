@@ -1,6 +1,6 @@
 RewriteEngine on 
 
-# Hierdurch lässt sich die Seite über folgende URL aufrufen: http://localhost/rfh_web_dev_project/service/wikis
+# Hierdurch lässt sich die Seite über folgende URL aufrufen: http://localhost/wiki/service/wikis
 
 RewriteCond %{REQUEST_METHOD} GET
 RewriteRule ^wikis$ RequestHandler.php?command=GetWikisCommand
@@ -19,5 +19,5 @@ RewriteRule ^wikis/(.+)$ RequestHandler.php?command=UpdateWikiCommand&id=$1
 
 AuthType Basic
 AuthName "WebDev-Wiki"
-AuthUserFile "c:\xampp\htdocs\rfh_web_dev_project\service\.htusers"
+AuthUserFile "c:\xampp\htdocs\wiki\service\.htusers"
 Require valid-user

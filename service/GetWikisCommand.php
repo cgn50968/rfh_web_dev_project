@@ -21,7 +21,7 @@ class GetWikisCommand {
 		//---------------------------------
 		foreach($wikis as $wiki) {									// Zuweisen einer URL pro ID
 						
-			$wiki->url = "/rfh_web_dev_project/service/wikis/$wiki->id";
+			$wiki->url = "/wiki/service/wikis/$wiki->id";
 			
 			//DEBUG
 				$wiki->debug = "GET > GetWikisCommand.php > RequestHandler.php";

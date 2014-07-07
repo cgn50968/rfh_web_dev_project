@@ -35,7 +35,7 @@
 			/* ----------------------------------------- */
 			/* <<-- Zuweisung der URL für Datensatz -->> */
 			/*------------------------------------------ */
-			$wiki->url = "/rfh_web_dev_project/service/wikis/$wiki->id"; 
+			$wiki->url = "/wiki/service/wikis/$wiki->id"; 
 			
 			unset($wiki->id);								// Variable $id zurücksetzen
 			

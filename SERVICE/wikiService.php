@@ -251,25 +251,25 @@ class WikiService {
 	HTML Aufruf:
 	
 		Standardaufruf:
-			http://localhost/rfh_web_dev_project/service/RequestHandler.php?command=$class_name		
+			http://localhost/wiki/service/RequestHandler.php?command=$class_name		
 			
 			class_name = GetWikiCommand, GetWikisCommand, 
 	
 		readWiki($id)
-			http://localhost/rfh_web_dev_project/service/wikis/$id	
+			http://localhost/wiki/service/wikis/$id	
 			$id = Datensatz ID
 		
 		readWikis()
-			http://localhost/rfh_web_dev_project/service/wikis	
+			http://localhost/wiki/service/wikis	
 			
 		createWiki()
-			http://localhost/rfh_web_dev_project/service/RequestHandler.php?command=CreateWikiCommand&category=PHP&title=Der%20Titel&notes=Das%20ist%20der%20Text
+			http://localhost/wiki/service/RequestHandler.php?command=CreateWikiCommand&category=PHP&title=Der%20Titel&notes=Das%20ist%20der%20Text
 	
 		updateWiki()
-			http://localhost/rfh_web_dev_project/service/RequestHandler.php?command=UpdateWikiCommand&id=1&category=HTML&title=Der%20Titel&notes=Das%20ist%20der%20Text
+			http://localhost/wiki/service/RequestHandler.php?command=UpdateWikiCommand&id=1&category=HTML&title=Der%20Titel&notes=Das%20ist%20der%20Text
 		
 		deleteWiki()
-			http://localhost/rfh_web_dev_project/service/RequestHandler.php?command=DeleteWikiCommand&id=20
+			http://localhost/wiki/service/RequestHandler.php?command=DeleteWikiCommand&id=20
 */
 		
 }

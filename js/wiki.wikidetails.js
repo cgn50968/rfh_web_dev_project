@@ -8,7 +8,7 @@ $.widget("wiki.wikiDetails", {
 alert("wiki.details.js\n # load: wikiDetails");
 //DEBUG
 		$.ajax({
-		  url: wikiUrl,																	// URL als Übergabeparameter für Aufruf "/rfh_web_dev_project/service/wikis/$id"
+		  url: wikiUrl,																	// URL als Übergabeparameter für Aufruf "/wiki/service/wikis/$id"
 		  dataType: "json",
 		  
 		  success: function(wiki) {

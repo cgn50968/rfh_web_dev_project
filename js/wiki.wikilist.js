@@ -14,7 +14,7 @@ $.widget("wiki.wikiList", {  																// Beginn des Javascritp Objekts (W
 alert("wiki.wikilist.js\n # _create: wikiList");
 //DEBUG
 		$.ajax({
-		url: "/rfh_web_dev_project/service/wikis",											// Aufruf der JSON Webseite und Übergabe der Rückgabe an das Array (wikis) (aus WikiService.php)
+		url: "/wiki/service/wikis",											// Aufruf der JSON Webseite und Übergabe der Rückgabe an das Array (wikis) (aus WikiService.php)
 		dataType: "json",
 
 		success: function(wikis) {		// nur HTML Code 200 zurückkommt.
@@ -70,7 +70,7 @@ alert("wiki.wikilist.js\n # reload: wikiList");
 		
 		$.ajax({
 		dataType: "json",
-		url: "/rfh_web_dev_project/service/wikis",
+		url: "/wiki/service/wikis",
 
 		success: function(wikis) {															// Bei Erfolg: HTML Code 200
 //DEBUG
