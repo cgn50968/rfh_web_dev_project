@@ -152,7 +152,7 @@ class WikiService {
 							"category = '$wiki->category', ".				
 							"title = '$wiki->title', ".
 							"notes = '$wiki->notes', ".
-							//"author = '$wiki->author' ".		// Author wird aus Formular ausgelesen (OFFEN)
+							"author = '$wiki->author', ".		// Author wird aus Formular ausgelesen (OFFEN)
 							"creation_date = CURDATE(), ".
 							"expiration_date = DATE_ADD(CURDATE(), INTERVAL 1 YEAR)";		//	Aktuelles Datum + 1 Jahr: "SELECT DATE_ADD(CURDATE(), INTERVAL 1 YEAR) AS Datum"
 															

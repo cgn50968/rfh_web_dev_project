@@ -39,6 +39,7 @@ alert("wiki.editdialog.js\n # open: editDialog");
 		// val() weist Eingabefeldern Werte zu.
 		// Bei Aufruf ohne Übergabeparameter werden die aktuellen Werte der Eingabefelder zurückgegeben.
 		//-----------------------------------------------------------------------------------------------
+		this.element.find("#author_field").val(wiki.author);		
 		this.element.find("#title_field").val(wiki.title);							
 		this.element.find("#creation_date_field").val(wiki.creation_date);			
 		this.element.find("#expiration_date_field").val(wiki.expiration_date);

@@ -28,6 +28,8 @@ alert("wiki.application.js\n # .ajaxError");
 	/* --------------------------------------------------- */
 	$("#error_dialog").errorDialog();									// Instanzierung des Widgets für Fehlerbehandlung
 	
+	
+	
 	/* ------------------------------------------- */
 	/*  Instanziierung "wiki.menubar.js" .menuBar  */
 	/* ------------------------------------------- */
@@ -45,16 +47,18 @@ alert("wiki.application.js\n# onShowWikisClicked:\n# .wiki_details.hide\n# .wiki
 			$("#wiki_list").todoList("reload");
 		},
 		
-		onCreateWikisClicked: function() {
+		/* ------------------------------- */
+		/*  Funktion: onCreateWikiClicked  */
+		/* ------------------------------- */
+		onCreateWikiClicked: function() {
 //DEBUG
-alert("wiki.application.js\n# onCreateWikisClicked:");
+alert("wiki.application.js\n# onCreateWikiClicked:");
 //DEBUG
+			$("#create_dialog").createDialog("open");
 		}
 		
 	});
 
-	
-	
 	
 	
 	/* ----------------------------------------------------- */
@@ -62,29 +66,36 @@ alert("wiki.application.js\n# onCreateWikisClicked:");
 	/* ----------------------------------------------------- */
 	$("#delete_dialog").deleteDialog( {									// Instanzierung des Widgets für den Löschdialog
 		onWikiDeleted: function() {
-//DEBUG
-alert("wiki.application.js\n # onWikiDeleted: .wikiList(reload)");
-//DEBUG
+	//DEBUG
+	alert("wiki.application.js\n # onWikiDeleted: .wikiList(reload)");
+	//DEBUG
+	
 			$("#wiki_list").wikiList("reload");		
 		}
 	});
+
+
 	
-	// -------------------------
-	//  Instanziierung "wiki.wikilist.js" .wikiList
-	// -------------------------
+	/* --------------------------------------------- */
+	/*  Instanziierung "wiki.wikilist.js" .wikiList  */
+	/* --------------------------------------------- */
 	$("#wiki_list").wikiList( {
 		
-		// Was passiert wenn das Click Ereignis ausgelöst wird?
+		/* ----------------------------- */
+		/*  onWikiClicked - wikiDetails  */
+		/* ----------------------------- */
 		onWikiClicked: function(event, wikiUrl) {
 //DEBUG
 alert("wiki.application.js\n # onWikiClicked: wikiDetails(load, wikiUrl)");
 //DEBUG
-			$("#wiki_list").hide();										// DIV Element ausblenden
+			$("#wiki_list").hide();										
 			$("#wiki_details").show();
-			$("#wiki_details").wikiDetails("load", wikiUrl);
+			$("#wiki_details").wikiDetails("load", wikiUrl);			// Anzeigen eines einzelnen Wikis
 		},
 		
-		// Funktion: Laden des Widgets deleteDialog
+		/* ------------------------------ */
+		/*  onWikiClicked - deleteDialog  */
+		/* ------------------------------ */
 		onDeleteWikiClicked: function(event, wiki) {
 //DEBUG
 alert("wiki.application.js\n # onDeleteWikiClicked: deleteDialog(open)");
@@ -92,23 +103,29 @@ alert("wiki.application.js\n # onDeleteWikiClicked: deleteDialog(open)");
 			$("#delete_dialog").deleteDialog("open", wiki);				// Anzeigen des Löschen Dialogs
 		},
 		
-		// Funktion: Laden des Widgets editDialog
+		/* -------------------------------- */
+		/*  onEditWikiClicked - editDialog  */
+		/* -------------------------------- */
 		onEditWikiClicked: function(event, wiki) {
 //DEBUG
 alert("wiki.application.js\n # onEditWikiClicked: editDialog(open, wiki)");
 //DEBUG
 			$("#edit_dialog").editDialog("open", wiki);					// Anzeigen des Bearbeiten Dialogs durch "open", Übergabe der Ereignis-Parameter mit "wiki"
 		}
-	});																	// Instanzierung Widgets "wikilist" aus todo.todolist.js für die HTML id "wiki_list" in index.html
+	});																	// Instanzierung Widgets "wikilist" aus wiki.wikilist.js für die HTML id "wiki_list" in index.html
+
+
 	
-	// -------------------------------------
-	//  Instanziieren "wiki.wikiDetails.js"
-	// -------------------------------------
+	/* -------------------------------------- */
+	/*  Instanziierung "wiki.wikiDetails.js"  */
+	/* -------------------------------------- */
 	$("#wiki_details").wikiDetails();
-	
-	// -----------------------------
-	//  Instanziierung "wiki.editdialog.js" .editDialog
-	// -----------------------------
+
+
+		
+	/* ------------------------------------- */
+	/*  Instanziierung "wiki.editdialog.js"  */
+	/* ------------------------------------- */
 	$("#edit_dialog").editDialog( {										// Das # versteckt das HTML Element beim ersten Aufruf
 		onWikiEdited: function() {	
 //DEBUG
@@ -117,5 +134,18 @@ alert("wiki.application.js\n # onWikiEdited: .wikiList(reload)");
 			$("#wiki_list").wikiList("reload");							// Reload der Seite - Aufruf aus "wiki.editdialog.js"
 		}
 	});
+		
+	/* ------------------------------------- */
+	/*  Instanziierung "wiki.createdialog.js"  */
+	/* ------------------------------------- */
+	$("#create_dialog").createDialog( {										// Das # versteckt das HTML Element beim ersten Aufruf
+		onWikiCreated: function() {	
+//DEBUG
+alert("wiki.application.js\n # onWikiCreated: .wikiList(reload)");
+//DEBUG		
+			$("#wiki_list").wikiList("reload");							// Reload der Seite - Aufruf aus "wiki.createdialog.js"
+		}
+	});
+	
 });
 

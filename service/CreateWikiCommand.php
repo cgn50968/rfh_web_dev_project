@@ -21,10 +21,9 @@ class CreateWikiCommand {
 			
 			//-------------------------------------------------------------
 			// Author ist der angemeldete User = $_SERVER["PHP_AUTH_USER"]
-			//-------------------------------------------------------------
-			if(isset($_SERVER["PHP_AUTH_USER"]) == TRUE) {						
+			//-------------------------------------------------------------					
 			$wiki->author = $_SERVER["PHP_AUTH_USER"];	
-			}
+		
 			
 			if(isset($request["notes"]) == TRUE) {
 				$wiki->notes = $request["notes"];
@@ -50,8 +49,8 @@ class CreateWikiCommand {
 			header("Location: wiki/service/wikis/$result->id");		
 			
 			// ACHTUNG !! Ausgabe nur fürs Debugging..
-			return $result->id;
-			
+			//return $result->id;
+			return $_SERVER["PHP_AUTH_USER"];
 		}
 	}
 
