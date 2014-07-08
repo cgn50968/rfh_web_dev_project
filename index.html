@@ -49,13 +49,27 @@
 					<h1><a href="#" title="First post">Inhalt</a></h1>
 				</header>
 				
-				<div id="showsearch">
-					<!--Suchergebnis-->
+				<!--Ab hier soll der Inhalt der Suche stehen:-->
+				<div class="mainContent">
+					
+					<div class="col-sm-2"></div>
+					<div class="col-sm-8">
+					<!-- This table is where the data is display. -->
+						<table id="resultTable" class="table table-striped table-hover">
+							<thead>
+								<th>Autor</th>
+								<th>Kategorie</th>
+								<th>Titel</th>
+								<th>Text</th>
+							</thead>
+							<tbody></tbody>
+						</table>
+					</div>
 				</div>
 				
 				
 				<div class="response-table">
-					<!--Hier soll der Inhalt der Requests stehen:-->
+					<!--Ab hier soll der Inhalt der Requests stehen:-->
 					<!-------------------------------------------
 					  HTML Elements für Widget "wiki.wikilist.js" 
 					 --------------------------------------------->
@@ -170,6 +184,14 @@
 					  </form>
 					</div>
 					
+					
+					
+					
+					
+					
+					
+					
+					
 				</content>
 				
 				<!--<footer>
@@ -200,10 +222,18 @@
 		<article>
 			<h2>Schnellsuche</h2>
 			<p>
-				
-				<form action='SERVICE/search.php' method='GET'>
-					<input type='text' name='search'>
-					<input type='submit' name='submit' value='Suchen'>
+				<form class="form-horizontal" role="form" method="get">
+					<div class="form-group">
+						<label class="col-sm-2 control-label" for="name">Suchbegriff</label>
+						<div class="input-group col-sm-9">
+							<input id="name" name="name" type="text" class="form-control" placeholder="" />
+							<span class="input-group-btn">
+									<button type="button" class="btn btn-default btnSearch">
+									<span class="glyphicon glyphicon-search">Los</span>
+									</button>
+							</span>
+						</div>
+					</div>
 				</form>
 			</p>
 		</article>

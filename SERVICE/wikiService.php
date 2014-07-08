@@ -88,7 +88,7 @@ class WikiService {
 			return self::ERROR;										// Rückgabe: Error-Message: Zuweisung utf8 fehlgeschlagen
 			}
 			
-		$sql_statement = "SELECT id, version, category, title, notes, author, creation_date, expiration_date FROM wiki LIMIT 0,10";
+		$sql_statement = "SELECT id, version, category, title, notes, author, creation_date, expiration_date FROM wiki";
 									
 		$result_set = $link->query($sql_statement);
 		
@@ -199,7 +199,7 @@ class WikiService {
 			$affected_rows = $link->affected_rows;												// Wieviele Datensätze sind betroffen?
 			
 			if($affected_rows == 0) {
-				$sql_statement = "SELECT COUNT(*) FROM wiki WHERE id = $wiki->id";				// Fehler nur zurückgeben, sofern zur ID ein Wiki existiert, ansonsten NOT_FOUND
+				$sql_statement = "SELECT COUNT(*) FROM todo WHERE id = $wiki->id";				// Fehler nur zurückgeben, sofern zur ID ein Wiki existiert, ansonsten NOT_FOUND
 				$result_set = $link->query($sql_statement);										// Rückgabe
 				$row = $result_set->fetch_row();												// Übergabe der Anzahl der betroffenen Datensätze
 				$count = $row[0];					
