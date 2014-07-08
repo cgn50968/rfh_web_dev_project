@@ -74,7 +74,13 @@ alert("wiki.application.js\n# onCreateWikiClicked:");
 		}
 	});
 
-
+	/* ------------------------------- */
+	/*  Instanziierung "wiki.getPage.js"  */
+	/* ------------------------------- */
+	$("#get_page").getPage( {
+	
+	});
+	
 	
 	/* --------------------------------------------- */
 	/*  Instanziierung "wiki.wikilist.js" .wikiList  */
