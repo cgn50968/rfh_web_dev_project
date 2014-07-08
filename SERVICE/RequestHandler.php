@@ -56,25 +56,7 @@
 			$result = $command->execute($request, $request_headers);	// Ausführen der Funktion execute()
 						
 			if($result !== NULL) {										// Falls die Rückgabe ungleich NULL ist (!== bedeutet, dass nur NULL den Fehler erzeugt)
-			
-			//	Testbereich...
-			
-				/*$html_page = new HtmlPage;				// Klassenobjekt erstellen
-				
-				if(isset($_REQUEST["edit"])) {			// Falls Anfrage = cancel > dann öffnen der Seite WikiList.php */
-				/*	header("Location: RequestHandler.php");
-					$html_page->editDetails($result);	
-					}
-					
-			*/	
-				//if(isset($_REQUEST["edit"])) {		/* wie kann abgefragt werden, dass der Edit Button gedrückt wurde? */
-				//	$html_page->editDetails($result);	
-				//	}
-					
-				//$html_page->writeHtmlBottom();
-			
-			//	Ende - Testbereich! */
-			
+						
 				echo(json_encode($result));				// Ausgabe als "JSON-Zeichenkette"
 								
 			}
