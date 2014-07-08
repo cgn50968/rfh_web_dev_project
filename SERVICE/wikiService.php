@@ -74,7 +74,7 @@ class WikiService {
 	/* <<-- readWikis - Ausgabe aller Wiki Einträge -->> */
 	/* ------------------------------------------------- */
 	
-	public function readWikis()
+	public function readWikis()								// $start = Startpunkt für LIMIT
 	{
 		@$link = new mysqli("localhost","root","","wiki");			// @ um Fehlermeldungen zu unterdrücken
 	
@@ -88,7 +88,8 @@ class WikiService {
 			return self::ERROR;										// Rückgabe: Error-Message: Zuweisung utf8 fehlgeschlagen
 			}
 			
-		$sql_statement = "SELECT id, version, category, title, notes, author, creation_date, expiration_date FROM wiki LIMIT 0,10";
+		//$sql_statement = "SELECT id, version, category, title, notes, author, creation_date, expiration_date FROM wiki LIMIT $start,5";
+		$sql_statement = "SELECT id, version, category, title, notes, author, creation_date, expiration_date FROM wiki";
 									
 		$result_set = $link->query($sql_statement);
 		
@@ -242,7 +243,30 @@ class WikiService {
 			return ("wikiService.php - deleteWiki()");
 			//DEBUG
 		}
-	
+
+	/* ---------------------------------------------*/	
+	/* <<-- countWikis - Anzahl der Datensätze -->> */
+	/* ---------------------------------------------*/		
+		public function countWikis() {
+			
+			@$link = new mysqli("localhost","root","","wiki");			// @ um Fehlermeldungen zu unterdrücken
+			
+			$succeeded = $link->set_charset("utf8");					// Zuweisung des Zeichencode "utf8"
+			if($succeeded == FALSE) {									// Bei Zuweisungsfehler...
+				$link->close();											// DB Verbindung schließen...
+				return self::ERROR;										// Rückgabe: Error-Message: Zuweisung utf8 fehlgeschlagen
+				}
+				
+			$sql_statement = "SELECT COUNT(*) FROM wiki";				
+			$result_set = $link->query($sql_statement);										
+			$row = $result_set->fetch_row();												
+			$count = $row[0];					
+			$link->close();
+			
+			return $count;
+		}
+		
+		
 /* --------------------------------------------------------------------- */
 /* <<-- Infobereich -->>                                                 */	
 /* --------------------------------------------------------------------- */

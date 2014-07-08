@@ -1,5 +1,5 @@
 // ----------------------
-// Darstellung der Liste - Vorbereitung der Links für Details
+// Darstellung der Liste - vorbereitung der Links für Details
 // ----------------------
 
 
@@ -17,24 +17,16 @@ alert("wiki.wikilist.js\n # _create: wikiList");
 		$.ajax({
 		url: "/wiki/service/wikis",															// Aufruf der JSON Webseite und Übergabe der Rückgabe an das Array (wikis) (aus WikiService.php)
 		dataType: "json",
-		//headers: {"RecordFrom": 0, "RecordTo": 5, "Pages": 5, "OrderDir": "ASC", "OderBy": "cNName"},
-	
-		//headers: {"RecordFrom": 0, "RecordTo": 5, "PageSize": 5, "OrderDir": "ASC", "OderBy": "cNName"},
-		//success: this._appendKontakte,
-		//complete: this._BuildPageNum,
-	
-		headers: {"RecordFrom": 0, "RecordTo": 5, "Pages": wikis[1]["pages"], "OrderDir": "ASC", "OderBy": "cNName"},
+
 		
-		
+		headers: {"RecordFrom": 0, "RecordTo": 5, "PageSize": 5, "OrderDir": "ASC", "OderBy": "cNName"},
+		success: this._appendKontakte,
+		complete: this._BuildPageNum,
+
 		success: function(wikis) {		// nur HTML Code 200 zurückkommt.
 //DEBUG
 alert("wiki.wikilist.js\n # GET: GetWikisCommand");
 //DEBUG	
-		
-		
-			
-			
-			
 			var that = this;
 			for(var i = 0; i < wikis.length; i++) {
 				var wiki = wikis[i];
@@ -64,16 +56,15 @@ alert("wiki.wikilist.js\n # GET: GetWikisCommand");
 				wikiElement.find(".edit_wiki").click(wiki, function(event) {
 					that._trigger("onEditWikiClicked", null, event.data);						// Löst Funktion in applicaton.js aus...
 					return false;																// Keine weitere Bearbeitung durch False
-				});				
+				});
+				
 				this.element.append(wikiElement);
 			}
-			//return x;
 		},
 		context: this
 		});
 	},
 
-	
 	// -----------------
 	// Function reload
 	// -----------------
@@ -120,16 +111,9 @@ alert("wiki.wikilist.js\n # GET: GetWikisCommand");
 		},
 		context: this
 		});
-	},
-
-	_countWikis: function() {
 	}
-
     
 });									// Ende des Javascript Objekts }
-
-
-
 
 //-----------------------
 // Dokumentation
