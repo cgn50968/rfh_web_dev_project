@@ -41,6 +41,7 @@
 			</ul>
 		</nav>
 	</header>
+
 	
 	<div class="mainContent">
 	
@@ -70,7 +71,6 @@
 					</div>
 				</div>
 				
-				
 				<div class="response-table">
 					<!--Ab hier soll der Inhalt der Requests stehen:-->
 					<!-------------------------------------------
@@ -91,6 +91,7 @@
 							  <td id="fieldname" class="creation_date"></td>
 							  <td id="heading">Ablaufdatum</td>
 							  <td id="fieldname" class="expiration_date"></td>
+							  <td id="fieldname" class="pages"></td>
 							  <td id="heading"><a class="edit_wiki" href="#">Bearbeiten</a></td>		<!-- Tag für Bearbeiten -->
 							  <td id="heading"><a class="delete_wiki" href="#">Löschen</a></td>
 							</tr>
@@ -99,14 +100,7 @@
 					</div>
 				</div>
 					
-					<!-------------------------------------------
-					  HTML Elements für Widget "wiki.getPage.js" 
-					 --------------------------------------------->
-					<div id="get_page" class="ui-widget">  <!-- verlinkung mit application.js -->   
-						<div>		
-							<span class="page"></span>
-						</div>
-					</div>
+					
 				
 					<!-----------------------------------------------------------------
 					 Definition des HTML Elements für das Widget "wiki.wikidetails.js" 
@@ -206,6 +200,20 @@
 				</footer>-->
 				
 			</article>
+			
+			
+			<!-------------------------------------------
+			  HTML Elements für Widget "wiki.getPage.js" 
+			--------------------------------------------->
+			<article class="pageContent">
+				<div class="getpage">
+					<div class="get_page" >  
+						<span>Seiten</span>
+						<span class="pages"></span>
+					</div>	
+				</div>
+			</article>
+			
 			
 			<article class="bottomContent">
 				<header>

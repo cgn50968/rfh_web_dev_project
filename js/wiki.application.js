@@ -23,6 +23,8 @@ alert("wiki.application.js\n # .ajaxError");
 /*  <<-- INSTANZIIERUNG DER WIDGETS -->> */
 /* ------------------------------------- */
 	
+	
+	
 	/* --------------------------------------------------- */
 	/*  Instanziierung "wiki.errordialog.js" .errorDialog  */
 	/* --------------------------------------------------- */
@@ -74,12 +76,15 @@ alert("wiki.application.js\n# onCreateWikiClicked:");
 		}
 	});
 
+	
+	
 	/* ------------------------------- */
 	/*  Instanziierung "wiki.getPage.js"  */
 	/* ------------------------------- */
-	$("#get_page").getPage( {
+	$("#get_page").getPage({
 	
 	});
+	
 	
 	
 	/* --------------------------------------------- */

@@ -1,9 +1,4 @@
 $.widget("wiki.getPage", {
-
-	options: {
-		autoOpen: false,		
-		modal: true,			
-	},
 	
 	_create: function() {																	
 		$.ajax({
@@ -11,8 +6,7 @@ $.widget("wiki.getPage", {
 			dataType: "json",
 			success: function(wikis) {
 				alert(wikis[1]["pages"]);
-				return wikis[1]["pages"];
-			},			
+				}
 		});
 	}
 }); 

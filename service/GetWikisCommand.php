@@ -45,10 +45,6 @@ class GetWikisCommand {
 			$wiki->url = "/wiki/service/wikis/$wiki->id";
 			$wiki->pages = $pages;									
 			
-			//DEBUG
-				$wiki->debug = "GET > GetWikisCommand.php > RequestHandler.php";
-			//DEBUG END
-			
 			unset($wiki->id);										// Löscht das Attribut aus dem Objekt
 		}
 		

@@ -269,6 +269,10 @@ table { width: 100%}												/* Tag: Tabelle soll 100% der verfügbaren Breit
 		line-height: 30px;
 	}
 
+	.pageContent {
+		line-height: 30px;
+	}
+	
 	.content {
 		width: 100%;	
 		float: left;
