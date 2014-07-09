@@ -783,18 +783,18 @@ body .ui-tooltip {
 /* Component containers
 ----------------------------------*/
 .ui-widget {
-	font-family: Verdana,Arial,sans-serif;
-	font-size: 1.1em;
+	font-family: Arial, 'Lucida Sans Unicode';
+	font-size: 87.5%;
 }
 .ui-widget .ui-widget {
-	font-size: 1em;
+	ffont-size: 87.5%;
 }
 .ui-widget input,
 .ui-widget select,
 .ui-widget textarea,
 .ui-widget button {
-	font-family: Verdana,Arial,sans-serif;
-	font-size: 1em;
+	font-family: Arial, 'Lucida Sans Unicode';
+	font-size: 87.5%;
 }
 .ui-widget-content {
 	border: 1px solid #aaaaaa;

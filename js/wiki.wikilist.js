@@ -9,6 +9,8 @@ $.widget("wiki.wikiList", {  																// Beginn des Javascritp Objekts (W
 	/* ------------------ */
 	_create: function() {																	//Instanzieren der Methode des Objekts
 	
+	
+	
 	//DEBUG
 	alert("wiki.wikilist.js\n # _create: wikiList");
 	//DEBUG
@@ -43,7 +45,10 @@ $.widget("wiki.wikiList", {  																// Beginn des Javascritp Objekts (W
 	/* ------------------ */
 	/*  Function: reload  */
 	/* ------------------ */
+	
 	reload: function() {
+	
+	
 //DEBUG
 alert("wiki.wikilist.js\n # reload: wikiList");
 //DEBUG		
@@ -79,6 +84,7 @@ alert("wiki.wikilist.js\n # reload: wikiList");
 	/* Function: _appendWikis  */
 	/* ----------------------- */
 	_appendWikis: function(wikis) {
+		
 		var that = this;
 	
 	//DEBUG

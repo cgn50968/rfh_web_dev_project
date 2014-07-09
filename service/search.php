@@ -25,7 +25,7 @@
 		$suchbegriff = trim(htmlentities(stripslashes(mysql_real_escape_string($_GET['name']))));
 		$sql = "
 				SELECT
-					category, title, notes, author
+					category, title, creation_date, author
 				FROM
 					wiki
 				WHERE
@@ -33,11 +33,11 @@
 					OR
 					title LIKE '%$suchbegriff%'
 					OR
-					notes LIKE '%$suchbegriff%'
+					creation_date LIKE '%$suchbegriff%'
 					OR
 					author LIKE '%$suchbegriff%'
 				ORDER BY
-					author, category, title, notes
+					author, category, title, creation_date
 				";
 		
 		$statement = $conn->prepare($sql);
@@ -45,23 +45,26 @@
 		$results = $statement->execute(array($data));
 		
 		$rows = $statement->fetchAll();
-		$error = $statement->errorInfo();
-		
+		$error = $statement->errorInfo();		
 	}
 	
-	if(empty($rows)) {
+	if(empty($rows)) 
+	{
 		echo "<tr>";
 			echo "<td colspan='4'>Keine Einträge gefunden.</td>";
 		echo "</tr>";
 	}
 	
-	else {
-		foreach ($rows as $row) {
+	else
+	{
+		echo json_encode($rows);
+		foreach ($rows as $row) 
+		{
 			echo "<tr>";
 				echo "<td>".$row['author']."</td>";
 				echo "<td>".$row['category']."</td>";
 				echo "<td>".$row['title']."</td>";
-				echo "<td>".$row['notes']."</td>";
+				echo "<td>".$row['creation_date']."</td>";
 			echo "</tr>";
 		}
 	}
