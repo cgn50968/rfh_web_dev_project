@@ -9,6 +9,8 @@ $.widget("wiki.wikiList", {  																// Beginn des Javascritp Objekts (W
 	/* ------------------ */
 	_create: function() {																	//Instanzieren der Methode des Objekts
 
+	var p = 0; 
+	
 	//DEBUG
 		alert("wiki.wikilist.js\n # _create: wikiList");
 		//DEBUG
@@ -18,21 +20,19 @@ $.widget("wiki.wikiList", {  																// Beginn des Javascritp Objekts (W
 			url: "/wiki/service/wikis",															// Aufruf der JSON Webseite und Übergabe der Rückgabe an das Array (wikis) (aus WikiService.php)
 			dataType: "json",
 			success: this._appendWikis,															// nur HTML Code 200 zurückkommt.
-			context: this
+			context: this,
 		});
 		
 		/* 2. HTML Anfrage */
 		$.ajax({
 			url: "/wiki/service/wikis",															
 			dataType: "json",
-			success: this._SetPageNum,
-			context: this
+			success: this._setPageNum,
+			context: this,
 		});
+		
 	},
 
-	_SetPageNum: function(wikis) {
-		alert(wikis[0]["pages"]);
-	},
 	
 	
 	/* ------------------ */
@@ -56,7 +56,7 @@ alert("wiki.wikilist.js\n # reload: wikiList");
 		$.ajax({
 			url: "/wiki/service/wikis",															
 			dataType: "json",
-			success: this._SetPageNum,
+			success: this._setPageNum,
 			context: this
 		});
 	},    
@@ -107,9 +107,20 @@ alert("wiki.wikilist.js\n # reload: wikiList");
 
 	
 	
+	/* ----------------------- */
+	/*  Function: _setPageNum  */
+	/* ----------------------- */
+	_setPageNum: function(wikis) {
+		alert(wikis[0]["pages"]);
+		$.ajax({
+			dataType: "json",
+			url: "/wiki/service/wikis",
+			headers: {"PageSize": wikis[0]["pages"]},
+			context: this
+		});
+	},	
+	
 
-	
-	
 	
 	 _BuildPageNum: function(response)
 	 {
