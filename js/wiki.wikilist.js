@@ -13,15 +13,27 @@ $.widget("wiki.wikiList", {  																// Beginn des Javascritp Objekts (W
 		alert("wiki.wikilist.js\n # _create: wikiList");
 		//DEBUG
 		
+		/* 1. HTML Anfrage */
 		$.ajax({
 			url: "/wiki/service/wikis",															// Aufruf der JSON Webseite und Übergabe der Rückgabe an das Array (wikis) (aus WikiService.php)
 			dataType: "json",
 			success: this._appendWikis,															// nur HTML Code 200 zurückkommt.
 			context: this
 		});
+		
+		/* 2. HTML Anfrage */
+		$.ajax({
+			url: "/wiki/service/wikis",															
+			dataType: "json",
+			success: this._SetPageNum,
+			context: this
+		});
 	},
 
-
+	_SetPageNum: function(wikis) {
+		alert(wikis[0]["pages"]);
+	},
+	
 	
 	/* ------------------ */
 	/*  Function: reload  */
@@ -32,11 +44,20 @@ alert("wiki.wikilist.js\n # reload: wikiList");
 //DEBUG		
 		this.element.find(".wiki:not(.template)").remove();									// das HTML Elemente wiki soll gelöscht werden, bis auf das HTML Element template (siehe Folie ... ab 400 ?)
 		
+		/* 1. HTML Anfrage */
 		$.ajax({
-		dataType: "json",
-		url: "/wiki/service/wikis",
-		success: this._appendWikis,
-		context: this
+			dataType: "json",
+			url: "/wiki/service/wikis",
+			success: this._appendWikis,
+			context: this
+		});
+		
+		/* 2. HTML Anfrage */
+		$.ajax({
+			url: "/wiki/service/wikis",															
+			dataType: "json",
+			success: this._SetPageNum,
+			context: this
 		});
 	},    
 
@@ -84,6 +105,11 @@ alert("wiki.wikilist.js\n # reload: wikiList");
 		}
 	},
 
+	
+	
+
+	
+	
 	
 	 _BuildPageNum: function(response)
 	 {

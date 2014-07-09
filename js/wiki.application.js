@@ -46,7 +46,7 @@ alert("wiki.application.js\n# onShowWikisClicked:\n# .wiki_details.hide\n# .wiki
 //DEBUG
 			$("#wiki_details").hide();
 			$("#wiki_list").show();
-			$("#wiki_list").todoList("reload");
+			$("#wiki_list").wikiList("reload");
 		},
 		
 		/* ------------------------------- */
@@ -76,16 +76,7 @@ alert("wiki.application.js\n# onCreateWikiClicked:");
 		}
 	});
 
-	
-	
-	/* ------------------------------- */
-	/*  Instanziierung "wiki.getPage.js"  */
-	/* ------------------------------- */
-	$("#get_page").getPage({
-	
-	});
-	
-	
+		
 	
 	/* --------------------------------------------- */
 	/*  Instanziierung "wiki.wikilist.js" .wikiList  */

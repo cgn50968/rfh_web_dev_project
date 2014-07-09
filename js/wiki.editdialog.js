@@ -90,9 +90,9 @@ alert("wiki.editdialog.js\n # _create: CANCLE: .close");
 		this._super();									// Aufruf des übergeordneten jQuery-Widgets (in diesem Fall _create)
 	},
 	
-	//-----------------------------------------------------
-	// Funktion: updateWiki - Änderungen speichern
-	//-----------------------------------------------------
+	/* --------------------------------------------- */
+	/*  Funktion: updateWiki - Änderungen speichern  */
+	/* --------------------------------------------- */
 	_updateWiki: function() {	
 
 //DEBUG		
@@ -106,7 +106,6 @@ alert("wiki.editdialog.js\n # _updateWiki: read <input>");
 			expiration_date: this.element.find("#expiration_date_field").val(),
 			category: this.element.find("#category_field").val(),
 			notes: this.element.find("#notes_field").val()	
-			//author: "Roger"				// !!!! Im Service anpassen !!!!
 		};
 
 //DEBUG		
@@ -128,9 +127,9 @@ alert("wiki.editdialog.js\n # _updateWiki: onWikiEdited");
 			},
 			
 			
-			// ----------------------------
-			// SPEZIFISCHE FEHLERBEHANDLUNG
-			// ----------------------------
+			/* ------------------------------ */
+			/*  SPEZIFISCHE FEHLERBEHANDLUNG  */
+			/* ------------------------------ */
 			error: function(request) {
 			
 			// Zurücksetzen der Werte
