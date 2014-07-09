@@ -116,7 +116,7 @@ alert("wiki.application.js\n # onEditWikiClicked: editDialog(open, wiki)");
 		}
 	});																	// Instanzierung Widgets "wikilist" aus wiki.wikilist.js für die HTML id "wiki_list" in index.html
 
-
+	
 	
 	/* -------------------------------------- */
 	/*  Instanziierung "wiki.wikiDetails.js"  */

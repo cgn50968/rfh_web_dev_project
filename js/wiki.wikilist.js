@@ -8,29 +8,34 @@ $.widget("wiki.wikiList", {  																// Beginn des Javascritp Objekts (W
 	/* Function: _create  */
 	/* ------------------ */
 	_create: function() {																	//Instanzieren der Methode des Objekts
-
-	var p = 0; 
 	
 	//DEBUG
-		alert("wiki.wikilist.js\n # _create: wikiList");
-		//DEBUG
+	alert("wiki.wikilist.js\n # _create: wikiList");
+	//DEBUG
 		
-		/* 1. HTML Anfrage */
+		/* 1. HTML Anfrage - Liste */
 		$.ajax({
-			url: "/wiki/service/wikis",															// Aufruf der JSON Webseite und Übergabe der Rückgabe an das Array (wikis) (aus WikiService.php)
+			url: "/wiki/service/wikis",														// Aufruf der JSON Webseite und Übergabe der Rückgabe an das Array (wikis) (aus WikiService.php)
 			dataType: "json",
-			success: this._appendWikis,															// nur HTML Code 200 zurückkommt.
+			success: this._appendWikis,														// nur HTML Code 200 zurückkommt.
 			context: this,
 		});
 		
-		/* 2. HTML Anfrage */
+		/* 2. HTML Anfrage - Header */
 		$.ajax({
 			url: "/wiki/service/wikis",															
 			dataType: "json",
-			success: this._setPageNum,
+			success: this._setPageNumberHeader,
 			context: this,
 		});
 		
+		/* 3. HTML Anfrage - PageSize */
+		$.ajax({
+			url: "/wiki/service/wikis",															
+			dataType: "json",
+			success: this._setPageList,
+			context: this,
+		});
 	},
 
 	
@@ -44,20 +49,28 @@ alert("wiki.wikilist.js\n # reload: wikiList");
 //DEBUG		
 		this.element.find(".wiki:not(.template)").remove();									// das HTML Elemente wiki soll gelöscht werden, bis auf das HTML Element template (siehe Folie ... ab 400 ?)
 		
-		/* 1. HTML Anfrage */
+				/* 1. HTML Anfrage - Liste */
 		$.ajax({
+			url: "/wiki/service/wikis",														// Aufruf der JSON Webseite und Übergabe der Rückgabe an das Array (wikis) (aus WikiService.php)
 			dataType: "json",
-			url: "/wiki/service/wikis",
-			success: this._appendWikis,
-			context: this
+			success: this._appendWikis,														// nur HTML Code 200 zurückkommt.
+			context: this,
 		});
 		
-		/* 2. HTML Anfrage */
+		/* 2. HTML Anfrage - Header */
 		$.ajax({
 			url: "/wiki/service/wikis",															
 			dataType: "json",
-			success: this._setPageNum,
-			context: this
+			success: this._setPageNumberHeader,
+			context: this,
+		});
+		
+		/* 3. HTML Anfrage - PageSize */
+		$.ajax({
+			url: "/wiki/service/wikis",															
+			dataType: "json",
+			success: this._setPageList,
+			context: this,
 		});
 	},    
 
@@ -83,8 +96,7 @@ alert("wiki.wikilist.js\n # reload: wikiList");
 			wikiElement.find(".expiration_date").text(wiki.expiration_date);	
 			wikiElement.find(".title").text(wiki.title);		
 			wikiElement.find(".notes").text(wiki.notes);	
-			wikiElement.find(".pages").text(wiki.pages);
-
+			
 			// Festlegung der Click Eigenschaft für alle Elemente der class Wiki
 			wikiElement.click(wiki.url, function(event) {									// Click Ereignis (wiki.url = Übergabe der URL
 				that._trigger("onWikiClicked", null, event.data);							// Übergabe der URL mit korrekter ID des Datensatzes
@@ -105,13 +117,15 @@ alert("wiki.wikilist.js\n # reload: wikiList");
 		}
 	},
 
+
 	
-	
-	/* ----------------------- */
-	/*  Function: _setPageNum  */
-	/* ----------------------- */
-	_setPageNum: function(wikis) {
-		alert(wikis[0]["pages"]);
+	/* -------------------------------- */
+	/*  Function: _setPageNumberHeader  */
+	/* -------------------------------- */
+	_setPageNumberHeader: function(wikis) {
+		//DEBUG
+		alert("wiki.wikilist.js\n# _setPageNum");
+		//DEBUG
 		$.ajax({
 			dataType: "json",
 			url: "/wiki/service/wikis",
@@ -121,27 +135,26 @@ alert("wiki.wikilist.js\n # reload: wikiList");
 	},	
 	
 
+
+	/* ------------------------ */
+	/*  Function: _setPageList  */
+	/* ------------------------ */
+	_setPageList: function(wikis) {
+		var that = this;
 	
-	 _BuildPageNum: function(response)
-	 {
-	  var that = this;
-	  pages = response.getResponseHeader('PageSize');
-	  for (var i = 0; i < pages; i++) 
-	  {
-	   
-	   var pageElement = this.element.find(".pagesize").clone();
-	   pageElement.removeClass("pagesize");
-	   var pagenum = i + 1;
-	   pageElement.find(".page").text(pagenum);
-	   pageElement.click(pagenum, function(event)
-	   {
-		that._trigger("onPageClicked", null, event.data); // "Geklickt" zurückgeben
-	   });
-	   this.element.append(pageElement);
-	  }
-	 },
+			var wikiElement = this.element.find(".pages").clone().removeClass("pages");	
+			wikiElement.find(".page").text(wikis[0]["pages"]);								// Text setzen
+
+			// Dringend eine Funktion für Click entwerfen...
+			wikiElement.find(".page").click(wikis[0]["pages"], function(event) {
+				that._trigger("onDeleteWikiClicked", null, event.data);						// Löst Funktion in applicaton.js aus...
+			});
+				
+			this.element.append(wikiElement);
+	},
 
 
+	
 });		
 /* Ende des Javascript Objekts */
 
