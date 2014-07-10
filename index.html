@@ -11,7 +11,7 @@
     <script src="./js/jquery-1.10.2.js" type="text/javascript"></script>
     <script src="./js/jquery-ui-1.10.4.custom.js" type="text/javascript"></script>
 	<script src="./js/jquery.blockUI.js" type="text/javascript"></script>				<!-- Blocken von Widgets nach Click Event -->
-	<script src="./js/wiki.wikisearch.js" type="text/javascript"></script>
+	<!--<script src="./js/wiki.wikisearch.js" type="text/javascript"></script>-->
 	<script src="./js/wiki.wikilist.js" type="text/javascript"></script>
 	<script src="./js/wiki.wikidetails.js" type="text/javascript"></script>		
     <script src="./js/wiki.errordialog.js" type="text/javascript"></script>
@@ -22,6 +22,13 @@
 	<script src="./js/wiki.application.js" type="text/javascript"></script> 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"> 				<!--mobile Endgeräte nutzen . . . . -->
 
+	
+	
+	
+	
+	
+	
+	
 </head>
 
 
@@ -56,9 +63,17 @@
 						
 						<h1><a href="#" title="First post">Inhalt</a></h1>
 							
-							<div id="wiki_search" class="ui-widget">  <!-- verlinkung mit application.js --> 
+							
+						
+						
+						
+							<!--Ab hier soll der Inhalt der Requests stehen:-->
+							<!-------------------------------------------
+							  HTML Elements für Widget "wiki.wikilist.js" 
+							 --------------------------------------------->
+							<div id="wiki_list" class="ui-widget">  <!-- verlinkung mit application.js --> 
 								
-								<!-- Seitenzahl 
+								<!-- Seitenzahl-->
 								<table>			
 									<tr>	
 									  <td class="pages">
@@ -67,7 +82,7 @@
 										</div>	
 									  </td>
 									</tr>
-								</table>-->	
+								</table> 	
 					
 								<div>		<!-- 2 Klassen - wiki und template -->
 									<table class="wiki template">
@@ -87,44 +102,6 @@
 									<hr>
 								</div>
 							</div>
-						
-						
-						
-							<!--Ab hier soll der Inhalt der Requests stehen:-->
-							<!-------------------------------------------
-							  HTML Elements für Widget "wiki.wikilist.js" 
-							 --------------------------------------------->
-						<!--	<div id="wiki_list" class="ui-widget">  <!-- verlinkung mit application.js --> 
-								
-								<!-- Seitenzahl
-								<table>			
-									<tr>	
-									  <td class="pages">
-										<div>
-										  <a class="page" href="#"></a>
-										</div>	
-									  </td>
-									</tr>
-								</table> 	
-					
-								<div>		<!-- 2 Klassen - wiki und template -->
-							<!--		<table class="wiki template">
-									<tr>
-									  <!--<td id="heading">Autor</td>-->
-							<!--		  <td id="fieldname" class="author"></td>
-									  <td id="fieldname" class="category"></td>
-									  <td id="fieldname" class="title"></td>
-									  <!--<td id="heading">Erstelldatum</td>-->
-							<!--		  <td id="fieldname" class="creation_date"></td>
-									  <!--<td id="heading">Ablaufdatum</td>-->
-									  <!--<td id="fieldname" class="expiration_date"></td>-->
-							<!--		  <td id="heading"><a class="edit_wiki" href="#">B</a></td>		<!-- Tag für Bearbeiten -->
-							<!--		  <td id="heading"><a class="delete_wiki" href="#">L</a></td>
-									</tr>
-									</table>
-									<hr>
-								</div>
-							</div>-->
 						
 					</div>	
 						
