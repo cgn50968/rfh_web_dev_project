@@ -113,7 +113,17 @@ alert("wiki.application.js\n # onDeleteWikiClicked: deleteDialog(open)");
 alert("wiki.application.js\n # onEditWikiClicked: editDialog(open, wiki)");
 //DEBUG
 			$("#edit_dialog").editDialog("open", wiki);					// Anzeigen des Bearbeiten Dialogs durch "open", Übergabe der Ereignis-Parameter mit "wiki"
-		}
+		},
+		
+		/* -------------------------------- */
+		/*  onWikiPageClicked - editDialog  */
+		/* -------------------------------- */
+		onWikiPageClicked: function(event, wikiUrl) {
+//DEBUG
+alert("wiki.application.js\n # onWikiPageClicked: wikiList(reload)");
+//DEBUG
+			$("#wiki_list").wikiList("reload");
+		},
 	});																	// Instanzierung Widgets "wikilist" aus wiki.wikilist.js für die HTML id "wiki_list" in index.html
 
 	
