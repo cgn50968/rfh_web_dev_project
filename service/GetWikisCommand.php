@@ -62,3 +62,4 @@ class GetWikisCommand {
 		return $wikis;
 	}
 }
+?>

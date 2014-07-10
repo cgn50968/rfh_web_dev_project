@@ -1,4 +1,4 @@
-$(function() {
+﻿$(function() {
 // -------------------------------------
 // CONTROL - Zentrale Steuerungsfunktion
 // -------------------------------------
@@ -134,6 +134,51 @@ alert("wiki.application.js\n # onWikiPageClicked: wikiList(reload)");
 	/* -------------------------------------- */
 	$("#wiki_details").wikiDetails();
 
+	
+	/* --------------------------------------------- 	*/
+	/*  Instanziierung "wiki.wikisearch.js" .wikiSearch  */
+	/* --------------------------------------------- 	*/
+	$("#wiki_search").wikiSearch( 
+	{
+		
+		/* ----------------------------- */
+		/*  onWikiClicked - wikiDetails  */
+		/* ----------------------------- */
+		onWikiClicked: function(event, wikiUrl) {
+
+			$("#wiki_search").hide();										
+			$("#wiki_details").show();
+			$("#wiki_details").wikiDetails("load", wikiUrl);			// Anzeigen eines einzelnen Wikis
+		},
+		
+		/* ------------------------------ */
+		/*  onWikiClicked - deleteDialog  */
+		/* ------------------------------ */
+		onDeleteWikiClicked: function(event, wiki) {
+
+			$("#delete_dialog").deleteDialog("open", wiki);				// Anzeigen des Löschen Dialogs
+		},
+		
+		/* -------------------------------- */
+		/*  onEditWikiClicked - editDialog  */
+		/* -------------------------------- */
+		onEditWikiClicked: function(event, wiki) {
+
+			$("#edit_dialog").editDialog("open", wiki);					// Anzeigen des Bearbeiten Dialogs durch "open", Übergabe der Ereignis-Parameter mit "wiki"
+		},
+		
+		/* -------------------------------- */
+		/*  onWikiPageClicked - editDialog  */
+		/* -------------------------------- */
+		onWikiPageClicked: function(event, wikiUrl) {
+
+			$("#wiki_list").wikiList("reload");
+		},
+	});
+	
+	
+	
+	
 
 		
 	/* ------------------------------------- */

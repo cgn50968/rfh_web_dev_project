@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /* ------------------------------------------------------ */
 /* <<-- RequestHandler: Zentrale Verarbeitungsklasse -->> */
 /* ------------------------------------------------------ */
@@ -14,6 +14,7 @@
 	require "UpdateWikiCommand.php";
 	require "DeleteWikiCommand.php";
 	require "CreateWikiResult.php";
+	require "SearchWikisCommand.php";
 	
 	
 	/* --------------------------------- */

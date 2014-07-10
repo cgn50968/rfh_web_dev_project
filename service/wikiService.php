@@ -107,8 +107,75 @@ class WikiService {
 		
 		$link->close();
 		return $wikis;			
-		}
+	}
+	
+	/* ------------------------------------------------- */
+	/* searchWikis - Durchsuchen aller Wiki Einträge	 */
+	/* ------------------------------------------------- */
 		
+	public function searchWikis()									
+	{
+		if (isset($_GET['name']))
+		{
+			$suchwort = $_GET['name'];
+			$abfrage = "";
+			$abfrage2 = "";
+			$suchwort = explode(" ", $suchwort);					//Suchanfrage in einzelne Wörter zerschneiden
+			for ($i = 0; $i < sizeof($suchwort); $i++)				//jedes Wort durchgehen und in Abfrage verarbeiten
+			{
+				$abfrage .=	" `category` LIKE '%".$suchwort[$i]."%'";	// .= bedeutet anfügen und nicht ersetzen
+				$abfrage2 .= " `title` LIKE '%".$suchwort[$i]."%'";
+				if($i < (sizeof($suchwort) - 1))
+				{
+					$abfrage .= "OR";
+					$abfrage2 .= "OR";
+				}
+			}
+			
+			$link = @new mysqli("localhost","root","","wiki");		// Verbindung zur Datenbank "wiki"
+			if($link->connect_error != NULL)						// Fehlermeldung bei Verbindungsfehler
+			{							
+				return self::ERROR;
+			}
+				
+			$succeeded = $link->set_charset("utf8");				// Zuweisung des Zeichencode "utf8"
+			if($succeeded == FALSE) 								// Bei Zuweisungsfehler...
+			{									
+				$link->close();										// DB Verbindung schließen...
+				return self::ERROR;									// Rückgabe: Error-Message: Zuweisung utf8 fehlgeschlagen
+			}
+				
+			$sql_statement = "	SELECT
+									*
+								FROM
+									`wiki`
+								WHERE
+									".$abfrage . "OR" . $abfrage2;
+										
+			$result_set = $link->query($sql_statement);
+			
+			$searchwikis = array();									// Deklaration: searchwikis = Array
+			$wiki = $result_set->fetch_object();
+			while($wiki != NULL)
+			{
+				$searchwikis[] = $wiki;
+				$wiki = $result_set->fetch_object();
+			}
+			
+			$affected_rows = $link->affected_rows;					// Wieviele Datensätze sind betroffen
+			if($affected_rows == 0)									// Fehlermeldung: sofern keine Datensätze gefunden wurden	
+			{									
+				return self::NOT_FOUND;
+			}
+			
+			$link->close();
+			return $searchwikis;
+		}
+		else
+			echo 'ERROR, please check URL or code.';
+	}
+
+	
 	/* --------------------------------------------------- */	
 	/* <<-- createWiki - Neuen Wiki Eintrag erstellen -->> */
 	/* --------------------------------------------------- */	

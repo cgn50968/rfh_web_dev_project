@@ -3,6 +3,9 @@ RewriteEngine on
 # Hierdurch lässt sich die Seite über folgende URL aufrufen: http://localhost/wiki/service/wikis
 
 RewriteCond %{REQUEST_METHOD} GET
+RewriteRule ^searchwikis$ RequestHandler.php?command=SearchWikisCommand
+
+RewriteCond %{REQUEST_METHOD} GET
 RewriteRule ^wikis$ RequestHandler.php?command=GetWikisCommand
 
 RewriteCond %{REQUEST_METHOD} GET

@@ -50,155 +50,156 @@
 					
 				</header>
 				
-				<!--Ab hier soll der Inhalt der Suche stehen:-->
-				<div class="mainContent">
-				<h1><a href="#" title="First post">Inhalt</a></h1>
-					
-					<div class="col-sm-2"></div>
-					<div class="col-sm-8">
-					
-						<table id="resultTable" class="table table-striped table-hover">
-							<thead>
-								<th>Autor</th>
-								<th>Kategorie</th>
-								<th>Titel</th>
-								<th>erstellt</th>
-							</thead>
-							<tbody></tbody>
-						</table>
-					</div>
-				</div>
-				
-				<div class="response-table">
-					<!--Ab hier soll der Inhalt der Requests stehen:-->
-					<!-------------------------------------------
-					  HTML Elements für Widget "wiki.wikilist.js" 
-					 --------------------------------------------->
-					<div id="wiki_list" class="ui-widget">  <!-- verlinkung mit application.js --> 
+				<content>
+					<!--Ab hier soll der Inhalt der Suche stehen:-->
+					<div class="mainContent">
+					<h1><a href="#" title="First post">Inhalt</a></h1>
 						
-						<!-- Seitenzahl -->	
-						<table>			
-							<tr>	
-							  <td class="pages">
-								<div>
-								  <a class="page" href="#"></a>
-								</div>	
-							  </td>
-							</tr>
-						</table>
-			
-						<div>		<!-- 2 Klassen - wiki und template -->
-							<table class="wiki template">
-							<tr>
-							  <!--<td id="heading">Autor</td>-->
-							  <td id="fieldname" class="author"></td>
-							  <td id="fieldname" class="category"></td>
-							  <td id="fieldname" class="title"></td>
-							  <!--<td id="heading">Erstelldatum</td>-->
-							  <td id="fieldname" class="creation_date"></td>
-							  <!--<td id="heading">Ablaufdatum</td>-->
-							  <!--<td id="fieldname" class="expiration_date"></td>-->
-							  <td id="heading"><a class="edit_wiki" href="#">B</a></td>		<!-- Tag für Bearbeiten -->
-							  <td id="heading"><a class="delete_wiki" href="#">L</a></td>
-							</tr>
+						<div class="col-sm-2"></div>
+						<div class="col-sm-8">
+						
+							<table id="resultTable" class="table table-striped table-hover">
+								<thead>
+									<th>Autor</th>
+									<th>Kategorie</th>
+									<th>Titel</th>
+									<th>erstellt</th>
+								</thead>
+								<tbody></tbody>
 							</table>
-							<hr>
 						</div>
 					</div>
-				</div>
 					
-					
+					<div class="response-table">
+						<!--Ab hier soll der Inhalt der Requests stehen:-->
+						<!-------------------------------------------
+						  HTML Elements für Widget "wiki.wikilist.js" 
+						 --------------------------------------------->
+						<div id="wiki_list" class="ui-widget">  <!-- verlinkung mit application.js --> 
+							
+							<!-- Seitenzahl -->	
+							<table>			
+								<tr>	
+								  <td class="pages">
+									<div>
+									  <a class="page" href="#"></a>
+									</div>	
+								  </td>
+								</tr>
+							</table>
 				
-					<!-----------------------------------------------------------------
-					 Definition des HTML Elements für das Widget "wiki.wikidetails.js" 
-					------------------------------------------------------------------->
-					<div id="wiki_details" class="ui-widget">
-						<span>Autor</span>
-						<span class="author"></span>
-						<span>|</span>
-						<span>Erstelldatum</span>
-						<span class="creation_date"></span>
-						<span>Ablaufdatum</span>
-						<span class="expiration_date"></span>
-						<span class="title"></span>
-						<span class="notes"></span>
+							<div>		<!-- 2 Klassen - wiki und template -->
+								<table class="wiki template">
+								<tr>
+								  <!--<td id="heading">Autor</td>-->
+								  <td id="fieldname" class="author"></td>
+								  <td id="fieldname" class="category"></td>
+								  <td id="fieldname" class="title"></td>
+								  <!--<td id="heading">Erstelldatum</td>-->
+								  <td id="fieldname" class="creation_date"></td>
+								  <!--<td id="heading">Ablaufdatum</td>-->
+								  <!--<td id="fieldname" class="expiration_date"></td>-->
+								  <td id="heading"><a class="edit_wiki" href="#">B</a></td>		<!-- Tag für Bearbeiten -->
+								  <td id="heading"><a class="delete_wiki" href="#">L</a></td>
+								</tr>
+								</table>
+								<hr>
+							</div>
+						</div>
 					</div>
 						
-					<!-----------------------------------------------------------------
-					 Definition des HTML Elements für das Widget "wiki.errordialog.js" 
-					------------------------------------------------------------------->
-					<div id="error_dialog" title="Fehler" class=ui-widget">
-						<div class="message"></div>								<!-- class message für Error Code -->
-					</div>
+						
 					
-					<!------------------------------------------------------------------
-					 Definition des HTML Elements für das Widget "wiki.deletedialog.js" 
-					-------------------------------------------------------------------->
-					<div id="delete_dialog" title="Wiki löschen" class="ui-widget">
-						<div> Möchten Sie das Wiki wirklich löschen?</div>
-					</div>
-					
-					<!----------------------------------------------------------------
-					 Definition des HTML Elements für das Widget "wiki.editdialog.js" 
-					------------------------------------------------------------------>
-					<div id="edit_dialog" title="Wiki bearbeiten" class="ui-widget">
-					  <form>
-						<table>
-						  <tr>
-							<td/>
-							<td colspan="3"><span class="validation_message ui-state-error-text"></span></td>
-						  </tr>
-						  <tr>
-							<td><label for="author_field">Autor:</label></td>
-							<td><label for="creation_date_field">Erstelldatum:</label></td>
-							<td><label for="expiration_date_field">Gültigkeitsdatum:</label></td>
-						  </tr>
-						  <tr>
-							<td><input id="author_field" type="text"/></td>
-							<td><input id="creation_date_field" type="text"/></td>
-							<td><input id="expiration_date_field" type="text"/></td>
-						  </tr>
-						  <tr>
-							<td><label for="category_field">Kategorie:</label></td>    
-							<td colspan="2"><label for="title_field">Titel:</label></td>    
-						  </tr>
-						  <tr>
-							<td><input id="category_field" type="text"/></td>
-							<td colspan="2"><input id="title_field" type="text"/></td>
-						  </tr>
-						  <tr>
-							<td><label for="notes_field">Beschreibung:</label></td>          
-							<td colspan="3"><textarea id="notes_field"></textarea></td>
-						  </tr>
-						</table>
-					  </form>
-					</div>
-					
-					<!----------------------------------------------------------------
-					 Definition des HTML Elements für das Widget "wiki.createdialog.js" 
-					------------------------------------------------------------------>
-					<div id="create_dialog" title="Neues Wiki" class="ui-widget">
-					  <form>
-						<table>
-						  <tr>
-							<td/>
-							<td colspan="3"><span class="validation_message ui-state-error-text"></span></td>
-						  </tr>
-						  <tr>
-							<td><label for="category_field">Kategorie:</label></td>    
-							<td colspan="2"><label for="title_field">Titel:</label></td>    
-						  </tr>
-						  <tr>
-							<td><input id="category_field" type="text"/></td>
-							<td colspan="2"><input id="title_field" type="text"/></td>
-						  </tr>
-						  <tr>
-							<td><label for="notes_field">Beschreibung:</label></td>          
-							<td colspan="3"><textarea id="notes_field"></textarea></td>
-						  </tr>
-						</table>
-					  </form>
-					</div>
+						<!-----------------------------------------------------------------
+						 Definition des HTML Elements für das Widget "wiki.wikidetails.js" 
+						------------------------------------------------------------------->
+						<div id="wiki_details" class="ui-widget">
+							<span>Autor</span>
+							<span class="author"></span>
+							<span>|</span>
+							<span>Erstelldatum</span>
+							<span class="creation_date"></span>
+							<span>Ablaufdatum</span>
+							<span class="expiration_date"></span>
+							<span class="title"></span>
+							<span class="notes"></span>
+						</div>
+							
+						<!-----------------------------------------------------------------
+						 Definition des HTML Elements für das Widget "wiki.errordialog.js" 
+						------------------------------------------------------------------->
+						<div id="error_dialog" title="Fehler" class=ui-widget">
+							<div class="message"></div>								<!-- class message für Error Code -->
+						</div>
+						
+						<!------------------------------------------------------------------
+						 Definition des HTML Elements für das Widget "wiki.deletedialog.js" 
+						-------------------------------------------------------------------->
+						<div id="delete_dialog" title="Wiki löschen" class="ui-widget">
+							<div> Möchten Sie das Wiki wirklich löschen?</div>
+						</div>
+						
+						<!----------------------------------------------------------------
+						 Definition des HTML Elements für das Widget "wiki.editdialog.js" 
+						------------------------------------------------------------------>
+						<div id="edit_dialog" title="Wiki bearbeiten" class="ui-widget">
+						  <form>
+							<table>
+							  <tr>
+								<td/>
+								<td colspan="3"><span class="validation_message ui-state-error-text"></span></td>
+							  </tr>
+							  <tr>
+								<td><label for="author_field">Autor:</label></td>
+								<td><label for="creation_date_field">Erstelldatum:</label></td>
+								<td><label for="expiration_date_field">Gültigkeitsdatum:</label></td>
+							  </tr>
+							  <tr>
+								<td><input id="author_field" type="text"/></td>
+								<td><input id="creation_date_field" type="text"/></td>
+								<td><input id="expiration_date_field" type="text"/></td>
+							  </tr>
+							  <tr>
+								<td><label for="category_field">Kategorie:</label></td>    
+								<td colspan="2"><label for="title_field">Titel:</label></td>    
+							  </tr>
+							  <tr>
+								<td><input id="category_field" type="text"/></td>
+								<td colspan="2"><input id="title_field" type="text"/></td>
+							  </tr>
+							  <tr>
+								<td><label for="notes_field">Beschreibung:</label></td>          
+								<td colspan="3"><textarea id="notes_field"></textarea></td>
+							  </tr>
+							</table>
+						  </form>
+						</div>
+						
+						<!----------------------------------------------------------------
+						 Definition des HTML Elements für das Widget "wiki.createdialog.js" 
+						------------------------------------------------------------------>
+						<div id="create_dialog" title="Neues Wiki" class="ui-widget">
+						  <form>
+							<table>
+							  <tr>
+								<td/>
+								<td colspan="3"><span class="validation_message ui-state-error-text"></span></td>
+							  </tr>
+							  <tr>
+								<td><label for="category_field">Kategorie:</label></td>    
+								<td colspan="2"><label for="title_field">Titel:</label></td>    
+							  </tr>
+							  <tr>
+								<td><input id="category_field" type="text"/></td>
+								<td colspan="2"><input id="title_field" type="text"/></td>
+							  </tr>
+							  <tr>
+								<td><label for="notes_field">Beschreibung:</label></td>          
+								<td colspan="3"><textarea id="notes_field"></textarea></td>
+							  </tr>
+							</table>
+						  </form>
+						</div>
 											
 				</content>
 				
