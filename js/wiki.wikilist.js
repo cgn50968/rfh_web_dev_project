@@ -9,8 +9,6 @@ $.widget("wiki.wikiList", {  																// Beginn des Javascritp Objekts (W
 	/* ------------------ */
 	_create: function() {																	//Instanzieren der Methode des Objekts
 	
-	
-	
 	//DEBUG
 	alert("wiki.wikilist.js\n # _create: wikiList");
 	//DEBUG
@@ -53,8 +51,9 @@ $.widget("wiki.wikiList", {  																// Beginn des Javascritp Objekts (W
 alert("wiki.wikilist.js\n # reload: wikiList");
 //DEBUG		
 		this.element.find(".wiki:not(.template)").remove();									// das HTML Elemente wiki soll gelöscht werden, bis auf das HTML Element template (siehe Folie ... ab 400 ?)
+		this.element.find(".pages").remove();
 		
-				/* 1. HTML Anfrage - Liste */
+		/* 1. HTML Anfrage - Liste */
 		$.ajax({
 			url: "/wiki/service/wikis",														// Aufruf der JSON Webseite und Übergabe der Rückgabe an das Array (wikis) (aus WikiService.php)
 			dataType: "json",
@@ -147,16 +146,19 @@ alert("wiki.wikilist.js\n # reload: wikiList");
 	/* ------------------------ */
 	_setPageList: function(wikis) {
 		var that = this;
-	
+		
+		var pagenum = wikis[0]["pages"];	
+		for(var i = 0; i < pagenum; i++) {
+		
 			var wikiElement = this.element.find(".pages").clone().removeClass("pages");	
-			wikiElement.find(".page").text(wikis[0]["pages"]);								// Text setzen
-
-			// Dringend eine Funktion für Click entwerfen...
-			wikiElement.find(".page").click(wikis[0]["pages"], function(event) {
+			//wikiElement.find(".pages").remove;
+			wikiElement.find(".page").text(pagenum);										// Text setzen
+		
+			wikiElement.find(".page").click(pagenum, function(event) {
 				that._trigger("onWikiPageClicked", null, event.data);						// Löst Funktion in applicaton.js aus...
 			});
-				
 			this.element.append(wikiElement);
+		}
 	},
 
 

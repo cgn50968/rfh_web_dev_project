@@ -115,9 +115,9 @@ alert("wiki.application.js\n # onEditWikiClicked: editDialog(open, wiki)");
 			$("#edit_dialog").editDialog("open", wiki);					// Anzeigen des Bearbeiten Dialogs durch "open", Übergabe der Ereignis-Parameter mit "wiki"
 		},
 		
-		/* -------------------------------- */
-		/*  onWikiPageClicked - editDialog  */
-		/* -------------------------------- */
+		/* ------------------------------ */
+		/*  onWikiPageClicked - wikiList  */
+		/* ------------------------------ */
 		onWikiPageClicked: function(event, wikiUrl) {
 //DEBUG
 alert("wiki.application.js\n # onWikiPageClicked: wikiList(reload)");
