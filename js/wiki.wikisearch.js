@@ -13,7 +13,7 @@ $.widget("wiki.wikiSearch", {  																// Beginn des Javascritp Objekts 
 	
 		/* 1. HTML Anfrage - Liste */
 		$.ajax({
-			url: "/wiki/service/wikisearch",												// Aufruf der JSON Webseite und Übergabe der Rückgabe an das Array (wikis) (aus WikiService.php)
+			url: "/wiki/service/searchwikis",												// Aufruf der JSON Webseite und Übergabe der Rückgabe an das Array (wikis) (aus WikiService.php)
 			dataType: "json",
 			success: this._appendWikis,														// nur HTML Code 200 zurückkommt.
 			context: this,
@@ -21,7 +21,7 @@ $.widget("wiki.wikiSearch", {  																// Beginn des Javascritp Objekts 
 		
 		/* 2. HTML Anfrage - Header */
 		$.ajax({
-			url: "/wiki/service/wikisearch",															
+			url: "/wiki/service/searchwikis",															
 			dataType: "json",
 			success: this._setPageNumberHeader,
 			context: this,
@@ -29,7 +29,7 @@ $.widget("wiki.wikiSearch", {  																// Beginn des Javascritp Objekts 
 		
 		/* 3. HTML Anfrage - PageSize */
 		$.ajax({
-			url: "/wiki/service/wikisearch",															
+			url: "/wiki/service/searchwikis",															
 			dataType: "json",
 			success: this._setPageList,
 			context: this,
@@ -48,7 +48,7 @@ $.widget("wiki.wikiSearch", {  																// Beginn des Javascritp Objekts 
 		
 				/* 1. HTML Anfrage - Liste */
 		$.ajax({
-			url: "/wiki/service/wikisearch",												// Aufruf der JSON Webseite und Übergabe der Rückgabe an das Array (wikis) (aus WikiService.php)
+			url: "/wiki/service/searchwikis",												// Aufruf der JSON Webseite und Übergabe der Rückgabe an das Array (wikis) (aus WikiService.php)
 			dataType: "json",
 			success: this._appendWikis,														// nur HTML Code 200 zurückkommt.
 			context: this,
@@ -56,7 +56,7 @@ $.widget("wiki.wikiSearch", {  																// Beginn des Javascritp Objekts 
 		
 		/* 2. HTML Anfrage - Header */
 		$.ajax({
-			url: "/wiki/service/wikisearch",															
+			url: "/wiki/service/searchwikis",															
 			dataType: "json",
 			success: this._setPageNumberHeader,
 			context: this,
@@ -64,7 +64,7 @@ $.widget("wiki.wikiSearch", {  																// Beginn des Javascritp Objekts 
 		
 		/* 3. HTML Anfrage - PageSize */
 		$.ajax({
-			url: "/wiki/service/wikisearch",															
+			url: "/wiki/service/searchwikis",															
 			dataType: "json",
 			success: this._setPageList,
 			context: this,
@@ -75,14 +75,14 @@ $.widget("wiki.wikiSearch", {  																// Beginn des Javascritp Objekts 
 	/* ----------------------- */
 	/* Function: _appendWikis  */
 	/* ----------------------- */
-	_appendWikis: function(wikisearch) {
+	_appendWikis: function(searchwikis) {
 	
 		$("#wiki_list").hide();
 		
 		var that = this;
 		
-		for(var i = 0; i < wikisearch.length; i++) {
-			var wiki = wikisearch[i];
+		for(var i = 0; i < searchwikis.length; i++) {
+			var wiki = searchwikis[i];
 			// Finde HTML Element "template" und kopiere es, anschließend entferne HTML Klasse "template"
 			var wikiElement = this.element.find(".template").clone().removeClass("template");	
 
@@ -118,12 +118,12 @@ $.widget("wiki.wikiSearch", {  																// Beginn des Javascritp Objekts 
 	/* -------------------------------- */
 	/*  Function: _setPageNumberHeader  */
 	/* -------------------------------- */
-	_setPageNumberHeader: function(wikisearch) {
+	_setPageNumberHeader: function(searchwikis) {
 		
 		$.ajax({
 			dataType: "json",
-			url: "/wiki/service/wikisearch",
-			headers: {"PageSize": wikisearch[0]["pages"]},
+			url: "/wiki/service/searchwikis",
+			headers: {"PageSize": searchwikis[0]["pages"]},
 			context: this
 		});
 	},	
@@ -133,14 +133,14 @@ $.widget("wiki.wikiSearch", {  																// Beginn des Javascritp Objekts 
 	/* ------------------------ */
 	/*  Function: _setPageList  */
 	/* ------------------------ */
-	_setPageList: function(wikisearch) {
+	_setPageList: function(searchwikis) {
 		var that = this;
 	
 			var wikiElement = this.element.find(".pages").clone().removeClass("pages");	
-			wikiElement.find(".page").text(wikisearch[0]["pages"]);								// Text setzen
+			wikiElement.find(".page").text(searchwikis[0]["pages"]);								// Text setzen
 
 			// Dringend eine Funktion für Click entwerfen...
-			wikiElement.find(".page").click(wikisearch[0]["pages"], function(event) {
+			wikiElement.find(".page").click(searchwikis[0]["pages"], function(event) {
 				that._trigger("onWikiPageClicked", null, event.data);						// Löst Funktion in applicaton.js aus...
 			});
 				
