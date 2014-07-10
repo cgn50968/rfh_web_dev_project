@@ -24,7 +24,6 @@ class CreateWikiCommand {
 			//-------------------------------------------------------------					
 			$wiki->author = $_SERVER["PHP_AUTH_USER"];	
 		
-			
 			if(isset($request["notes"]) == TRUE) {
 				$wiki->notes = $request["notes"];
 			}

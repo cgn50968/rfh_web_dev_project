@@ -89,11 +89,12 @@ alert("wiki.createdialog.js\n # _create: Abbrechen: .close");
 alert("wiki.createdialog.js\n # _createWiki: read <input>");
 //DEBUG	
 	
-		var wiki = {									// Übergabe der Werte aus dem Widget an das Objekt "wiki"
+		var wiki = {											// Übergabe der Werte aus dem Widget an das Objekt "wiki"
 
 			title: this.element.find("#title_field").val(),							
 			category: this.element.find("#category_field").val(),
-			notes: this.element.find("#notes_field").val()	
+			notes: this.element.find("#notes_field").val(),
+			postMethod: "create",								// RequestHandler - Entscheidung
 		};
 
 //DEBUG		
@@ -114,9 +115,9 @@ alert("wiki.createdialog.js\n # _createWiki: onWikiCreated");
 			},
 			
 			
-			// ----------------------------
-			// SPEZIFISCHE FEHLERBEHANDLUNG
-			// ----------------------------
+			/* ------------------------------ */
+			/*  SPEZIFISCHE FEHLERBEHANDLUNG  */
+			/* ------------------------------ */
 			error: function(request) {
 			
 			// Zurücksetzen der Werte

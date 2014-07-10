@@ -12,6 +12,7 @@ $.widget("wiki.wikiList", {  																// Beginn des Javascritp Objekts (W
 // test für GET
 		/* Werte für HTML request */
 		var wiki = {									
+			postMethod: "get", 
 			pageFrom: "10",							
 		};
 // test für GET	
@@ -23,8 +24,10 @@ $.widget("wiki.wikiList", {  																// Beginn des Javascritp Objekts (W
 		
 		/* 1. HTML Anfrage - Liste */
 		$.ajax({
+			type: "POST",																	// für RequestHandler - Entscheidung
 			url: "/wiki/service/wikis",														// Aufruf der JSON Webseite und Übergabe der Rückgabe an das Array (wikis) (aus WikiService.php)
 			dataType: "json",
+			data: wiki,
 			success: this._appendWikis,														// nur HTML Code 200 zurückkommt.
 			context: this,
 		});
@@ -154,7 +157,8 @@ alert("wiki.wikilist.js\n # reload: wikiList");
 	_setPageList: function(wikis) {
 		var that = this;
 		
-		var pageNum = wikis[0]["pages"];	
+		var pageNum = wikis[0]["pages"];
+		var	sqlLimitStart = 0;	
 		var pageStart = 1;
 		var pageEnd = 20;
 		var pageText
@@ -172,6 +176,7 @@ alert("wiki.wikilist.js\n # reload: wikiList");
 			});
 			this.element.append(wikiElement);												// Element anfügen
 			
+			sqlLimitStart + 20;
 			pageStart = pageStart + 20;
 			pageEnd = pageEnd + 20;
 		}

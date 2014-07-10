@@ -74,7 +74,7 @@ class WikiService {
 	/* <<-- readWikis - Ausgabe aller Wiki Einträge -->> */
 	/* ------------------------------------------------- */
 	
-	public function readWikis()										// $start = Startpunkt für LIMIT
+	public function readWikis($pageFrom)										// $start = Startpunkt für LIMIT
 	{
 		@$link = new mysqli("localhost","root","","wiki");			// @ um Fehlermeldungen zu unterdrücken
 	
@@ -88,8 +88,8 @@ class WikiService {
 			return self::ERROR;										// Rückgabe: Error-Message: Zuweisung utf8 fehlgeschlagen
 			}
 			
-		//$sql_statement = "SELECT id, version, category, title, notes, author, creation_date, expiration_date FROM wiki LIMIT $start,5";
-		$sql_statement = "SELECT id, version, category, title, notes, author, creation_date, expiration_date FROM wiki";
+		$sql_statement = "SELECT id, version, category, title, notes, author, creation_date, expiration_date FROM wiki LIMIT $pageFrom,5";
+		//$sql_statement = "SELECT id, version, category, title, notes, author, creation_date, expiration_date FROM wiki";
 									
 		$result_set = $link->query($sql_statement);
 		

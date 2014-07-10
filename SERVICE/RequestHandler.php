@@ -31,9 +31,22 @@
 			/*  POST - Methode  */
 			/* ---------------- */
 			if ($_SERVER["REQUEST_METHOD"] == "POST") {
-			
-				$request[]
-				$request["command"] = "CreateWikiCommand";
+				
+				if ($request["postMethod"] == "") {
+					header("HTTP/1.1 400");
+					$validation_messages = array();
+					$validation_messages["title"] = "Keine postMethod gesetzt.";
+					echo json_encode($validation_messages);
+					return;
+				}
+				
+				if ($request["postMethod"] == "create") {
+					$request["command"] = "CreateWikiCommand";
+				}
+				
+				if ($request["postMethod"] == "get") {
+					$request["command"] = "GetWikisCommand";
+				}		
 			}
 			
 			/* -------------------------------------------------------------------------- */

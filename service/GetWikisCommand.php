@@ -31,12 +31,22 @@ class GetWikisCommand {
 		/* ----------- */
 		/*  readWikis  */
 		/* ----------- */
-		$wikis = $wiki_service->readWikis();						// Funktionsaufruf: readWiki()
+		
+		
+		if(isset($request["pageFrom"]) == TRUE) {					// wurde pageFrom gesetzt?
+				$pageFrom = $request["pageFrom"];
+			}
+		else {
+				$pageFrom = 0;
+			}
+		
+		$wikis = $wiki_service->readWikis($pageFrom);				// Funktionsaufruf: readWiki()
 		
 		if($wikis == WikiService::ERROR) {							// Fehlercode 500, sofern in WikiService die DB Verbdindung fehlgeschlagen ist.
 			header("HTTP/1.1 500");
 			return;													// Beendung der Verarbeitung
 			}
+			
 			
 		/* ------------------------------------------------ */
 		/*  Zuweisung der URL und Seitenzahl pro Datensatz  */

@@ -1,3 +1,21 @@
+﻿
+POST Methode:
+----------------
+
+in wiki.createdialog.js wird der Paramenter postMethod: "create" mitgeliefert
+in wiki.wikilist.js wird der Parameter postMethod: "get" mitgeliefert
+
+Der RequestHandler entscheidet anhand des Parameters, welche Funktion er aufruft.
+
+create = CreateWikiCommand
+get = GetWikisCommand
+
+----------------------------------------------------
+
+
+
+
+
 Doku - ajax
 
 index.html --> <div> Element für Liste (jQuery) --> Skript ausführen --> Widget erzeugen und HTML Element zuweisen --> HTTP Anfrage (SERVICE)
