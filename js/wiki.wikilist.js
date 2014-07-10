@@ -50,8 +50,8 @@ $.widget("wiki.wikiList", {  																// Beginn des Javascritp Objekts (W
 //DEBUG
 alert("wiki.wikilist.js\n # reload: wikiList");
 //DEBUG		
-		this.element.find(".wiki:not(.template)").remove();									// das HTML Elemente wiki soll gelöscht werden, bis auf das HTML Element template (siehe Folie ... ab 400 ?)
-		this.element.find(".pages").remove();
+		this.element.find(".wiki:not(.template)").remove();									// löschen des HTML-Elements (class) .wiki (NICHT (class) .template)
+		this.element.find(".pages").remove();												// löschen des HTML-Elements (class) .pages
 		
 		/* 1. HTML Anfrage - Liste */
 		$.ajax({
@@ -147,17 +147,25 @@ alert("wiki.wikilist.js\n # reload: wikiList");
 	_setPageList: function(wikis) {
 		var that = this;
 		
-		var pagenum = wikis[0]["pages"];	
-		for(var i = 0; i < pagenum; i++) {
-		
+		var pageNum = wikis[0]["pages"];	
+		var pageStart = 1;
+		var pageEnd = 20;
+		var pageText
+			
+		for(var i = 0; i < pageNum; i++) {
+			
+			pageText = pageStart + "..." + pageEnd; 
 			var wikiElement = this.element.find(".pages").clone().removeClass("pages");	
-			//wikiElement.find(".pages").remove;
-			wikiElement.find(".page").text(pagenum);										// Text setzen
+
+			
+			wikiElement.find(".page").text(pageText);										// Text setzen
 		
-			wikiElement.find(".page").click(pagenum, function(event) {
+			wikiElement.find(".page").click(pageText, function(event) {
 				that._trigger("onWikiPageClicked", null, event.data);						// Löst Funktion in applicaton.js aus...
 			});
 			this.element.append(wikiElement);
+			pageStart = pageStart + 20;
+			var pageEnd = pageEnd + 20;
 		}
 	},
 

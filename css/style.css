@@ -115,6 +115,8 @@ a:hover, a:active {
     border-width: 1px;
 	border-color: #666;
 	border-radius: 4px;
+	margin-right: 5px;											/*Außenabstand rechts*/
+	padding: 5px;												/*Innenabstand*/
 	-moz-border-radius: 4px;									/*für Mozilla-Browser*/
 	-webkit-border-radius: 4px;									/*für Webkit-Browser*/
 }
