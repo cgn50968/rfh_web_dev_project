@@ -120,15 +120,21 @@ class WikiService {
 			$suchwort = $_GET['name'];
 			$abfrage = "";
 			$abfrage2 = "";
+			$abfrage3 = "";
+			$abfrage4 = "";
 			$suchwort = explode(" ", $suchwort);					//Suchanfrage in einzelne Wörter zerschneiden
 			for ($i = 0; $i < sizeof($suchwort); $i++)				//jedes Wort durchgehen und in Abfrage verarbeiten
 			{
 				$abfrage .=	" `category` LIKE '%".$suchwort[$i]."%'";	// .= bedeutet anfügen und nicht ersetzen
 				$abfrage2 .= " `title` LIKE '%".$suchwort[$i]."%'";
+				$abfrage3 .= " `author` LIKE '%".$suchwort[$i]."%'";
+				$abfrage4 .= " `creation_date` LIKE '%".$suchwort[$i]."%'";
 				if($i < (sizeof($suchwort) - 1))
 				{
 					$abfrage .= "OR";
 					$abfrage2 .= "OR";
+					$abfrage3 .= "OR";
+					$abfrage4 .= "OR";
 				}
 			}
 			
@@ -150,7 +156,7 @@ class WikiService {
 								FROM
 									`wiki`
 								WHERE
-									".$abfrage . "OR" . $abfrage2;
+									".$abfrage . "OR" . $abfrage2 . "OR" . $abfrage3 . "OR" . $abfrage4;
 										
 			$result_set = $link->query($sql_statement);
 			
