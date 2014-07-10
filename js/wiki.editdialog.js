@@ -22,7 +22,7 @@ $.widget("wiki.editDialog",$.ui.dialog, {
 alert("wiki.editdialog.js\n # open: editDialog");
 //DEBUG		
 
-		this._wiki = wiki;															// neues lokales Attribut _todo erstellen und die Werte aus todo übergeben (damit auch nach dem Instanzieren auf die Werte von todo zugegriffen werden kann)
+		this._wiki = wiki;															
 		
 		//-------------------------------------------
 		// Werte für validation_message zurücksetzen

@@ -9,6 +9,14 @@ $.widget("wiki.wikiList", {  																// Beginn des Javascritp Objekts (W
 	/* ------------------ */
 	_create: function() {																	//Instanzieren der Methode des Objekts
 	
+// test für GET
+		/* Werte für HTML request */
+		var wiki = {									
+			pageFrom: "10",							
+		};
+// test für GET	
+	
+	
 	//DEBUG
 	alert("wiki.wikilist.js\n # _create: wikiList");
 	//DEBUG
@@ -23,7 +31,7 @@ $.widget("wiki.wikiList", {  																// Beginn des Javascritp Objekts (W
 		
 		/* 2. HTML Anfrage - Header */
 		$.ajax({
-			url: "/wiki/service/wikis",															
+			url: "/wiki/service/wikis",				
 			dataType: "json",
 			success: this._setPageNumberHeader,
 			context: this,
@@ -31,7 +39,7 @@ $.widget("wiki.wikiList", {  																// Beginn des Javascritp Objekts (W
 		
 		/* 3. HTML Anfrage - PageSize */
 		$.ajax({
-			url: "/wiki/service/wikis",															
+			url: "/wiki/service/wikis",				
 			dataType: "json",
 			success: this._setPageList,
 			context: this,
@@ -45,7 +53,6 @@ $.widget("wiki.wikiList", {  																// Beginn des Javascritp Objekts (W
 	/* ------------------ */
 	
 	reload: function() {
-	
 	
 //DEBUG
 alert("wiki.wikilist.js\n # reload: wikiList");
@@ -154,7 +161,7 @@ alert("wiki.wikilist.js\n # reload: wikiList");
 			
 		for(var i = 0; i < pageNum; i++) {
 			
-			pageText = pageStart + "..." + pageEnd; 
+			pageText = pageStart + ".." + pageEnd; 
 			var wikiElement = this.element.find(".pages").clone().removeClass("pages");	
 
 			
@@ -163,9 +170,10 @@ alert("wiki.wikilist.js\n # reload: wikiList");
 			wikiElement.find(".page").click(pageText, function(event) {
 				that._trigger("onWikiPageClicked", null, event.data);						// Löst Funktion in applicaton.js aus...
 			});
-			this.element.append(wikiElement);
+			this.element.append(wikiElement);												// Element anfügen
+			
 			pageStart = pageStart + 20;
-			var pageEnd = pageEnd + 20;
+			pageEnd = pageEnd + 20;
 		}
 	},
 

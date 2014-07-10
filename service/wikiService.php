@@ -74,7 +74,7 @@ class WikiService {
 	/* <<-- readWikis - Ausgabe aller Wiki Einträge -->> */
 	/* ------------------------------------------------- */
 	
-	public function readWikis()								// $start = Startpunkt für LIMIT
+	public function readWikis()										// $start = Startpunkt für LIMIT
 	{
 		@$link = new mysqli("localhost","root","","wiki");			// @ um Fehlermeldungen zu unterdrücken
 	

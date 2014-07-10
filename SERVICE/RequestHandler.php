@@ -15,7 +15,6 @@
 	require "DeleteWikiCommand.php";
 	require "CreateWikiResult.php";
 	
-	//require "HtmlPage.php";
 	
 	/* --------------------------------- */
 	/* <<-- Klasse: RequestHandler -->>  */	 
@@ -28,6 +27,15 @@
 			
 			$request = $_REQUEST;										// Übergabe der POST Argumente an $request
 
+			/* ---------------- */
+			/*  POST - Methode  */
+			/* ---------------- */
+			if ($_SERVER["REQUEST_METHOD"] == "POST") {
+			
+				$request[]
+				$request["command"] = "CreateWikiCommand";
+			}
+			
 			/* -------------------------------------------------------------------------- */
 			/* <<-- PUT METHOD - Erweiterung von $request um Attribute (Datenfelder) -->> */
 			/* -------------------------------------------------------------------------- */		

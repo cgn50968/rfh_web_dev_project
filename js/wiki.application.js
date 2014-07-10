@@ -123,6 +123,7 @@ alert("wiki.application.js\n # onEditWikiClicked: editDialog(open, wiki)");
 alert("wiki.application.js\n # onWikiPageClicked: wikiList(reload)");
 //DEBUG
 			$("#wiki_list").wikiList("reload");
+			//$("#wiki_details").wikiDetails("load", wikiUrl);			// Anzeigen eines einzelnen Wikis
 		},
 	});																	// Instanzierung Widgets "wikilist" aus wiki.wikilist.js für die HTML id "wiki_list" in index.html
 

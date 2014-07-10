@@ -102,7 +102,7 @@ alert("wiki.createdialog.js\n # POST: CreateWikiCommand");
 		$.ajax({
 			type: "POST",								// HTML Übergabe Typ festlegen
 			url: "/wiki/service/wikis",						
-			data: wiki,									// wiki wird an das data Attribut übergeben
+			data: wiki,									// wiki (mit Datenfeldern) wird an das data Attribut übergeben
 			
 			success: function() {						// Bei Erfolg, function ausführen
 				this.close();							// Widget schließen

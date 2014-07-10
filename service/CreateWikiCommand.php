@@ -50,7 +50,7 @@ class CreateWikiCommand {
 			
 			// ACHTUNG !! Ausgabe nur fürs Debugging..
 			//return $result->id;
-			return $_SERVER["PHP_AUTH_USER"];
+			//return $_SERVER["PHP_AUTH_USER"];
 		}
 	}
 
