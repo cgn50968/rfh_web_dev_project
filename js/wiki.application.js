@@ -140,7 +140,7 @@ alert("wiki.application.js\n # onWikiPageClicked: wikiList(reload)");
 
 	
 	/* --------------------------------------------- 	*/
-	/*  Instanziierung "wiki.wikisearch.js" .wikiSearch  */
+	/*  Instanziierung "wiki.wikisearch.js" .wikiSearch  -##########################-------*/
 	/* --------------------------------------------- 	*/
 	$("#wiki_search").wikiSearch( 
 	{

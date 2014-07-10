@@ -7,33 +7,51 @@ $.widget("wiki.wikiSearch", {  																// Beginn des Javascritp Objekts 
 	/* ------------------ */
 	/* Function: _create  */
 	/* ------------------ */
-	_create: function() {																	//Instanzieren der Methode des Objekts
+	jQuery(document).ready(function($) 									//jQuery wartet, daß die Seite fertig ist, um Javascript ausführen zu können
+	{
+    		$('.btnSearch').click(function()						//jQuery-Funktion "click": wenn Knopfdruck, dann führe Funktion makeAjaxRequest() aus
+			{
+    			makeAjaxRequest();
+    		});
+			
+
+            $('form').submit(function(e)							//jQuery-Funktion "submit": Inhalt des Formulars wird eingereicht; damit sind Formulr und Button mit der gleichen Funktion belegt: makeAjaxRequest()
+			{
+                e.preventDefault();
+                makeAjaxRequest();
+                return false;
+            });																	//Instanzieren der Methode des Objekts
 	
+			function makeAjaxRequest()
+			{
 	
-	
-		/* 1. HTML Anfrage - Liste */
-		$.ajax({
-			url: "/wiki/service/searchwikis",												// Aufruf der JSON Webseite und Übergabe der Rückgabe an das Array (wikis) (aus WikiService.php)
-			dataType: "json",
-			success: this._appendWikis,														// nur HTML Code 200 zurückkommt.
-			context: this,
-		});
-		
-		/* 2. HTML Anfrage - Header */
-		$.ajax({
-			url: "/wiki/service/searchwikis",															
-			dataType: "json",
-			success: this._setPageNumberHeader,
-			context: this,
-		});
-		
-		/* 3. HTML Anfrage - PageSize */
-		$.ajax({
-			url: "/wiki/service/searchwikis",															
-			dataType: "json",
-			success: this._setPageList,
-			context: this,
-		});
+				/* 1. HTML Anfrage - Liste */
+				$.ajax({
+					url: "/wiki/SERVICE/RequestHandler.php?command=SearchWikisCommand",												// Aufruf der JSON Webseite und Übergabe der Rückgabe an das Array (wikis) (aus WikiService.php)
+					dataType: "json",
+					success: function(response)						//Bei Erfolg Funktion "response" ausführen
+					{
+                        $("#wiki_list").hide();
+						$('#wiki_search').html(response);//Dabei wird an das HTML-tag resultTable der Wert zurückgegeben
+                    }
+				});
+				
+				/* 2. HTML Anfrage - Header */
+				/*$.ajax({
+					url: "/wiki/SERVICE/RequestHandler.php?command=SearchWikisCommand",															
+					dataType: "json",
+					success: this._setPageNumberHeader,
+					context: this,
+				});
+				
+				/* 3. HTML Anfrage - PageSize */
+				/*$.ajax({
+					url: "/wiki/SERVICE/RequestHandler.php?command=SearchWikisCommand",															
+					dataType: "json",
+					success: this._setPageList,
+					context: this,
+				});*/
+			}
 	},
 
 	
@@ -48,7 +66,7 @@ $.widget("wiki.wikiSearch", {  																// Beginn des Javascritp Objekts 
 		
 				/* 1. HTML Anfrage - Liste */
 		$.ajax({
-			url: "/wiki/service/searchwikis",												// Aufruf der JSON Webseite und Übergabe der Rückgabe an das Array (wikis) (aus WikiService.php)
+			url: "/wiki/SERVICE/RequestHandler.php?command=SearchWikisCommand",												// Aufruf der JSON Webseite und Übergabe der Rückgabe an das Array (wikis) (aus WikiService.php)
 			dataType: "json",
 			success: this._appendWikis,														// nur HTML Code 200 zurückkommt.
 			context: this,
@@ -56,7 +74,7 @@ $.widget("wiki.wikiSearch", {  																// Beginn des Javascritp Objekts 
 		
 		/* 2. HTML Anfrage - Header */
 		$.ajax({
-			url: "/wiki/service/searchwikis",															
+			url: "/wiki/SERVICE/RequestHandler.php?command=SearchWikisCommand",															
 			dataType: "json",
 			success: this._setPageNumberHeader,
 			context: this,
@@ -64,7 +82,7 @@ $.widget("wiki.wikiSearch", {  																// Beginn des Javascritp Objekts 
 		
 		/* 3. HTML Anfrage - PageSize */
 		$.ajax({
-			url: "/wiki/service/searchwikis",															
+			url: "/wiki/SERVICE/RequestHandler.php?command=SearchWikisCommand",															
 			dataType: "json",
 			success: this._setPageList,
 			context: this,
@@ -122,7 +140,7 @@ $.widget("wiki.wikiSearch", {  																// Beginn des Javascritp Objekts 
 		
 		$.ajax({
 			dataType: "json",
-			url: "/wiki/service/searchwikis",
+			url: "/wiki/SERVICE/RequestHandler.php?command=SearchWikisCommand",
 			headers: {"PageSize": searchwikis[0]["pages"]},
 			context: this
 		});
