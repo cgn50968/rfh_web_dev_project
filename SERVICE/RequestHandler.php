@@ -33,6 +33,7 @@
 			/* ---------------- */
 			if ($_SERVER["REQUEST_METHOD"] == "POST") {
 				
+				/* postMethod = "" */
 				if ($request["postMethod"] == "") {
 					header("HTTP/1.1 400");
 					$validation_messages = array();
@@ -41,10 +42,12 @@
 					return;
 				}
 				
+				/* postMethod = create */
 				if ($request["postMethod"] == "create") {
 					$request["command"] = "CreateWikiCommand";
 				}
 				
+				/* postMethod = get */
 				if ($request["postMethod"] == "get") {
 					$request["command"] = "GetWikisCommand";
 				}		

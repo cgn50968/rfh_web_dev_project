@@ -60,13 +60,26 @@ $.widget("wiki.wikiList", {  																// Beginn des Javascritp Objekts (W
 //DEBUG
 alert("wiki.wikilist.js\n # reload: wikiList");
 //DEBUG		
+/* limitStart */
+		var limitStart = this.element.find(".page").val();
+		
+		var wiki = {									
+			postMethod: "get", 
+			pageFrom: "10",							
+		};
+		
+		/* limitStart */
+		//var limitStart = this.element.find("page").val();
+		
 		this.element.find(".wiki:not(.template)").remove();									// löschen des HTML-Elements (class) .wiki (NICHT (class) .template)
 		this.element.find(".pages").remove();												// löschen des HTML-Elements (class) .pages
 		
 		/* 1. HTML Anfrage - Liste */
 		$.ajax({
+			type: "POST",																	// für RequestHandler - Entscheidung
 			url: "/wiki/service/wikis",														// Aufruf der JSON Webseite und Übergabe der Rückgabe an das Array (wikis) (aus WikiService.php)
 			dataType: "json",
+			data: wiki,
 			success: this._appendWikis,														// nur HTML Code 200 zurückkommt.
 			context: this,
 		});
@@ -158,31 +171,24 @@ alert("wiki.wikilist.js\n # reload: wikiList");
 		var that = this;
 		
 		var pageNum = wikis[0]["pages"];
-		var	sqlLimitStart = 0;	
-		var pageStart = 1;
-		var pageEnd = 20;
-		var pageText
+
+		var pageText = 1;
 			
 		for(var i = 0; i < pageNum; i++) {
 			
-			pageText = pageStart + ".." + pageEnd; 
 			var wikiElement = this.element.find(".pages").clone().removeClass("pages");	
 
+			wikiElement.find(".page").text(pageText);										// text setzen: Beschreibung
+			wikiElement.find(".page").val(pageText);
 			
-			wikiElement.find(".page").text(pageText);										// Text setzen
-		
 			wikiElement.find(".page").click(pageText, function(event) {
-				that._trigger("onWikiPageClicked", null, event.data);						// Löst Funktion in applicaton.js aus...
+				that._trigger("onWikiPageClicked", null, pageText);						// Löst Funktion in applicaton.js aus...
 			});
 			this.element.append(wikiElement);												// Element anfügen
 			
-			sqlLimitStart + 20;
-			pageStart = pageStart + 20;
-			pageEnd = pageEnd + 20;
+			pageText = pageText + 1;
 		}
 	},
-
-
 	
 });		
 /* Ende des Javascript Objekts */
