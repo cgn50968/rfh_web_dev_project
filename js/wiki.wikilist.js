@@ -182,23 +182,6 @@ alert("wiki.wikilist.js\n # reload: wikiList: _appendWikis");
 		}
 	},
 
-
-	/* -------------------------------- */
-	/*  Function: _setPageNumberHeader  */
-	/* -------------------------------- 
-	_setPageNumberHeader: function(pages) {
-		//DEBUG
-		alert("wiki.wikilist.js\n# _setPageNum");
-		//DEBUG
-		$.ajax({
-			dataType: "json",
-			url: "/wiki/service/wikis",
-			headers: {"PageSize": pages},
-			context: this
-		});
-	}, */	
-
-	
 });		
 /* Ende des Javascript Objekts */
 

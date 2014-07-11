@@ -26,7 +26,13 @@ alert("wiki.createdialog.js\n # open: createDialog");
 		/*  Werte für validation_message zurücksetzen  */
 		/* ------------------------------------------- */
 		this.element.find(".validation_message").empty(); 					
-		
+
+		/* ------------------------------------------- */
+		/*  Werte für <input> zurücksetzen  */
+		/* ------------------------------------------- */		
+		this.element.find("#title_field").val("");							
+		this.element.find("#category_field").val("");
+		this.element.find("#notes_field").val("");
 		
 		/* --------------------------------- */
 		/*  ui-state-error Klasse entfernen  */
@@ -97,6 +103,7 @@ alert("wiki.createdialog.js\n # _createWiki: read <input>");
 			postMethod: "create",								// RequestHandler - Entscheidung
 		};
 
+		
 //DEBUG		
 alert("wiki.createdialog.js\n # POST: CreateWikiCommand");
 //DEBUG	

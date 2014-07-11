@@ -165,7 +165,7 @@ alert("wiki.application.js\n # onWikiEdited: .wikiList(reload)");
 //DEBUG
 alert("wiki.application.js\n # onWikiCreated: .wikiList(reload)");
 //DEBUG		
-			$("#wiki_list").wikiList("reload");							// Reload der Seite - Aufruf aus "wiki.createdialog.js"
+			$("#wiki_list").wikiList("reload");						// Reload der Seite - Aufruf aus "wiki.createdialog.js"
 		}
 	});
 	
