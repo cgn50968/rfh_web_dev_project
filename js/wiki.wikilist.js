@@ -55,7 +55,7 @@ $.widget("wiki.wikiList", {  																// Beginn des Javascritp Objekts (W
 	/*  Function: reload  */
 	/* ------------------ */
 	
-	reload: function() {
+	reload: function(data) {
 	
 //DEBUG
 alert("wiki.wikilist.js\n # reload: wikiList");
@@ -182,7 +182,7 @@ alert("wiki.wikilist.js\n # reload: wikiList");
 			wikiElement.find(".page").val(pageText);
 			
 			wikiElement.find(".page").click(pageText, function(event) {
-				that._trigger("onWikiPageClicked", null, pageText);						// Löst Funktion in applicaton.js aus...
+				that._trigger("onWikiPageClicked", null, event.data);						// Löst Funktion in applicaton.js aus...
 			});
 			this.element.append(wikiElement);												// Element anfügen
 			
