@@ -9,20 +9,36 @@ $.widget("wiki.wikiList", {  																// Beginn des Javascritp Objekts (W
 	/* ------------------ */
 	_create: function() {																	//Instanzieren der Methode des Objekts
 	
-// test für GET
-		/* Werte für HTML request */
+		/* ----------------------------- */
+		/*  Paramenter für POST Methode  */
+		/* ----------------------------- */
+		
+		var limitStart = 0;																	// LIMIt: Ausgangsstartpunkt		
+		var limitResults = 5;																// LIMIT: Anzahl der angezeigten Datensätze
+		
 		var wiki = {									
 			postMethod: "get", 
-			pageFrom: "10",							
+			pageFrom: limitStart,
+			pageResults: limitResults,
 		};
-// test für GET	
-	
-	
-	//DEBUG
-	alert("wiki.wikilist.js\n # _create: wikiList");
-	//DEBUG
 		
-		/* 1. HTML Anfrage - Liste */
+//DEBUG
+alert("wiki.wikilist.js\n # _create: wikiList: _setPageList");
+//DEBUG
+
+		/* 1. HTML Anfrage - PageSize */
+		$.ajax({
+			url: "/wiki/service/wikis",				
+			dataType: "json",
+			success: this._setPageList,
+			context: this,
+		});
+
+//DEBUG
+alert("wiki.wikilist.js\n # _create: wikiList: _appendWikis");
+//DEBUG
+		
+		/* 2. HTML Anfrage - Liste */
 		$.ajax({
 			type: "POST",																	// für RequestHandler - Entscheidung
 			url: "/wiki/service/wikis",														// Aufruf der JSON Webseite und Übergabe der Rückgabe an das Array (wikis) (aus WikiService.php)
@@ -32,49 +48,57 @@ $.widget("wiki.wikiList", {  																// Beginn des Javascritp Objekts (W
 			context: this,
 		});
 		
-		/* 2. HTML Anfrage - Header */
-		$.ajax({
-			url: "/wiki/service/wikis",				
-			dataType: "json",
-			success: this._setPageNumberHeader,
-			context: this,
-		});
-		
-		/* 3. HTML Anfrage - PageSize */
-		$.ajax({
-			url: "/wiki/service/wikis",				
-			dataType: "json",
-			success: this._setPageList,
-			context: this,
-		});
 	},
 
 	
 	
 	/* ------------------ */
 	/*  Function: reload  */
-	/* ------------------ */
-	
-	reload: function(data) {
+	/* ------------------ */	
+	reload: function(pagenumber) {
 	
 //DEBUG
 alert("wiki.wikilist.js\n # reload: wikiList");
 //DEBUG		
-/* limitStart */
-		var limitStart = this.element.find(".page").val();
+		/* ----------------------------- */
+		/*  Paramenter für POST Methode  */
+		/* ----------------------------- */
+		
+        if (pagenumber > 0) {
+			var limitStart = pagenumber * 5 - 5;										// LIMIT: Startpunkt
+		}
+		else {
+			var limitStart = 0;															// LIMIt: Ausgangsstartpunkt
+		};
+		
+		var limitResults = 5;															// LIMIT: Anzahl der angezeigten Datensätze
 		
 		var wiki = {									
 			postMethod: "get", 
-			pageFrom: "10",							
+			pageFrom: limitStart,
+			pageResults: limitResults,
 		};
-		
-		/* limitStart */
-		//var limitStart = this.element.find("page").val();
-		
+
+		this.element.find(".pages").remove();												// löschen des HTML-Elements (class) .pages		
 		this.element.find(".wiki:not(.template)").remove();									// löschen des HTML-Elements (class) .wiki (NICHT (class) .template)
-		this.element.find(".pages").remove();												// löschen des HTML-Elements (class) .pages
+
+//DEBUG
+alert("wiki.wikilist.js\n # _create: wikiList: _setPageList");
+//DEBUG
 		
-		/* 1. HTML Anfrage - Liste */
+		/* 1. HTML Anfrage - PageSize */
+		$.ajax({
+			url: "/wiki/service/wikis",															
+			dataType: "json",
+			success: this._setPageList,
+			context: this,
+		});
+
+//DEBUG
+alert("wiki.wikilist.js\n # reload: wikiList: _appendWikis");
+//DEBUG
+		
+		/* 2. HTML Anfrage - Liste */
 		$.ajax({
 			type: "POST",																	// für RequestHandler - Entscheidung
 			url: "/wiki/service/wikis",														// Aufruf der JSON Webseite und Übergabe der Rückgabe an das Array (wikis) (aus WikiService.php)
@@ -83,22 +107,7 @@ alert("wiki.wikilist.js\n # reload: wikiList");
 			success: this._appendWikis,														// nur HTML Code 200 zurückkommt.
 			context: this,
 		});
-		
-		/* 2. HTML Anfrage - Header */
-		$.ajax({
-			url: "/wiki/service/wikis",															
-			dataType: "json",
-			success: this._setPageNumberHeader,
-			context: this,
-		});
-		
-		/* 3. HTML Anfrage - PageSize */
-		$.ajax({
-			url: "/wiki/service/wikis",															
-			dataType: "json",
-			success: this._setPageList,
-			context: this,
-		});
+				
 	},    
 
 
@@ -145,32 +154,15 @@ alert("wiki.wikilist.js\n # reload: wikiList");
 		}
 	},
 
-
 	
-	/* -------------------------------- */
-	/*  Function: _setPageNumberHeader  */
-	/* -------------------------------- */
-	_setPageNumberHeader: function(wikis) {
-		//DEBUG
-		alert("wiki.wikilist.js\n# _setPageNum");
-		//DEBUG
-		$.ajax({
-			dataType: "json",
-			url: "/wiki/service/wikis",
-			headers: {"PageSize": wikis[0]["pages"]},
-			context: this
-		});
-	},	
-	
-
 
 	/* ------------------------ */
 	/*  Function: _setPageList  */
 	/* ------------------------ */
-	_setPageList: function(wikis) {
+	_setPageList: function(pages) {
 		var that = this;
 		
-		var pageNum = wikis[0]["pages"];
+		var pageNum = pages;
 
 		var pageText = 1;
 			
@@ -189,6 +181,23 @@ alert("wiki.wikilist.js\n # reload: wikiList");
 			pageText = pageText + 1;
 		}
 	},
+
+
+	/* -------------------------------- */
+	/*  Function: _setPageNumberHeader  */
+	/* -------------------------------- 
+	_setPageNumberHeader: function(pages) {
+		//DEBUG
+		alert("wiki.wikilist.js\n# _setPageNum");
+		//DEBUG
+		$.ajax({
+			dataType: "json",
+			url: "/wiki/service/wikis",
+			headers: {"PageSize": pages},
+			context: this
+		});
+	}, */	
+
 	
 });		
 /* Ende des Javascript Objekts */
