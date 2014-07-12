@@ -76,8 +76,15 @@ alert("wiki.application.js\n# onCreateWikiClicked:");
 		}
 	});
 
-		
 	
+	
+	/* ----------------------- */
+	/*  Widget: wikiStatistic  */
+	/* ----------------------- */
+	$("#wiki_statistic").wikiStatistic();
+	
+	
+		
 	/* --------------------------------------------- */
 	/*  Instanziierung "wiki.wikilist.js" .wikiList  */
 	/* --------------------------------------------- */
@@ -138,12 +145,6 @@ alert("wiki.application.js\n # onWikiPageClicked: wikiList(reload, pagenumber)")
 	$("#wiki_details").wikiDetails();
 
 	
-	
-	
-	
-	
-	
-
 		
 	/* ------------------------------------- */
 	/*  Instanziierung "wiki.editdialog.js"  */

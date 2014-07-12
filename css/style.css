@@ -204,7 +204,7 @@ a:hover, a:active {
 }
 
 /* Klassen template und wiki_details verstecken */
-.template, .pages, #wiki_details {
+.template, .pages, .articles, #wiki_details {
   display: none;
 }
 

@@ -33,7 +33,7 @@ alert("wiki.wikilist.js\n # _create: wikiList: _setPageList");
 			success: this._setPageList,
 			context: this,
 		});
-
+		
 //DEBUG
 alert("wiki.wikilist.js\n # _create: wikiList: _appendWikis");
 //DEBUG
@@ -154,8 +154,7 @@ alert("wiki.wikilist.js\n # reload: wikiList: _appendWikis");
 		}
 	},
 
-	
-
+		
 	/* ------------------------ */
 	/*  Function: _setPageList  */
 	/* ------------------------ */
@@ -165,9 +164,7 @@ alert("wiki.wikilist.js\n # reload: wikiList: _appendWikis");
 		var pageNum = pagedata["pagenum"];													// Anzahl der Seiten
 		var pageCount = pagedata["count"];													// Anzahl der Datensätze
 
-//DEBUG
-alert(pageCount);
-//DEBUG	
+
 		
 		var pageText = 1;
 		
