@@ -159,13 +159,18 @@ alert("wiki.wikilist.js\n # reload: wikiList: _appendWikis");
 	/* ------------------------ */
 	/*  Function: _setPageList  */
 	/* ------------------------ */
-	_setPageList: function(pages) {
+	_setPageList: function(pagedata) {
 		var that = this;
 		
-		var pageNum = pages;
+		var pageNum = pagedata["pagenum"];													// Anzahl der Seiten
+		var pageCount = pagedata["count"];													// Anzahl der Datensätze
 
+//DEBUG
+alert(pageCount);
+//DEBUG	
+		
 		var pageText = 1;
-			
+		
 		for(var i = 0; i < pageNum; i++) {
 			
 			var wikiElement = this.element.find(".pages").clone().removeClass("pages");	

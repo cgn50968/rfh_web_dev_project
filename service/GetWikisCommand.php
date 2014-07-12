@@ -32,7 +32,10 @@ class GetWikisCommand {
 			if($count > $divisor) {										// Ist die Anzahl der Datensätze größer $divisor?
 				$pages = $pages + 1;									// Wenn ja, Seitenzahl um 1 erhöhen
 			}
-		return $pages;
+			$pagedata["pagenum"] = $pages;								// Anzahl der Seiten
+			$pagedata["count"] = $count;								// Anzahl der Datensätze
+			
+		return $pagedata;
 		}
 		
 		
