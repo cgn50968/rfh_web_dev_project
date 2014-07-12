@@ -84,6 +84,30 @@ alert("wiki.application.js\n# onCreateWikiClicked:");
 	$("#wiki_statistic").wikiStatistic();
 	
 	
+	
+	/* -------------------- */
+	/*  Widget: pageNumber  */
+	/* -------------------- */
+	$("#page_number").pageNumber( {
+	
+		/* ------------------------------ */
+		/*  onWikiPageClicked - wikiList  */
+		/* ------------------------------ */
+		
+		onWikiPageClicked: function(event, pagenumber) {						// pagenumber nimmt event.data (den Text) des <a class="page" href="#"> entgegen.
+			
+//DEBUG
+alert(pagenumber);
+alert("wiki.application.js\n # onWikiPageClicked: pageNumber(reload)");
+alert("wiki.application.js\n # onWikiPageClicked: wikiList(reload, pagenumber)");
+//DEBUG
+
+			$("#page_number").pageNumber("reload");	
+			$("#wiki_list").wikiList("reload", pagenumber);							
+		},
+	});
+		
+		
 		
 	/* --------------------------------------------- */
 	/*  Instanziierung "wiki.wikilist.js" .wikiList  */
@@ -122,19 +146,6 @@ alert("wiki.application.js\n # onEditWikiClicked: editDialog(open, wiki)");
 			$("#edit_dialog").editDialog("open", wiki);					// Anzeigen des Bearbeiten Dialogs durch "open", Übergabe der Ereignis-Parameter mit "wiki"
 		},
 		
-		/* ------------------------------ */
-		/*  onWikiPageClicked - wikiList  */
-		/* ------------------------------ */
-		onWikiPageClicked: function(event, pagenumber) {						// pagenumber nimmt event.data (den Text) des <a class="page" href="#"> entgegen.
-			
-//DEBUG
-alert(pagenumber);
-alert("wiki.application.js\n # onWikiPageClicked: wikiList(reload, pagenumber)");
-//DEBUG
-
-			$("#wiki_list").wikiList("reload", pagenumber);							
-			
-		},
 	});																	
 
 
@@ -154,6 +165,10 @@ alert("wiki.application.js\n # onWikiPageClicked: wikiList(reload, pagenumber)")
 //DEBUG
 alert("wiki.application.js\n # onWikiEdited: .wikiList(reload)");
 //DEBUG		
+
+			/* RELOAD */
+			$("#page_number").pageNumber("reload");
+			$("#wiki_statistic").wikiStatistic("reload");
 			$("#wiki_list").wikiList("reload");							// Reload der Seite - Aufruf aus "wiki.editdialog.js"
 		}
 	});

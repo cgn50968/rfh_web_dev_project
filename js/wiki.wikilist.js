@@ -26,13 +26,13 @@ $.widget("wiki.wikiList", {  																// Beginn des Javascritp Objekts (W
 alert("wiki.wikilist.js\n # _create: wikiList: _setPageList");
 //DEBUG
 
-		/* 1. HTML Anfrage - PageSize */
+		/* 1. HTML Anfrage - PageSize 
 		$.ajax({
 			url: "/wiki/service/wikis",				
 			dataType: "json",
 			success: this._setPageList,
 			context: this,
-		});
+		}); */
 		
 //DEBUG
 alert("wiki.wikilist.js\n # _create: wikiList: _appendWikis");
