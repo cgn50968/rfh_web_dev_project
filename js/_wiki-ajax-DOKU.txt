@@ -1,28 +1,7 @@
-﻿		/* 1. HTML Anfrage - _setArticleNum */
-		$.ajax({
-			url: "/wiki/service/wikis",				
-			dataType: "json",
-			success: this._setArticleNum,
-			context: this,
-		});
-		
-		/* ------------------ */
-/*  Datensätze */
-/* ------------------ */
-	_setArticleNum: function(pagedata) {
-		var that = this;
-		
-		var pageNum = pagedata["pagenum"];													// Anzahl der Seiten
-		var pageCount = pagedata["count"];													// Anzahl der Datensätze
+﻿
+REMOVE()
 
-//DEBUG
-alert(pageCount);
-//DEBUG	
-		var wikiElement = this.element.find("#article_num").clone().removeClass("bottom-sidebar");
-		wikiElement.find(".articles").text(pageCount);
-		this.element.append(wikiElement);
-	},
-		
+this.element.find(".wiki:not(.pages)").remove();			// es müssen zwei Klassen vergeben werden, damit remove funktioniert		
 		
 
 

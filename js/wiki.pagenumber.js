@@ -23,6 +23,7 @@ alert("wiki.pagenumber.js\n # _create:");
 
 		//this.element.find(".pages").remove();							// altes Widget entfernen
 
+
 		/* 1. HTML Anfrage - PageSize */
 		$.ajax({
 			url: "/wiki/service/wikis",				
@@ -56,8 +57,8 @@ alert("wiki.pagenumber.js\n # _create: pageNumber: _setPageList");
 alert("wiki.pagenumber.js\n # _create:");
 //DEBUG
 
-		this.element.find(".pages").remove();							// altes Widget entfernen
-
+		this.element.find(".wiki:not(.pages)").remove();			// es müssen zwei Klassen vergeben werden, damit remove funktioniert
+		
 		/* 1. HTML Anfrage - PageSize */
 		$.ajax({
 			url: "/wiki/service/wikis",				
