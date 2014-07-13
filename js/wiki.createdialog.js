@@ -26,7 +26,14 @@ alert("wiki.createdialog.js\n # open: createDialog");
 		/*  Werte für validation_message zurücksetzen  */
 		/* ------------------------------------------- */
 		this.element.find(".validation_message").empty(); 					
-
+		
+		//---------------------------------
+		// ui-state-error Klasse entfernen
+		//---------------------------------
+		this.element.find("#category_field").removeClass("ui-state-error").focus();	
+		this.element.find("#title_field").removeClass("ui-state-error");
+		this.element.find("#notes_field").removeClass("ui-state-error");
+				
 		/* ------------------------------------------- */
 		/*  Werte für <input> zurücksetzen  */
 		/* ------------------------------------------- */		
@@ -127,20 +134,34 @@ alert("wiki.createdialog.js\n # _createWiki: onWikiCreated");
 			/* ------------------------------ */
 			error: function(request) {
 			
-			// Zurücksetzen der Werte
-			this.element.find(".validation_message").empty(); 							// Text des Widgets leeren
-			this.element.find("#title_field").removeClass("ui-state-error").focus();	// ui-state-error Klasse entfernen
-			if (request.status == 400) {									
-		
-				var validationMessages = $.parseJSON(request.responseText); 			// Reload der #todo_list bei Fehlercode 400
+				// Zurücksetzen der Werte
+				this.element.find(".validation_message").empty(); 									// Text des Widgets leeren
+				this.element.find("#title_field").removeClass("ui-state-error").focus();			// ui-state-error Klasse entfernen
+				this.element.find("#category_field").removeClass("ui-state-error").focus();			// ui-state-error Klasse entfernen
+				this.element.find("#notes_field").removeClass("ui-state-error").focus();			// ui-state-error Klasse entfernen
 				
-				if(validationMessages.title) {											// Falls Hinweis zum Titel ausgegeben wird...
-					this.element.find(".validation_message").text(validationMessages.title); // Übergabe des Errors aus RequestHandler.php Zeile 25
-					this.element.find("#title_field").addClass("ui-state-error").focus();	// Rot umranden und Focus auf Element setzen
+				if (request.status == 400) {									
+			
+					var validationMessages = $.parseJSON(request.responseText); 					// Reload der #wiki_list bei Fehlercode 400
+					
+					/* title */
+					if(validationMessages.title) {													// Falls Hinweis zum Titel ausgegeben wird...
+						this.element.find(".validation_message").text(validationMessages.title); 	// Übergabe des Errors aus RequestHandler.php
+						this.element.find("#title_field").addClass("ui-state-error").focus();		// Roter Rahmen und Focus auf Element setzen
+					}
+					/* category */
+					if(validationMessages.category) {												
+						this.element.find(".validation_message").text(validationMessages.category); 
+						this.element.find("#category_field").addClass("ui-state-error").focus();	
+					}
+					/* notes */
+					if(validationMessages.notes) {												
+						this.element.find(".validation_message").text(validationMessages.notes);
+						this.element.find("#notes_field").addClass("ui-state-error").focus();	
 					}
 				}
 			},
-			context: this								// context sorgt dafür, dass this den richtigen Wert hat.
+			context: this																			// context sorgt dafür, dass this den richtigen Wert hat.
 		});
 	}
 	

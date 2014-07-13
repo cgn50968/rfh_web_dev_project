@@ -84,11 +84,13 @@ alert("wiki.pagenumber.js\n # _create: pageNumber: _setPageList");
 		var pageCount = pagedata["count"];													// Anzahl der Datensätze
 
 		var pageText = 1;
-		
+
 		for(var i = 0; i < pageNum; i++) {
 			
 			var wikiElement = this.element.find(".pages").clone().removeClass("pages");	
 
+			/* WICHTIG! Entfernen des alten Widgets bevor ein neues erstellt wird. */
+				
 			wikiElement.find(".page").text(pageText);										// text setzen: Beschreibung
 			wikiElement.find(".page").val(pageText);
 			

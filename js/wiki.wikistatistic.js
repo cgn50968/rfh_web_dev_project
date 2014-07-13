@@ -48,8 +48,9 @@ alert("wiki.wikistatistic.js\n # _appendStatistic:");
 			postMethod: "get", 
 		};
 
-		this.element.find(".articles").remove();							// altes Widget entfernen
+		this.element.find(".article").empty();							// TAG <p class="article"> leeren
 		
+			
 //DEBUG
 alert("wiki.wikistatistic.js\n # _create:");
 //DEBUG

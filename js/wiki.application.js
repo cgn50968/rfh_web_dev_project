@@ -11,10 +11,10 @@
 alert("wiki.application.js\n # .ajaxError");
 //DEBUG
 		$("#error_dialog").errorDialog("open", request.statusText);		// Methode Open des Error Dialogs (Wiedergabe des Request Status über request.statusText
-		$("#wiki_details").hide();										// Bei Fehler #todo_details nicht anzeigen
-		$("#wiki_list").show();											// Bei Fehler #todo_list wieder anzeigen
+		$("#wiki_details").hide();										// Bei Fehler #wiki_details nicht anzeigen
+		$("#wiki_list").show();											// Bei Fehler #wiki_list wieder anzeigen
 		
-		if (request.status == 404) {									// Reload der #todo_list bei Fehlercode 404
+		if (request.status == 404) {									// Reload der #wiki_list bei Fehlercode 404
 			$("#wiki_list").wikiList("reload");
 		}
 	});
@@ -46,6 +46,7 @@ alert("wiki.application.js\n# onShowWikisClicked:\n# .wiki_details.hide\n# .wiki
 //DEBUG
 			$("#wiki_details").hide();
 			$("#wiki_list").show();
+			$("#page_number").pageNumber("reload");
 			$("#wiki_list").wikiList("reload");
 		},
 		
@@ -71,7 +72,8 @@ alert("wiki.application.js\n# onCreateWikiClicked:");
 	//DEBUG
 	alert("wiki.application.js\n # onWikiDeleted: .wikiList(reload)");
 	//DEBUG
-	
+			$("#wiki_statistic").wikiStatistic("reload");
+			$("#page_number").pageNumber("reload");
 			$("#wiki_list").wikiList("reload");		
 		}
 	});
@@ -93,7 +95,6 @@ alert("wiki.application.js\n# onCreateWikiClicked:");
 		/* ------------------------------ */
 		/*  onWikiPageClicked - wikiList  */
 		/* ------------------------------ */
-		
 		onWikiPageClicked: function(event, pagenumber) {						// pagenumber nimmt event.data (den Text) des <a class="page" href="#"> entgegen.
 			
 //DEBUG
@@ -102,6 +103,8 @@ alert("wiki.application.js\n # onWikiPageClicked: pageNumber(reload)");
 alert("wiki.application.js\n # onWikiPageClicked: wikiList(reload, pagenumber)");
 //DEBUG
 
+			$("#wiki_details").hide();
+			$("#wiki_list").show();
 			$("#page_number").pageNumber("reload");	
 			$("#wiki_list").wikiList("reload", pagenumber);							
 		},
@@ -167,11 +170,13 @@ alert("wiki.application.js\n # onWikiEdited: .wikiList(reload)");
 //DEBUG		
 
 			/* RELOAD */
-			$("#page_number").pageNumber("reload");
 			$("#wiki_statistic").wikiStatistic("reload");
+			$("#page_number").pageNumber("reload");
 			$("#wiki_list").wikiList("reload");							// Reload der Seite - Aufruf aus "wiki.editdialog.js"
 		}
 	});
+		
+		
 		
 	/* ------------------------------------- */
 	/*  Instanziierung "wiki.createdialog.js"  */
@@ -181,6 +186,8 @@ alert("wiki.application.js\n # onWikiEdited: .wikiList(reload)");
 //DEBUG
 alert("wiki.application.js\n # onWikiCreated: .wikiList(reload)");
 //DEBUG		
+			$("#wiki_statistic").wikiStatistic("reload");
+			$("#page_number").pageNumber("reload");
 			$("#wiki_list").wikiList("reload");						// Reload der Seite - Aufruf aus "wiki.createdialog.js"
 		}
 	});

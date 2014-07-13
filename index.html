@@ -68,25 +68,11 @@
 							
 						
 						
-						
 							<!--Ab hier soll der Inhalt der Requests stehen:-->
 							<!-------------------------------------------
 							  HTML Elements für Widget "wiki.wikilist.js" 
 							 --------------------------------------------->
 							<div id="wiki_list" class="ui-widget">  <!-- verlinkung mit application.js --> 
-								
-								<!-- Seitenzahl
-								<table>			
-									<tr>	
-									  <td class="pages">
-										<div>
-										  <a class="page" href="#"></a>
-										</div>	
-									  </td>
-									</tr>
-								</table> 	
-								-->
-								
 								<div>		<!-- 2 Klassen - wiki und template -->
 									<table class="wiki template">
 									<tr>
@@ -112,18 +98,36 @@
 						<!-----------------------------------------------------------------
 						 Definition des HTML Elements für das Widget "wiki.wikidetails.js" 
 						------------------------------------------------------------------->
+											
 						<div id="wiki_details" class="ui-widget">
-							<span>Autor</span>
-							<span class="author"></span>
-							<span>|</span>
-							<span>Erstelldatum</span>
-							<span class="creation_date"></span>
-							<span>Ablaufdatum</span>
-							<span class="expiration_date"></span>
-							<span class="title"></span>
-							<span class="notes"></span>
+						  <form>
+							<table>
+							  <tr>
+								<td><label for="author_field_details">Autor:</label></td>
+								<td><label for="creation_date_field_details">Erstelldatum:</label></td>
+								<td><label for="expiration_date_field_details">Gültigkeitsdatum:</label></td>
+							  </tr>
+							  <tr>
+								<td><input id="author_field_details" type="text" disabled></td>
+								<td><input id="creation_date_field_details" type="text" disabled></td>
+								<td><input id="expiration_date_field_details" type="text" disabled></td>
+							  </tr>
+							  <tr>
+								<td><label for="category_field_details">Kategorie:</label></td>    
+								<td colspan="2"><label for="title_field_details">Titel:</label></td>    
+							  </tr>
+							  <tr>
+								<td><input id="category_field_details" type="text" disabled></td>
+								<td colspan="2"><input id="title_field_details" type="text" disabled></td>
+							  </tr>
+							  <tr>
+								<td><label for="notes_field_details">Beschreibung:</label></td>          
+								<td colspan="3"><textarea id="notes_field_details" disabled></textarea></td>
+							  </tr>
+							</table>
+						  </form>
 						</div>
-							
+						
 						<!-----------------------------------------------------------------
 						 Definition des HTML Elements für das Widget "wiki.errordialog.js" 
 						------------------------------------------------------------------->
@@ -154,9 +158,9 @@
 								<td><label for="expiration_date_field">Gültigkeitsdatum:</label></td>
 							  </tr>
 							  <tr>
-								<td><input id="author_field" type="text"/></td>
-								<td><input id="creation_date_field" type="text"/></td>
-								<td><input id="expiration_date_field" type="text"/></td>
+								<td><input id="author_field" type="text" disabled></td>
+								<td><input id="creation_date_field" type="text" disabled></td>
+								<td><input id="expiration_date_field" type="text" disabled></td>
 							  </tr>
 							  <tr>
 								<td><label for="category_field">Kategorie:</label></td>    

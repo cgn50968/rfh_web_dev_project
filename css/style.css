@@ -218,7 +218,7 @@ a:hover, a:active {
 }
 
 #fieldname {
- widht: 100px;
+ width: 100px;
 }
 
 
@@ -230,12 +230,29 @@ table { width: 100%}												/* Tag: Tabelle soll 100% der verfügbaren Breit
 #td_creation_date { width: 20%; }
 #td_expiration_date { width: 20%; }
 
-#author { width: 100%; }									/* id: Breite des <input> Eingabefeldes */
+#author { width: 100%; }											/* id: Breite des <input> Eingabefeldes */
 #title{ width: 100%; }											
 #creation_date { width: 100%; }
 #expiration_date { width: 100%; }
 #notes { width: 100%}
 
+/* create_dialog, edit_dialog, wiki_details */
+#create_dialog, #edit_dialog, #wiki_details {
+	font-size: 14px;											/*Basis-Schriftgräße ist 14px!*/
+	font-family: Arial;
+	}
+	
+/* create_dialog, edit_dialog */
+#author_field, #creation_date_field, #expiration_date_field {width: 200px;} 
+#category_field {width: 200px; }
+#title_field { width: 200px; }
+#notes_field { width: 450px; height: 200px; }
+
+/* wiki_details */
+#author_field_details, #creation_date_field_details, #expiration_date_field_details {width: 150px; background-color: #ffffff;} 
+#category_field_details {width: 150px; background-color: #ffffff;}
+#title_field_details { width: 150px; background-color: #ffffff;}
+#notes_field_details { width: 350px; height: 200px; background-color: #ffffff;}
 
 
 /*Vorlage für Container-Rand:

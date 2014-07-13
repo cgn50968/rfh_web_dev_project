@@ -33,6 +33,44 @@
 			/* ---------------- */
 			if ($_SERVER["REQUEST_METHOD"] == "POST") {
 				
+				/* ---------------- */
+				/* postMethod = get */
+				/* ---------------- */
+				if ($request["postMethod"] == "get") {
+					$request["command"] = "GetWikisCommand";
+				}
+				/* ------------------- */
+				/* postMethod = create */
+				/* ------------------- */
+				if ($request["postMethod"] == "create") {
+					$request["command"] = "CreateWikiCommand";
+								
+					/* ------------------------------------------------------------------- */
+					/* <<-- FEHLERBEHANDLUNG - Fehlende Angaben bei CreateWikiCommand -->> */
+					/* ------------------------------------------------------------------- */
+					if ($request["category"] == "") {
+						header("HTTP/1.1 400");
+						$validation_messages = array();
+						$validation_messages["category"] = "Die Kategorie ist eine Pflichtangabe. Bitte geben Sie eine Kategorie an.";
+						echo json_encode($validation_messages);
+						return;
+					}		
+					if ($request["title"] == "") {
+						header("HTTP/1.1 400");
+						$validation_messages = array();
+						$validation_messages["title"] = "Der Titel ist eine Pflichtangabe. Bitte geben Sie einen Titel an.";
+						echo json_encode($validation_messages);
+						return;
+					}		
+					if ($request["notes"] == "") {
+						header("HTTP/1.1 400");
+						$validation_messages = array();
+						$validation_messages["notes"] = "Die Beschreibung ist eine Pflichtangabe. Bitte geben Sie eine Beschreibung an.";
+						echo json_encode($validation_messages);
+						return;
+					}		
+				}
+				
 				/* postMethod = "" */
 				if ($request["postMethod"] == "") {
 					header("HTTP/1.1 400");
@@ -40,16 +78,6 @@
 					$validation_messages["title"] = "Keine postMethod gesetzt.";
 					echo json_encode($validation_messages);
 					return;
-				}
-				
-				/* postMethod = create */
-				if ($request["postMethod"] == "create") {
-					$request["command"] = "CreateWikiCommand";
-				}
-				
-				/* postMethod = get */
-				if ($request["postMethod"] == "get") {
-					$request["command"] = "GetWikisCommand";
 				}		
 			}
 			
@@ -60,13 +88,27 @@
 				parse_str(file_get_contents("php://input"), $body_parameters);
 				$request = $request + $body_parameters;
 				
-				/* --------------------------------------------- */
-				/* <<-- Falls der Titel nicht gesetzt wurde -->> */
-				/* --------------------------------------------- */
+				/* ------------------------------------------------------------------- */
+				/* <<-- FEHLERBEHANDLUNG - Fehlende Angaben bei UpdateWikiCommand -->> */
+				/* ------------------------------------------------------------------- */
+				if ($request["category"] == "") {
+					header("HTTP/1.1 400");
+					$validation_messages = array();
+					$validation_messages["category"] = "Die Kategorie ist eine Pflichtangabe. Bitte geben Sie eine Kategorie an.";
+					echo json_encode($validation_messages);
+					return;
+				}		
 				if ($request["title"] == "") {
 					header("HTTP/1.1 400");
 					$validation_messages = array();
 					$validation_messages["title"] = "Der Titel ist eine Pflichtangabe. Bitte geben Sie einen Titel an.";
+					echo json_encode($validation_messages);
+					return;
+				}		
+				if ($request["notes"] == "") {
+					header("HTTP/1.1 400");
+					$validation_messages = array();
+					$validation_messages["notes"] = "Die Beschreibung ist eine Pflichtangabe. Bitte geben Sie eine Beschreibung an.";
 					echo json_encode($validation_messages);
 					return;
 				}		
