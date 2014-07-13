@@ -214,21 +214,20 @@ a:hover, a:active {
 }
 
 #heading {
-	width: 100px;
+	width: 10px;
 }
 
-#fieldname {
- width: 100px;
-}
+#fieldname { width: 100px;}
 
 
 /* Tabelle */
 table { width: 100%}												/* Tag: Tabelle soll 100% der verfügbaren Breite einnehmen (minus Ränder) */
 
-#td_author{ width: 20%; }
-#td_title { width: 40%; }										/* id: Breite des <td> Datenfeldes */
-#td_creation_date { width: 20%; }
-#td_expiration_date { width: 20%; }
+#td_author{ width: 25%; }
+#td_category { width: 15%; }
+#td_title { width: 45%; }										/* id: Breite des <td> Datenfeldes */
+#td_creation_date { width: 15%; }
+
 
 #author { width: 100%; }											/* id: Breite des <input> Eingabefeldes */
 #title{ width: 100%; }											
@@ -237,8 +236,8 @@ table { width: 100%}												/* Tag: Tabelle soll 100% der verfügbaren Breit
 #notes { width: 100%}
 
 /* create_dialog, edit_dialog, wiki_details */
-#create_dialog, #edit_dialog, #wiki_details {
-	font-size: 14px;											/*Basis-Schriftgräße ist 14px!*/
+#create_dialog, #edit_dialog, #wiki_details , #error_dialog, #delete_dialog {
+	font-size: 14px;														/*Basis-Schriftgräße ist 14px!*/
 	font-family: Arial;
 	}
 	

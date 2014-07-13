@@ -257,11 +257,8 @@ class WikiService {
 								"category = '$wiki->category', ".				
 								"title = '$wiki->title', ".
 								"notes = '$wiki->notes', ".
-								//"author = '$wiki->author' ".									// Author wird aus Formular ausgelesen (OFFEN)
 								"expiration_date = DATE_ADD(CURDATE(), INTERVAL 1 YEAR)".		// Aktuelles Datum + 1 Jahr: "SELECT DATE_ADD(CURDATE(), INTERVAL 1 YEAR) AS Datum"
-								"WHERE id = '$wiki->id'"; 
-								//AND version = $wiki->version";			// ID und Versionsnummer müssen übereinstimmen
-			
+								"WHERE id = '$wiki->id' AND version = $wiki->version";			// ID und Versionsnummer müssen übereinstimmen
 			echo($sql_statement);
 			
 			$link->query($sql_statement);														// Einfügen des Datensatzes
