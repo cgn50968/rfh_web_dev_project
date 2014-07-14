@@ -86,22 +86,19 @@ alert("wiki.wikilist.js\n # reload: wikiList: _appendWikis");
 	},    
 
 
+	
 	/* ----------------------- */
 	/* Function: _appendWikis  */
 	/* ----------------------- */
 	_appendWikis: function(wikis) {
 		
 		var that = this;
-	
-		//DEBUG
-		//alert("wiki.wikilist.js\n # GET: GetWikisCommand");
-		//DEBUG			
-	
+		
 		for(var i = 0; i < wikis.length; i++) {
 			var wiki = wikis[i];
 			// Finde HTML Element "template" und kopiere es, anschließend entferne HTML Klasse "template"
 			var wikiElement = this.element.find(".template").clone().removeClass("template");	
-
+		
 			wikiElement.find(".author").text(wiki.author);									// Wiedergabe über eigene Funktion... siehe Unterlagen
 			wikiElement.find(".category").text(wiki.category);	
 			wikiElement.find(".creation_date").text(wiki.creation_date);	
@@ -130,16 +127,3 @@ alert("wiki.wikilist.js\n # reload: wikiList: _appendWikis");
 	},
 
 });		
-/* Ende des Javascript Objekts */
-
-
-/* --------------- */
-/*  Dokumentation  */
-/* --------------- */
-
-// $.widget("widget.name", {code} );			Erstellt ein Widget
-// _create:				Führt initial eine Methode aus, beim Laden des widgets (jQuery)
-
-// private Funktionen beginnen mit _ (z.B. _create:)
-// public Funktionen beginnen ohne _ (z.B. success:
-// var name = erstellt eine Variable
