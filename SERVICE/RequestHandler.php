@@ -10,6 +10,7 @@
 	require "wikiService.php";
 	require "GetWikiCommand.php";
 	require "GetWikisCommand.php";
+	require "GetWikisMobCommand.php";
 	require "CreateWikiCommand.php";
 	require "UpdateWikiCommand.php";
 	require "DeleteWikiCommand.php";

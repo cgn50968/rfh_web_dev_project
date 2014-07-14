@@ -107,6 +107,44 @@ class WikiService {
 		$link->close();
 		return $wikis;			
 	}
+
+	/* --------------------------------------------------------------------- */
+	/* <<-- readWikisMob - Ausgabe aller Wiki Einträge für Mobileclient -->> */
+	/* --------------------------------------------------------------------- */
+	
+	public function readWikisMob()									
+	{
+		@$link = new mysqli("localhost","root","","wiki");			// @ um Fehlermeldungen zu unterdrücken
+	
+		if($link->connect_error != NULL) {							// Fehlermeldung bei Verbindungsfehler
+			return self::ERROR;
+			}
+	
+		$succeeded = $link->set_charset("utf8");					// Zuweisung des Zeichencode "utf8"
+		if($succeeded == FALSE) {									// Bei Zuweisungsfehler...
+			$link->close();											// DB Verbindung schließen...
+			return self::ERROR;										// Rückgabe: Error-Message: Zuweisung utf8 fehlgeschlagen
+			}
+			
+		$sql_statement = "SELECT id, version, category, title, notes, author, creation_date, expiration_date FROM wiki";
+											
+		$result_set = $link->query($sql_statement);
+		
+		$wikis = array();											// Deklaration: wikis = Array
+		$wiki = $result_set->fetch_object("Wiki");
+		while($wiki != NULL) {
+			$wikis[] = $wiki;
+			$wiki = $result_set->fetch_object("Wiki");
+			}
+		
+		$affected_rows = $link->affected_rows;						// Wieviele Datensätze sind betroffen
+		if($affected_rows == 0) {									// Fehlermeldung: sofern keine Datensätze gefunden wurden
+			return self::NOT_FOUND;
+		}
+		
+		$link->close();
+		return $wikis;			
+	}
 	
 	/* ------------------------------------------------- */
 	/* searchWikis - Durchsuchen aller Wiki Einträge	 */
