@@ -2,7 +2,8 @@ Ext.define('WebDevWiki.view.WikiForm', {
 	extend: 'Ext.form.Panel',
 	xtype: 'wikiform',						// alias für Klasse, um diese vom Controller aus aufrufen zu können
 	requires: [
-		'Ext.field.Text'
+		'Ext.field.Text',
+		'Ext.field.DatePicker'
 	],
 	config: {
 		items: [							// Formular Felder
