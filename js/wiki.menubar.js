@@ -31,6 +31,18 @@ alert("wiki.menubar.js\n# .create_wiki");
 			that._trigger("onCreateWikiClicked");					// Ausführen der Funktion onCreateWikisClicked in wiki.application.js	
 			return false;
 		});
+		
+		/* ------------------------------- */
+		/*  Trigger: onShowContactClicked  */
+		/* ------------------------------- */
+		this.element.find(".show_contact").click(function() {		// Aktiviert den Link auf dem Element
+//DEBUG		
+alert("wiki.menubar.js\n# .show_contact");
+//DEBUG	
+			alert("Kontakt");
+			that._trigger("onShowContactClicked");					// Ausführen der Funktion onCreateWikisClicked in wiki.application.js	
+			return false;
+		});
 	}
 
 });

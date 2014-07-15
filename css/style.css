@@ -219,6 +219,7 @@ a:hover, a:active {
 
 #fieldname { width: 100px;}
 
+#contact { font-family: Arial; font-size: 14px; }
 
 /* Tabelle */
 table { width: 100%}												/* Tag: Tabelle soll 100% der verfügbaren Breite einnehmen (minus Ränder) */

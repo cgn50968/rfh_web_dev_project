@@ -58,10 +58,27 @@ alert("wiki.application.js\n# onShowWikisClicked:\n# .wiki_details.hide\n# .wiki
 alert("wiki.application.js\n# onCreateWikiClicked:");
 //DEBUG
 			$("#create_dialog").createDialog("open");
+		},
+		
+		/* ------------------------------ */
+		/*  Funktion: onShowContactClicked  */
+		/* ------------------------------ */
+		onShowContactClicked: function(event) {
+//DEBUG
+alert("wiki.application.js\n# onShowContactClicked:");
+//DEBUG
+			$("#contact_dialog").contactDialog("open");
 		}
 		
 	});
 
+
+
+	/* ---------------------------------------- */
+	/*  Instanziierung "wiki.contactdialog.js"  */
+	/* ---------------------------------------- */
+	$("#contact_dialog").contactDialog();
+		
 	
 	
 	/* ----------------------------------------------------- */
