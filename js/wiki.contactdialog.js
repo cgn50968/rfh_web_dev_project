@@ -10,9 +10,9 @@ $.widget("wiki.contactDialog", $.ui.dialog, {
 		width: 400
 	},
 	
-	//-------------
-	// open Widget
-	//-------------
+	/* -------------- */
+	/*  open: Widget  */
+	/* -------------- */
 	open: function(wiki) {								// Übergabe der Werte aus wiki - Aus wiki wird das Attribut url ausgelesen, damit der richtige Datensatz gelöscht werdenn kann.
 //DEBUG
 alert("wiki.deletedialog.js\n # open: deleteDialog");
@@ -21,9 +21,9 @@ alert("wiki.deletedialog.js\n # open: deleteDialog");
 		this._super();
 	},
 	
-	/* --------------------- */
-	/*  create CLOSE Button  */
-	/* --------------------- */
+	/* ---------------------- */
+	/*  create: CLOSE Button  */
+	/* ---------------------- */
 	_create: function() {								// Button konfigurieren
 //DEBUG
 alert("wiki.deletedialog.js\n # _create: Button");

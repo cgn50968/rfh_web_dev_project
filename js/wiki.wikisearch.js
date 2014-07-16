@@ -35,7 +35,6 @@ alert("wiki.wikisearch.js\n# .click");
 		/* ------------------------------- */
 		/*  Trigger: onSearchWikisClicked  */
 		/* ------------------------------- */
-		this.element.find("#search_name").val("");
 		this.element.find(".searchwikis").click(function() {			// Aktiviert den Link auf dem Element
 //DEBUG		
 alert("wiki.wikisearch.js\n# .click");
@@ -50,26 +49,19 @@ alert("wiki.wikisearch.js\n# .click");
 	/* ---------------------- */
 	/* Function: searchWikis  */
 	/* ---------------------- */
-	searchWikis: function(searchname) {
+	gotoWikiSearchResult: function() {
 		
 		var wiki = {									
 			postMethod: "search", 
-			name: this.element.find("#search_name").val(),
-			//name: "SQL",
+			name: this.element.find("#search_name").val(),					// Suchbegriff
 		};
+
+//DEBUG		
+alert("wiki.wikisearch.js\n# gotoWikiSearchResult");
+//DEBUG	
+
+		$("#wiki_list").wikiList("searchWikisList", wiki);					// Aufruf: Suche in wikiList
 		
-		$.ajax({
-			type: "POST",																	
-			url: "/wiki/service/wikis",													
-			dataType: "json",
-			data: wiki,
-			//success: this._appendWikis,														
-			context: this,
-		});
-	}
+	},
 	
 });
-
-/*
-		
-*/

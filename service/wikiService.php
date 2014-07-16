@@ -152,30 +152,35 @@ class WikiService {
 		
 	public function searchWikis()									
 	{
-		//if (isset($_GET['name']))
 		if (isset($_POST['name']))
 		{
-			//$suchwort = $_GET['name'];
 			$suchwort = $_POST['name'];
 			$abfrage = "";
 			$abfrage2 = "";
-			$abfrage3 = "";
-			$abfrage4 = "";
-			$suchwort = explode(" ", $suchwort);					//Suchanfrage in einzelne Wörter zerschneiden
-			for ($i = 0; $i < sizeof($suchwort); $i++)				//jedes Wort durchgehen und in Abfrage verarbeiten
+			//$abfrage3 = "";
+			//$abfrage4 = "";
+			
+			/*$suchwort = explode(" ", $suchwort);							//Suchanfrage in einzelne Wörter zerschneiden
+			for ($i = 0; $i < sizeof($suchwort); $i++)						//jedes Wort durchgehen und in Abfrage verarbeiten
 			{
-				$abfrage .=	" `category` LIKE '%".$suchwort[$i]."%'";	// .= bedeutet anfügen und nicht ersetzen
+				$abfrage .=	" `category` LIKE '%".$suchwort[$i]."%'";		// .= bedeutet anfügen und nicht ersetzen
 				$abfrage2 .= " `title` LIKE '%".$suchwort[$i]."%'";
-				$abfrage3 .= " `author` LIKE '%".$suchwort[$i]."%'";
-				$abfrage4 .= " `creation_date` LIKE '%".$suchwort[$i]."%'";
+				//$abfrage3 .= " `author` LIKE '%".$suchwort[$i]."%'";
+				//$abfrage4 .= " `creation_date` LIKE '%".$suchwort[$i]."%'";
 				if($i < (sizeof($suchwort) - 1))
 				{
 					$abfrage .= "OR";
-					$abfrage2 .= "OR";
-					$abfrage3 .= "OR";
-					$abfrage4 .= "OR";
+					//$abfrage2 .= "OR";
+					//$abfrage3 .= "OR";
+					//$abfrage4 .= "OR";
 				}
 			}
+			*/
+			
+			/* Neue Zeilen */
+			$abfrage .=	"`category` LIKE '%".$suchwort."%'";	
+			$abfrage2 .= "`title` LIKE '%".$suchwort."%'";
+			
 			
 			$link = @new mysqli("localhost","root","","wiki");		// Verbindung zur Datenbank "wiki"
 			if($link->connect_error != NULL)						// Fehlermeldung bei Verbindungsfehler
@@ -190,13 +195,8 @@ class WikiService {
 				return self::ERROR;									// Rückgabe: Error-Message: Zuweisung utf8 fehlgeschlagen
 			}
 				
-			$sql_statement = "	SELECT
-									*
-								FROM
-									`wiki`
-								WHERE
-									".$abfrage . "OR" . $abfrage2 . "OR" . $abfrage3 . "OR" . $abfrage4;
-										
+			$sql_statement = "SELECT * FROM wiki WHERE " .$abfrage . " OR " . $abfrage2; //. " OR" . $abfrage3 . " OR" . $abfrage4;
+			
 			$result_set = $link->query($sql_statement);
 			
 			$searchwikis = array();									// Deklaration: searchwikis = Array

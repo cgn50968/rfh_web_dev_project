@@ -4,6 +4,9 @@
 
 $.widget("wiki.menuBar", {
 
+	/* ----------------- */
+	/*  _create: menuBar */
+	/* ----------------- */
 	_create: function() {
 //DEBUG		
 alert("wiki.menubar.js\n# _create:\n# .show_wikis\n# .create_wiki");

@@ -21,9 +21,6 @@ $.widget("wiki.pageNumber", {
 alert("wiki.pagenumber.js\n # _create:");
 //DEBUG
 
-		//this.element.find(".pages").remove();							// altes Widget entfernen
-
-
 		/* 1. HTML Anfrage - PageSize */
 		$.ajax({
 			url: "/wiki/service/wikis",				

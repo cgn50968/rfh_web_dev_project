@@ -85,7 +85,26 @@ alert("wiki.wikilist.js\n # reload: wikiList: _appendWikis");
 				
 	},    
 
+	
+	
+	/* -------------------------- */
+	/* Function: searchWikisList  */
+	/* -------------------------- */
+	searchWikisList: function(wiki) {
+		
+		this.element.find(".wiki:not(.template)").remove();									// alte Liste entfernen
+		
+		$.ajax({
+			type: "POST",																	
+			url: "/wiki/service/wikis",													
+			dataType: "json",
+			data: wiki,
+			success: this._appendWikis,
+			context: this,
+		});
+	},
 
+	
 	
 	/* ----------------------- */
 	/* Function: _appendWikis  */
@@ -93,12 +112,12 @@ alert("wiki.wikilist.js\n # reload: wikiList: _appendWikis");
 	_appendWikis: function(wikis) {
 		
 		var that = this;
-		
+
 		for(var i = 0; i < wikis.length; i++) {
 			var wiki = wikis[i];
 			// Finde HTML Element "template" und kopiere es, anschließend entferne HTML Klasse "template"
 			var wikiElement = this.element.find(".template").clone().removeClass("template");	
-		
+					
 			wikiElement.find(".author").text(wiki.author);									// Wiedergabe über eigene Funktion... siehe Unterlagen
 			wikiElement.find(".category").text(wiki.category);	
 			wikiElement.find(".creation_date").text(wiki.creation_date);	
