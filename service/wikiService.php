@@ -177,7 +177,7 @@ class WikiService {
 			}
 			*/
 			
-			/* Neue Zeilen */
+			/* Änderung - 2014-07-16 : 20:50 */
 			$abfrage .=	"`category` LIKE '%".$suchwort."%'";	
 			$abfrage2 .= "`title` LIKE '%".$suchwort."%'";
 			
