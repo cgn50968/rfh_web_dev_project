@@ -81,6 +81,22 @@ alert("wiki.application.js\n# onShowContactClicked:");
 		
 	
 	
+	/* ---------------------------------------- */
+	/*  Instanziierung "wiki.wikisearch.js"  */
+	/* ---------------------------------------- */
+	$("#wiki_search").wikiSearch( {
+	
+		onSearchWikisClicked: function() {
+			alert("SUCHEN");
+			$("#wiki_list").hide();
+			$("#wiki_search").wikiSearch("searchWikis");
+			$("#wiki_search").wikiSearch("reload");			
+		}
+	
+	});
+	
+	
+	
 	/* ----------------------------------------------------- */
 	/*  Instanziierung "wiki.deletedialog.js" .deleteDialog  */
 	/* ----------------------------------------------------- */

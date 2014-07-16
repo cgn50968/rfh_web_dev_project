@@ -152,9 +152,11 @@ class WikiService {
 		
 	public function searchWikis()									
 	{
-		if (isset($_GET['name']))
+		//if (isset($_GET['name']))
+		if (isset($_POST['name']))
 		{
-			$suchwort = $_GET['name'];
+			//$suchwort = $_GET['name'];
+			$suchwort = $_POST['name'];
 			$abfrage = "";
 			$abfrage2 = "";
 			$abfrage3 = "";

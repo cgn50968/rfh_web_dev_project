@@ -96,7 +96,7 @@ alert("wiki.pagenumber.js\n # _create: pageNumber: _setPageList");
 			wikiElement.find(".page").val(pageText);
 			
 			wikiElement.find(".page").click(pageText, function(event) {
-				that._trigger("onWikiPageClicked", null, event.data);						// Löst Funktion in applicaton.js aus...
+				that._trigger("onWikiPageClicked", null, event.data);						// event.data übergibt Parameter des Page Objects
 			});
 			this.element.append(wikiElement);												// Element anfügen
 			

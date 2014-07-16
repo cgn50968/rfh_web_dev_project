@@ -43,6 +43,12 @@
 				/* ------------------- */
 				/* postMethod = create */
 				/* ------------------- */
+				if ($request["postMethod"] == "search") {
+					$request["command"] = "SearchWikisCommand";
+				}	
+				/* ------------------- */
+				/* postMethod = create */
+				/* ------------------- */
 				if ($request["postMethod"] == "create") {
 					$request["command"] = "CreateWikiCommand";
 								

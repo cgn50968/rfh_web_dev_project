@@ -11,7 +11,7 @@
     <script src="./js/jquery-1.10.2.js" type="text/javascript"></script>
     <script src="./js/jquery-ui-1.10.4.custom.js" type="text/javascript"></script>
 	<script src="./js/jquery.blockUI.js" type="text/javascript"></script>				<!-- Blocken von Widgets nach Click Event -->
-	<!--<script src="./js/wiki.wikisearch.js" type="text/javascript"></script>-->
+	<script src="./js/wiki.wikisearch.js" type="text/javascript"></script>
 	<script src="./js/wiki.pagenumber.js" type="text/javascript"></script>
 	<script src="./js/wiki.wikilist.js" type="text/javascript"></script>
 	<script src="./js/wiki.wikidetails.js" type="text/javascript"></script>		
@@ -270,12 +270,17 @@
 					<div class="form-group">
 						<label class="col-sm-2 control-label" for="name">Suchbegriff</label>
 						<div class="input-group col-sm-9">
-							<input id="name" name="name" type="text" class="form-control" placeholder="" />
-							<span class="input-group-btn">
-									<button type="button" class="btn btn-default btnSearch">
-									<span class="glyphicon glyphicon-search">Los</span>
-									</button>
-							</span>
+							
+							<!-- Search Wikis -->
+							<div id="wiki_search">
+								<input id="search_name" name="name" type="text" class="form-control" placeholder="" />
+								<span class="input-group-btn">
+										<button type="button" class="searchwikis btn btn-default btnSearch">
+										<span class="glyphicon glyphicon-search">Los</span>
+										</button>
+								</span>
+							<div/>
+							
 						</div>
 					</div>
 				</form>
