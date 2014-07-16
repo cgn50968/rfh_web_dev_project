@@ -34,11 +34,15 @@ a:hover, a:active {
 	color: #ffffff;
 }
 
+/*
 tbody:hover {
   background-color: #E8E8FF;
 }
+*/
 
-
+.td_list:hover {
+  background-color: #E8E8FF;
+}
 
 
 /*--------Klassen--------*/
