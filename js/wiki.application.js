@@ -37,6 +37,13 @@ alert("wiki.application.js\n # .ajaxError");
 	/* ----------------------------- */
 	$("#wiki_header").wikiHeader();
 	
+
+	
+	/* ----------------------------- */
+	/*  FOOTER - Widget: wikiFooter  */
+	/* ----------------------------- */
+	$("#wiki_footer").wikiFooter();
+	
 	
 	
 	/* ----------------------------------- */
@@ -76,6 +83,7 @@ alert("wiki.application.js\n# onShowWikisClicked:\n# .wiki_details.hide\n# .wiki
 			$("#page_number").pageNumber("reload");
 			$("#wiki_list").wikiList("reload");
 			$("#wiki_header").show();
+			$("#wiki_footer").show();
 			$("#wiki_list").show();
 			$("#page_number").show();
 		},
@@ -87,8 +95,6 @@ alert("wiki.application.js\n# onShowWikisClicked:\n# .wiki_details.hide\n# .wiki
 //DEBUG
 alert("wiki.application.js\n# onCreateWikiClicked:");
 //DEBUG
-			$("#wiki_details").hide();
-			$("#wiki_header").show();
 			$("#create_dialog").createDialog("open");
 			
 		},
@@ -120,6 +126,7 @@ alert("wiki.application.js\n# onShowContactClicked:");
 alert("wiki.application.js\n # onWikiClicked: wikiDetails(load, wikiUrl)");
 //DEBUG
 			$("#wiki_header").hide();
+			$("#wiki_footer").hide();
 			$("#wiki_list").hide();										
 			$("#wiki_details").show();
 			$("#wiki_details").wikiDetails("load", wikiUrl);			// Anzeigen eines einzelnen Wikis
@@ -161,8 +168,12 @@ alert("wiki.application.js\n # onEditWikiClicked: editDialog(open, wiki)");
 	//DEBUG
 	alert("wiki.wikisearch.js\n # onSearchWikisClicked:");
 	//DEBUG
-			$("#wiki_search").wikiSearch("gotoWikiSearchResult");
 			$("#page_number").hide();
+			$("#wiki_details").hide();
+			$("#wiki_search").wikiSearch("gotoWikiSearchResult");
+			$("#wiki_list").show();
+			$("#wiki_header").show();
+			$("#wiki_footer").show();
 		}
 	
 	});
@@ -214,11 +225,14 @@ alert("wiki.application.js\n # onWikiEdited: .wikiList(reload)");
 //DEBUG
 alert("wiki.application.js\n # onWikiCreated: .wikiList(reload)");
 //DEBUG	1	
+
 			$("#wiki_details").hide();
 			$("#wiki_statistic").wikiStatistic("reload");
 			$("#page_number").pageNumber("reload");
-			$("#wiki_list").wikiList("reload");						// Reload der Seite - Aufruf aus "wiki.createdialog.js"
+			$("#wiki_list").wikiList("reload");								// Reload der Seite - Aufruf aus "wiki.createdialog.js"
 			$("#wiki_list").show();
+			$("#wiki_header").show();
+			$("#wiki_footer").show();
 			$("#page_number").show();
 		}
 	});
