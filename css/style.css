@@ -328,7 +328,7 @@ tbody:hover {
 }
 
 /* Klassen template und wiki_details verstecken */
-.template, .pages, .articles, #wiki_details {
+.template, .pages, .articles, .wikiheader, #wiki_details {
   display: none;
 }
 

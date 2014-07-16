@@ -32,13 +32,6 @@ alert("wiki.application.js\n # .ajaxError");
 	
 
 	
-	/* ----------------------------- */
-	/*  HEADER - Widget: wikiHeader  */
-	/* ----------------------------- */
-	$("#wiki_header").wikiHeader();
-	
-	
-	
 	/* ----------------------------------- */
 	/*  STATISTIC - Widget: wikiStatistic  */
 	/* ----------------------------------- */
@@ -56,7 +49,7 @@ alert("wiki.application.js\n # .ajaxError");
 	/* ------------------------------------------------ */
 	/*  DETAILS - Instanziierung "wiki.wikiDetails.js"  */
 	/* ------------------------------------------------ */
-	$("#wiki_details").wikiDetails();	
+	$("#wiki_details").wikiDetails();
 	
 	
 	
@@ -75,7 +68,6 @@ alert("wiki.application.js\n# onShowWikisClicked:\n# .wiki_details.hide\n# .wiki
 			$("#wiki_details").hide();
 			$("#page_number").pageNumber("reload");
 			$("#wiki_list").wikiList("reload");
-			$("#wiki_header").show();
 			$("#wiki_list").show();
 			$("#page_number").show();
 		},
@@ -88,7 +80,6 @@ alert("wiki.application.js\n# onShowWikisClicked:\n# .wiki_details.hide\n# .wiki
 alert("wiki.application.js\n# onCreateWikiClicked:");
 //DEBUG
 			$("#wiki_details").hide();
-			$("#wiki_header").show();
 			$("#create_dialog").createDialog("open");
 			
 		},
@@ -119,10 +110,9 @@ alert("wiki.application.js\n# onShowContactClicked:");
 //DEBUG
 alert("wiki.application.js\n # onWikiClicked: wikiDetails(load, wikiUrl)");
 //DEBUG
-			$("#wiki_header").hide();
 			$("#wiki_list").hide();										
-			$("#wiki_details").show();
-			$("#wiki_details").wikiDetails("load", wikiUrl);			// Anzeigen eines einzelnen Wikis
+			//$("#wiki_details").show();
+			$("#wiki_details").wikiDetails("open", wikiUrl);			// Anzeigen eines einzelnen Wikis
 		},
 		
 		/* ------------------------------ */
@@ -163,6 +153,8 @@ alert("wiki.application.js\n # onEditWikiClicked: editDialog(open, wiki)");
 	//DEBUG
 			$("#wiki_search").wikiSearch("gotoWikiSearchResult");
 			$("#page_number").hide();
+			$("#wiki_details").hide();
+			$("#wiki_list").show();
 		}
 	
 	});

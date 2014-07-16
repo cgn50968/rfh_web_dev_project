@@ -196,7 +196,7 @@ class WikiService {
 			}
 				
 			$sql_statement = "SELECT * FROM wiki WHERE " .$abfrage . " OR " . $abfrage2; //. " OR" . $abfrage3 . " OR" . $abfrage4;
-			
+
 			$result_set = $link->query($sql_statement);
 			
 			$searchwikis = array();									// Deklaration: searchwikis = Array
