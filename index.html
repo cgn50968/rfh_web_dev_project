@@ -54,44 +54,51 @@
 	
 		<div class="content">
 			<article class="topContent">
+				
 				<header>
 					<img src="img/webdev_grau.png">
-					
 				</header>
 				
 				<content>
 					<!--Ab hier soll der Inhalt der Suche stehen:-->
 					<div class="mainContent">
 						
-						<h1><a href="#" title="First post">Inhalt</a></h1>
-							
-							
+						<h1><a href="#" title="Übersicht">.:Inhalt:.</a></h1>
 						
-						
-							<!--Ab hier soll der Inhalt der Requests stehen:-->
 							<!-------------------------------------------
 							  HTML Elements für Widget "wiki.wikilist.js" 
 							 --------------------------------------------->
-							<div id="wiki_list" class="ui-widget">  <!-- verlinkung mit application.js --> 
-								<div>		<!-- 2 Klassen - wiki und template -->
-									<table class="wiki template">
+							<table class="tableheader">
+								<thead>
 									<tr>
-									  <!--<td id="heading">Autor</td>-->
-									  <td id="td_author" class="author"></td>
-									  <td id="td_category" class="category"></td>
-									  <td id="td_title" class="title"></td>
-									  <!--<td id="heading">Erstelldatum</td>-->
-									  <td id="td_creation_date" class="creation_date"></td>
-									  <!--<td id="heading">Ablaufdatum</td>-->
-									  <!--<td id="fieldname" class="expiration_date"></td>-->
-									  <td id="heading"><a class="edit_wiki" href="#">B</a></td>		<!-- Tag für Bearbeiten -->
-									  <td id="heading"><a class="delete_wiki" href="#">L</a></td>
-									</tr>
-									</table>
-									<hr>
-								</div>
+									  <td><div id="t-aut">Autor</div></td>
+									  <td><div id="t-cat">Kategorie</div></td>
+									  <td><div id="t-title">Titel</div></td>
+									  <td><div id="t-date">Datum</div></td>
+									</tr>	
+								</thead>
+							</table>
+							
+							<div id="wiki_list" class="ui-widget">
+								<table class="wiki template">
+									<tbody>
+										<tr>
+										  <td id="td_author" class="author"></td>
+										  <td id="td_category" class="category"></td>
+										  <td id="td_title" class="title"></td>
+										  <td id="td_creation_date" class="creation_date"></td>
+										  <td id="heading"><a class="edit_wiki" href="#"><img src="img/delete10x10.png"></a></td>
+										  <td id="heading"><a class="delete_wiki" href="#"><img src="img/edit10x10.png"></a></td>
+										</tr>
+									</tbody>
+								</table>
 							</div>
-						
+							
+							<table class="tablefooter">
+								<tfoot>
+									<td><em>Alle Angaben ohne Gewähr.</em></td>
+								</tfoot>
+							</table>
 					</div>	
 						
 					
@@ -143,7 +150,7 @@
 							<h3 id="contact">Heiko Herder</h3>
 							<div id="contact">MatrNr: BWI2131302</div>
 							<h3 id="contact">Roger Ordon</h3>
-							<div id="contact">MartNr: BWI2131002</div>
+							<div id="contact">MatrNr: BWI2131002</div>
 						</div>
 						
 						<!------------------------------------------------------------------
@@ -216,27 +223,12 @@
 						</div>
 											
 				</content>
-				
-				<!--<footer>
-					<p class="post-info">Autor: Heiko Herder</p>
-				</footer>-->
-				
+											
 			</article>
 			
-			<!--
-			TEST für Seitenzahl
-			
-			<article class="bottomContent">
-				<div id="page_number">
-					<div class="pagenumbers">
-						<p class="article"></p>
-					<div>
-				</div>
-			</article>
-			-->
-			
+						
 			<!-- Seitenzahl-->
-			<article class="bottomContent">
+			<article class="middleContentPages">
 				<table id="page_number">			
 					<tr>	
 					  <td class="wiki pages">
@@ -250,16 +242,16 @@
 			
 			<article class="bottomContent">
 				<header>
-					<h2><a href="#" title="Second post">Artikel des Tages</a></h2>
+					<h2><a href="#" title="Über uns">Wiki.web.Dev</a></h2>
 				</header>
 				
 				<footer>
-					<p class="post-info">Autor: Heiko Herder</p>
+					<p class="post-info">Stand: 15.07.2014</p>
 				</footer>
 				
 				<content>
-					<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
-					<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+					<p>Wiki.Web.Dev ist ein Projekt zum Aufbau einer Wissendatenbank aus Inhalten zur Lehrveranstaltung Web- und Mobile-Development der RFH Köln. Die Schwerpunkte sind HTML, CSS, PHP, JavaScript (AJAX), SQL und etwas Netzwerktechnik.</p>
+					<p>Das Projekt befindet sich in kontinuierlicher Weiterentwicklung. Neben Inhalten werden Funktionen, Designs und Performanceanpassungen stets verbessert und optimiert.</p>
 					<br>
 				</content>
 				

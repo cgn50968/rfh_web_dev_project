@@ -1,9 +1,9 @@
 /*
  * Autor: Heiko Herder, Roger Ordon
  * 
- * Datum: 09.07.2014
+ * Datum: 15.07.2014
  * 
- * Version: 0.6
+ * Version: 0.7
  * 
  *  
  */
@@ -33,6 +33,12 @@ a:hover, a:active {
 	background-color: #cf5c3f;
 	color: #ffffff;
 }
+
+tbody:hover {
+  background-color: #E8E8FF;
+}
+
+
 
 
 /*--------Klassen--------*/
@@ -107,9 +113,103 @@ a:hover, a:active {
 	margin-top: 2%;
 }
 
+.tableheader {
+	color: #000;
+	font-size: 90%;
+	font-weight: bold;
+	line-height: 1.5;
+	
+}
+
+#t-aut {
+	margin-right: 67px;
+}
+
+#td_author {
+	width: 20%;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #666;
+}
+
+#t-cat {
+	margin-right: 15px;
+}
+
+#td_category { 
+	width: 15%;
+	border-style: solid;
+    border-width: 1px;
+	border-color: #666;
+}
+
+
+#t-title {
+	margin-right: 125px;
+}
+
+#td_title {
+	width: 30%;												/* id: Breite des <td> Datenfeldes */
+	border-style: solid;
+    border-width: 1px;
+	border-color: #666;
+}
+
+
+#t-date {
+	margin-right: 20px;
+}
+
+#td_creation_date {
+	width: 35%;
+	border-style: solid;
+    border-width: 1px;
+	border-color: #666;
+}
+
+
+
+/* Alle-Wikis-Tabelle 
+
+#table { 
+	width: 100%; 											/* id: Tabelle soll 100% der verfügbaren Breite einnehmen (minus Ränder) */
+/*	table-layout: fixed;
+	border-style: solid;
+    border-width: 1px;
+	border-color: #666;
+	border-radius: 4px;
+}*/
+
+#heading { width: 10px; }
+
+#fieldname {
+	width: 100px;
+	table-layout: fixed;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #666;
+}
+
+
+#author { width: 100%; }											/* id: Breite des <input> Eingabefeldes */
+#title{ width: 100%; }											
+#creation_date { width: 100%; }
+#expiration_date { width: 100%; }
+#notes { width: 100%; }
+
+
+
+.tablefooter {
+	font-size: 80%;
+	font-weight: italic;
+	line-height: 1.5;
+	text-align: left;
+}
+
+
 .page {
 	background-color: #ffffff;
-	font-size: 110%;
+	font-size: 80%;
 	/*text-decoration: underline;*/
 	border-style: solid;
     border-width: 1px;
@@ -121,6 +221,20 @@ a:hover, a:active {
 	-webkit-border-radius: 4px;									/*für Webkit-Browser*/
 }
 
+#page_number{
+	margin: 0 auto;
+
+}
+
+
+.middleContentPages {
+	background-color: #ffffff;
+	border-radius: 5px;
+	-moz-border-radius: 5px;									/*für Mozilla-Browser*/
+	-webkit-border-radius: 5px;									/*für Webkit-Browser*/
+	padding: 1% 1%;
+	margin-top: 2%;
+}
 
 
 
@@ -213,28 +327,15 @@ a:hover, a:active {
   cursor: pointer; 
 }
 
-#heading {
-	width: 10px;
-}
 
-#fieldname { width: 100px;}
+
+
+
+
 
 #contact { font-family: Arial; font-size: 14px; }
 
-/* Tabelle */
-table { width: 100%}												/* Tag: Tabelle soll 100% der verfügbaren Breite einnehmen (minus Ränder) */
 
-#td_author{ width: 25%; }
-#td_category { width: 15%; }
-#td_title { width: 45%; }										/* id: Breite des <td> Datenfeldes */
-#td_creation_date { width: 15%; }
-
-
-#author { width: 100%; }											/* id: Breite des <input> Eingabefeldes */
-#title{ width: 100%; }											
-#creation_date { width: 100%; }
-#expiration_date { width: 100%; }
-#notes { width: 100%}
 
 /* create_dialog, edit_dialog, wiki_details */
 #create_dialog, #edit_dialog, #wiki_details , #error_dialog, #delete_dialog {
