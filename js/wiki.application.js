@@ -203,7 +203,7 @@ alert("wiki.application.js\n # onWikiEdited: .wikiList(reload)");
 		onWikiCreated: function() {	
 //DEBUG
 alert("wiki.application.js\n # onWikiCreated: .wikiList(reload)");
-//DEBUG		
+//DEBUG	1	
 			$("#wiki_details").hide();
 			$("#wiki_statistic").wikiStatistic("reload");
 			$("#page_number").pageNumber("reload");
