@@ -1,9 +1,9 @@
 /*
  * Autor: Heiko Herder, Roger Ordon
  * 
- * Datum: 15.07.2014
+ * Datum: 17.07.2014
  * 
- * Version: 0.7
+ * Version: 0.8
  * 
  *  
  */
@@ -49,7 +49,7 @@ tbody:hover {
 
 
 .body {
-	margin: 0 auto;
+	margin: 0 auto;											
 	width: 70%;
 	clear: both;												/*keine float-Elemente rechts und links erlaubt*/
 }
@@ -104,11 +104,13 @@ tbody:hover {
 }
 
 .content {
+	height: 543px;												/*entscheidener Wert zum anordnen der Container*/
 	width: 70%;													/*Basiswert für content-Container*/
 	float: left;
 }
 
 .topContent {
+	height: 543px;
 	background-color: #ffffff;
 	border-radius: 5px;
 	-moz-border-radius: 5px;									/*für Mozilla-Browser*/
@@ -275,6 +277,7 @@ tbody:hover {
 .top-sidebar {
 	width: 21%;													/*Basiswert für content-Container beachten 70+21+3 (margin-left)+3+3 (padding rechts und links) = 100*/
 	float: left;
+	font-size: 90%;
 	background-color: #ffffff;
 	border-radius: 5px;
 	-moz-border-radius: 5px;									/*für Mozilla-Browser*/
