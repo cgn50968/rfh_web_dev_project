@@ -14,7 +14,7 @@ $.widget("wiki.wikiList", {  																// Beginn des Javascritp Objekts (W
 		/* ----------------------------- */
 		
 		var limitStart = 0;																	// LIMIt: Ausgangsstartpunkt		
-		var limitResults = 5;																// LIMIT: Anzahl der angezeigten Datensätze
+		var limitResults = 8;																// LIMIT: Anzahl der angezeigten Datensätze
 		
 		var wiki = {									
 			postMethod: "get", 
@@ -53,13 +53,13 @@ alert("wiki.wikilist.js\n # reload: wikiList");
 		/* ----------------------------- */
 		
         if (pagenumber > 0) {
-			var limitStart = pagenumber * 5 - 5;										// LIMIT: Startpunkt
+			var limitStart = pagenumber * 8 - 8;										// LIMIT: Startpunkt
 		}
 		else {
 			var limitStart = 0;															// LIMIt: Ausgangsstartpunkt
 		};
 		
-		var limitResults = 5;															// LIMIT: Anzahl der angezeigten Datensätze
+		var limitResults = 8;															// LIMIT: Anzahl der angezeigten Datensätze
 		
 		var wiki = {									
 			postMethod: "get", 

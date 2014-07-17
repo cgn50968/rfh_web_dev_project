@@ -25,10 +25,10 @@ class GetWikisCommand {
 			/* ------------ */
 			$count = $wiki_service->countWikis();						// Anzahl der Datensätze
 			
-			$pages = $count/5;
+			$pages = $count/8;
 			settype($pages, "integer");
 
-			$divisor = 5 * $pages;										// Summe der Datensäte ($pages ohne Nachkommastelle)
+			$divisor = 8 * $pages;										// Summe der Datensäte ($pages ohne Nachkommastelle)
 			
 			if($count > $divisor) {										// Ist die Anzahl der Datensätze größer $divisor?
 				$pages = $pages + 1;									// Wenn ja, Seitenzahl um 1 erhöhen
