@@ -104,13 +104,13 @@ tbody:hover {
 }
 
 .content {
-	height: 543px;												/*entscheidener Wert zum anordnen der Container*/
+	min-height: 543px;												/*entscheidener Wert zum anordnen der Container*/
 	width: 70%;													/*Basiswert für content-Container*/
 	float: left;
 }
 
 .topContent {
-	height: 543px;
+	min-height: 543px;
 	background-color: #ffffff;
 	border-radius: 5px;
 	-moz-border-radius: 5px;									/*für Mozilla-Browser*/
