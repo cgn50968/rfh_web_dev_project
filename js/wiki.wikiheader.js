@@ -8,6 +8,7 @@ $.widget("wiki.wikiHeader", {
 		var that = this;
 		var wikiElement = this.element.find(".wikiheader").clone().removeClass("wikiheader");
 		this.element.append(wikiElement);
+		alert("Header");
 	}
 });
 	

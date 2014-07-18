@@ -17,7 +17,7 @@ $.widget("wiki.wikiStatistic", {
 		};
 		
 //DEBUG
-alert("wiki.wikistatistic.js\n # _create:");
+alert("wiki.wikistatistic.js\n # _create: - POST");
 //DEBUG
 
 		/* 1. HTML GET Anfrage - GetWikisCommand - countWikis */

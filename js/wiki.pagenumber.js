@@ -18,7 +18,7 @@ $.widget("wiki.pageNumber", {
 		};
 		
 //DEBUG
-alert("wiki.pagenumber.js\n # _create:");
+alert("wiki.pagenumber.js\n # _create: - POST");
 //DEBUG
 
 		/* 1. HTML Anfrage - PageSize */
