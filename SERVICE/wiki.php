@@ -5,7 +5,6 @@
 		public $id;						// Datensatz ID
 		public $version;				// Version des Artikels
 		public $category;				// Kategorisierung der Artikel
-		public $title_id;				// Titel ID für Schlüssel aus (title_id, version)
 		public $title;					// Titel des Artikels
 		public $notes;					// Artikel Text
 		public $author;					// Autor des Artikels
