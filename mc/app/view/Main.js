@@ -1,5 +1,5 @@
 Ext.define('WebDevWiki.view.Main', {
-	extend: 'Ext.navigation.View',					// Ableitung von Klasse Panel
+	extend: 'Ext.navigation.View',					
 	xtype: 'main',
 	config: {
 		items: {

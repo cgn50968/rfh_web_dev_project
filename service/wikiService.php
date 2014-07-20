@@ -88,7 +88,9 @@ class WikiService {
 			return self::ERROR;										// Rückgabe: Error-Message: Zuweisung utf8 fehlgeschlagen
 			}
 			
-		$sql_statement = "SELECT id, version, category, title, notes, author, creation_date, expiration_date FROM wiki LIMIT $pageFrom,$pageResults";
+		$sql_statement = "SELECT id, version, category, title, notes, author, creation_date, expiration_date, CURDATE() AS today ".
+		"FROM wiki LIMIT $pageFrom,$pageResults";
+										
 											
 		$result_set = $link->query($sql_statement);
 		
@@ -126,7 +128,7 @@ class WikiService {
 			return self::ERROR;										// Rückgabe: Error-Message: Zuweisung utf8 fehlgeschlagen
 			}
 			
-		$sql_statement = "SELECT id, version, category, title, notes, author, creation_date, expiration_date FROM wiki";
+		$sql_statement = "SELECT id, version, category, title, notes, author, creation_date, expiration_date, CURDATE() AS today FROM wiki";
 											
 		$result_set = $link->query($sql_statement);
 		
@@ -195,7 +197,8 @@ class WikiService {
 				return self::ERROR;									// Rückgabe: Error-Message: Zuweisung utf8 fehlgeschlagen
 			}
 				
-			$sql_statement = "SELECT * FROM wiki WHERE " .$abfrage . " OR " . $abfrage2; //. " OR" . $abfrage3 . " OR" . $abfrage4;
+			$sql_statement = "SELECT *, CURDATE() AS today FROM wiki WHERE " .$abfrage . " OR " . $abfrage2; //. " OR" . $abfrage3 . " OR" . $abfrage4;
+
 
 			$result_set = $link->query($sql_statement);
 			

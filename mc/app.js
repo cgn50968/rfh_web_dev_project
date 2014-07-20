@@ -16,8 +16,8 @@ Ext.application({
     
     views: [
         "Main",
-		"WikiList",											// Referenz auf TodoList.js
-		"WikiForm"											// Referenz auf TodoForm.js: /app/view
+		"WikiList",											// Referenz auf WikiList.js
+		"WikiForm"											// Referenz auf WikiForm.js: /app/view
     ],
 
 	stores: [												// Angabe der Stores: app/store

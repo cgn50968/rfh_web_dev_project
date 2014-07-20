@@ -27,6 +27,15 @@ class SearchWikisCommand {
 		foreach($wikis as $wiki) {									// Zuweisen einer URL pro ID
 			
 			$wiki->url = "/wiki/service/wikis/$wiki->id";
+			
+			/* --------------------------- */
+			/*  Berechnung der Gültigkeit  */
+			/* --------------------------- */
+			$expiration_date = date_create($wiki->expiration_date);
+			$today = date_create($wiki->today);
+			$difference = date_diff($today, $expiration_date);
+			$wiki->days_to_go = $difference->format('%R%a Tag(e)'); 
+			
 			unset($wiki->id);										// Löscht das Attribut aus dem Objekt
 		}
 		return $wikis;

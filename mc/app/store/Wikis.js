@@ -1,7 +1,7 @@
 Ext.define('WebDevWiki.store.Wikis', {
 	extend: 'Ext.data.ArrayStore',
 	config: {
-		proxy: {							// Abruf der Daten aus SERVICE
+		proxy: {																// Abruf der Daten aus dem Web SERVICE
 			type: 'rest',
 
 			url: '/wiki/service/RequestHandler.php?command=GetWikisMobCommand',
@@ -17,7 +17,7 @@ Ext.define('WebDevWiki.store.Wikis', {
 			}
 			
 		},
-		model: 'WebDevWiki.model.Wiki',		// Referenz auf Klasse Todo
-		autoLoad: true						// Der Store lädt bei Instanziierung automatisch Daten
+		model: 'WebDevWiki.model.Wiki',											// Referenz auf Klasse Wiki
+		autoLoad: true															// Der Store lädt bei Instanziierung automatisch Daten
 	}
 });

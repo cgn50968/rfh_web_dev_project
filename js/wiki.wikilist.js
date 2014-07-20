@@ -121,7 +121,7 @@ alert("wiki.wikilist.js\n # reload: wikiList: _appendWikis");
 			wikiElement.find(".author").text(wiki.author);									// Wiedergabe über eigene Funktion... siehe Unterlagen
 			wikiElement.find(".category").text(wiki.category);	
 			wikiElement.find(".creation_date").text(wiki.creation_date);	
-			wikiElement.find(".expiration_date").text(wiki.expiration_date);	
+			wikiElement.find(".days_to_go").text(wiki.days_to_go);			
 			wikiElement.find(".title").text(wiki.title);		
 			wikiElement.find(".notes").text(wiki.notes);	
 			
