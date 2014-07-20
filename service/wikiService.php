@@ -17,7 +17,7 @@ class WikiService {
 	const ERROR = "ERROR";			
 	const NOT_FOUND = "NOT_FOUND";
 	const INVALID_INPUT = "INVALID_INPUT";
-	const OK = "OK";
+	const OK = "NO_DB_RESULT";
 	const VERSION_OUTDATED = "VERSION_OUTDATED";
 
 /* --------------------------------------------------------------------- */
