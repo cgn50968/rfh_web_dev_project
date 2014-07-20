@@ -256,9 +256,11 @@ alert("wiki.application.js\n # onWikiPageClicked: wikiList(reload, pagenumber)")
 //DEBUG
 
 			$("#wiki_details").hide();
-			$("#wiki_list").show();
 			$("#page_number").pageNumber("reload");	
-			$("#wiki_list").wikiList("reload", pagenumber);							
+			$("#wiki_list").wikiList("reload", pagenumber);
+			$("#wiki_list").show();
+			$("#wiki_header").show();
+			$("#wiki_footer").show();		
 		},
 	});
 		
