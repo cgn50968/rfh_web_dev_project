@@ -30,7 +30,6 @@ $.widget("wiki.menuBar", {
 		/*  Trigger: onShowContactClicked  */
 		/* ------------------------------- */
 		this.element.find(".show_contact").click(function() {		// Aktiviert den Link auf dem Element
-			alert("Kontakt");
 			that._trigger("onShowContactClicked");					// Ausführen der Funktion onCreateWikisClicked in wiki.application.js	
 			return false;
 		});
