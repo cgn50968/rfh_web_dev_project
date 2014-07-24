@@ -156,7 +156,10 @@ class WikiService {
 	{
 		if (isset($_POST['name']))
 		{
-			$suchwort = $_POST['name'];			
+			$suchwort = $_POST['name'];		
+			$abfrage = "";
+			$abfrage2 = "";
+			
 			$abfrage .=	"`category` LIKE '%".$suchwort."%'";	
 			$abfrage2 .= "`title` LIKE '%".$suchwort."%'";
 			
