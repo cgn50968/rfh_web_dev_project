@@ -1,7 +1,6 @@
-/* ------------------ */
+/* -------------------- */
 /*  Widget: pageNumber  */
-/* ------------------ */
-								
+/* -------------------- */						
 $.widget("wiki.pageNumber", {  																
 
 	/* ------------------ */
@@ -11,28 +10,20 @@ $.widget("wiki.pageNumber", {
 	
 		/* ----------------------------- */
 		/*  Paramenter für POST Methode  */
-		/* ----------------------------- */
-		
+		/* ----------------------------- */		
 		var wiki = {									
 			postMethod: "get", 
 		};
-		
-//DEBUG
-alert("wiki.pagenumber.js\n # _create: - POST");
-//DEBUG
 
-		/* 1. HTML Anfrage - PageSize */
+		/* -------------- */
+		/*  HTML Anfrage  */
+		/* -------------- */
 		$.ajax({
 			url: "/wiki/service/wikis",				
 			dataType: "json",
 			success: this._setPageList,
 			context: this,
 		});
-		
-//DEBUG
-alert("wiki.pagenumber.js\n # _create: pageNumber: _setPageList");
-//DEBUG
-		
 	},
 
 	
@@ -49,25 +40,18 @@ alert("wiki.pagenumber.js\n # _create: pageNumber: _setPageList");
 		var wiki = {									
 			postMethod: "get", 
 		};
-		
-//DEBUG
-alert("wiki.pagenumber.js\n # _create:");
-//DEBUG
 
-		this.element.find(".wiki:not(.pages)").remove();			// es müssen zwei Klassen vergeben werden, damit remove funktioniert
+		this.element.find(".wiki:not(.pages)").remove();									// es müssen zwei Klassen vergeben werden, damit remove funktioniert
 		
-		/* 1. HTML Anfrage - PageSize */
+		/* -------------- */
+		/*  HTML Anfrage  */
+		/* -------------- */
 		$.ajax({
 			url: "/wiki/service/wikis",				
 			dataType: "json",
 			success: this._setPageList,
 			context: this,
-		});
-		
-//DEBUG
-alert("wiki.pagenumber.js\n # _create: pageNumber: _setPageList");
-//DEBUG
-		
+		});	
 	},
 	
 	
@@ -100,5 +84,4 @@ alert("wiki.pagenumber.js\n # _create: pageNumber: _setPageList");
 			pageText = pageText + 1;
 		}
 	},
-
 });		

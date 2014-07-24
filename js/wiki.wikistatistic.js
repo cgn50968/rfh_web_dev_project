@@ -1,7 +1,6 @@
 /* ----------------------- */
 /*  Widget: wikiStatistic  */
-/* ----------------------- */
-							
+/* ----------------------- */		
 $.widget("wiki.wikiStatistic", {  	
 
 	/* ------------------ */
@@ -15,10 +14,6 @@ $.widget("wiki.wikiStatistic", {
 		var wiki = {									
 			postMethod: "get", 
 		};
-		
-//DEBUG
-alert("wiki.wikistatistic.js\n # _create: - POST");
-//DEBUG
 
 		/* 1. HTML GET Anfrage - GetWikisCommand - countWikis */
 		$.ajax({
@@ -27,11 +22,6 @@ alert("wiki.wikistatistic.js\n # _create: - POST");
 			success: this._appendStatistic,
 			context: this,
 		});
-		
-//DEBUG
-alert("wiki.wikistatistic.js\n # _appendStatistic:");
-//DEBUG
-
 	},
 
 
@@ -48,12 +38,7 @@ alert("wiki.wikistatistic.js\n # _appendStatistic:");
 			postMethod: "get", 
 		};
 
-		this.element.find(".article").empty();							// TAG <p class="article"> leeren
-		
-			
-//DEBUG
-alert("wiki.wikistatistic.js\n # _create:");
-//DEBUG
+		this.element.find(".article").empty();												// TAG <p class="article"> leeren
 
 		/* 1. HTML GET Anfrage - GetWikisCommand - countWikis */
 		$.ajax({
@@ -62,11 +47,6 @@ alert("wiki.wikistatistic.js\n # _create:");
 			success: this._appendStatistic,
 			context: this,
 		});
-		
-//DEBUG
-alert("wiki.wikistatistic.js\n # _appendStatistic:");
-//DEBUG
-
 	},
 	
 	

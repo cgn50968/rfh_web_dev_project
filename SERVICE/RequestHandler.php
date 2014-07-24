@@ -27,7 +27,7 @@
 	
 		public function handleRequest() {
 			
-			$request = $_REQUEST;										// Übergabe der POST Argumente an $request
+			$request = $_REQUEST;																	// Übergabe der POST Argumente an $request
 
 			/* ---------------- */
 			/*  POST - Methode  */
@@ -121,17 +121,17 @@
 				}		
 			}
 			
-			$request_headers = apache_request_headers();				// Request Header per apache_request_headers() auslesen und Methode execute übergeben
+			$request_headers = apache_request_headers();											// Request Header per apache_request_headers() auslesen und Methode execute übergeben
 			
-			$class_name = $request["command"];							// Auslesen des Klassennamens in $class_name
+			$class_name = $request["command"];														// Auslesen des Klassennamens in $class_name
 			
-			$command = new $class_name;									// Klassenobjekt erstellen
+			$command = new $class_name;																// Klassenobjekt erstellen
 		
-			$result = $command->execute($request, $request_headers);	// Ausführen der Funktion execute()
+			$result = $command->execute($request, $request_headers);								// Ausführen der Funktion execute()
 						
-			if($result !== NULL) {										// Falls die Rückgabe ungleich NULL ist (!== bedeutet, dass nur NULL den Fehler erzeugt)
+			if($result !== NULL) {																	// Falls die Rückgabe ungleich NULL ist (!== bedeutet, dass nur NULL den Fehler erzeugt)
 						
-				echo(json_encode($result));				// Ausgabe als "JSON-Zeichenkette"
+				echo(json_encode($result));															// Ausgabe als "JSON-Zeichenkette"
 								
 			}
 		}
@@ -141,13 +141,13 @@
 /* <<-- Programmaufruf -->>                                              */	
 /* --------------------------------------------------------------------- */
 	
-	$request_handler = new RequestHandler();			// Klassen-Objekt instanzieren (erstellen)
+	$request_handler = new RequestHandler();														// Klassen-Objekt instanzieren (erstellen)
 
-	$request_handler->handleRequest(); 					// Aufruf der zentralen Funktion "handleRequest()"
+	$request_handler->handleRequest(); 																// Aufruf der zentralen Funktion "handleRequest()"
 
 /* --------------------------------------------------------------------- */
 /* <<-- Infobereich -->>                                                 */	
 /* --------------------------------------------------------------------- */
-//Programmaufruf:		http://localhost/rfh_dev_project/service/RequestHandler.php?command=[class_name] 
+//Programmaufruf:		http://localhost/wiki/service/RequestHandler.php?command=[class_name] 
 
 ?>

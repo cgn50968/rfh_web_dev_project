@@ -9,6 +9,12 @@ Ext.define('WebDevWiki.view.WikiForm', {
 		items: [							// Formular Felder
 			{
 			xtype: 'textfield',				// Texteingabefeld für den Titel
+			name: 'category',
+			label: 'Kategorie',
+			readOnly: true
+			},
+			{
+			xtype: 'textfield',				// Texteingabefeld für den Titel
 			name: 'title',
 			label: 'Titel',
 			readOnly: true

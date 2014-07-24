@@ -3,6 +3,9 @@ Ext.define('WebDevWiki.model.Wiki', {
 	config: {						
 		fields: [
 			{
+				name: 'category'
+			},
+			{
 				name: 'title'
 			},
 			{

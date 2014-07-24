@@ -7,9 +7,6 @@
 /*  ERROR HANDLING  */
 /* ---------------- */
 	$(document).ajaxError(function(event, request) {					// Gibt den Response Status Text bei Fehlern wieder.
-//DEBUG
-alert("wiki.application.js\n # .ajaxError");
-//DEBUG
 		$("#error_dialog").errorDialog("open", request.statusText);		// Methode Open des Error Dialogs (Wiedergabe des Request Status über request.statusText
 		$("#wiki_details").hide();										// Bei Fehler #wiki_details nicht anzeigen
 		$("#wiki_list").show();											// Bei Fehler #wiki_list wieder anzeigen
@@ -28,7 +25,7 @@ alert("wiki.application.js\n # .ajaxError");
 	/* ----------------------------------------------------------- */
 	/*  ERROR - Instanziierung "wiki.errordialog.js" .errorDialog  */
 	/* ----------------------------------------------------------- */
-	$("#error_dialog").errorDialog();									// Instanzierung des Widgets für Fehlerbehandlung
+	$("#error_dialog").errorDialog();									
 	
 
 	
@@ -76,9 +73,6 @@ alert("wiki.application.js\n # .ajaxError");
 		/*  Funktion: onShowWikisClicked  */
 		/* ------------------------------ */
 		onShowWikisClicked: function() {
-//DEBUG
-alert("wiki.application.js\n# onShowWikisClicked:\n# .wiki_details.hide\n# .wiki_list.show\n# .wiki_list.reload");
-//DEBUG
 			$("#wiki_details").hide();
 			$("#page_number").pageNumber("reload");
 			$("#wiki_list").wikiList("reload");
@@ -88,24 +82,20 @@ alert("wiki.application.js\n# onShowWikisClicked:\n# .wiki_details.hide\n# .wiki
 			$("#page_number").show();
 		},
 		
+		
 		/* ------------------------------- */
 		/*  Funktion: onCreateWikiClicked  */
 		/* ------------------------------- */
 		onCreateWikiClicked: function() {
-//DEBUG
-alert("wiki.application.js\n# onCreateWikiClicked:");
-//DEBUG
 			$("#create_dialog").createDialog("open");
 			
 		},
+		
 		
 		/* ------------------------------ */
 		/*  Funktion: onShowContactClicked  */
 		/* ------------------------------ */
 		onShowContactClicked: function(event) {
-//DEBUG
-alert("wiki.application.js\n# onShowContactClicked:");
-//DEBUG
 			$("#contact_dialog").contactDialog("open");
 		}
 		
@@ -122,9 +112,6 @@ alert("wiki.application.js\n# onShowContactClicked:");
 		/*  onWikiClicked - wikiDetails  */
 		/* ----------------------------- */
 		onWikiClicked: function(event, wikiUrl) {
-//DEBUG
-alert("wiki.application.js\n # onWikiClicked: wikiDetails(load, wikiUrl)");
-//DEBUG
 			$("#wiki_header").hide();
 			$("#wiki_footer").hide();
 			$("#wiki_list").hide();										
@@ -132,26 +119,21 @@ alert("wiki.application.js\n # onWikiClicked: wikiDetails(load, wikiUrl)");
 			$("#wiki_details").wikiDetails("load", wikiUrl);			// Anzeigen eines einzelnen Wikis
 		},
 		
+		
 		/* ------------------------------ */
 		/*  onWikiClicked - deleteDialog  */
 		/* ------------------------------ */
 		onDeleteWikiClicked: function(event, wiki) {
-//DEBUG
-alert("wiki.application.js\n # onDeleteWikiClicked: deleteDialog(open)");
-//DEBUG
 			$("#delete_dialog").deleteDialog("open", wiki);				// Anzeigen des Löschen Dialogs
 		},
+		
 		
 		/* -------------------------------- */
 		/*  onEditWikiClicked - editDialog  */
 		/* -------------------------------- */
 		onEditWikiClicked: function(event, wiki) {
-//DEBUG
-alert("wiki.application.js\n # onEditWikiClicked: editDialog(open, wiki)");
-//DEBUG
-			$("#edit_dialog").editDialog("open", wiki);					// Anzeigen des Bearbeiten Dialogs durch "open", Übergabe der Ereignis-Parameter mit "wiki"
-		},
-		
+			$("#edit_dialog").editDialog("open", wiki);					
+		},	
 	});				
 
 
@@ -165,9 +147,6 @@ alert("wiki.application.js\n # onEditWikiClicked: editDialog(open, wiki)");
 		/*  onSearchWikisClicked  */
 		/* ---------------------- */
 		onSearchWikisClicked: function() {
-	//DEBUG
-	alert("wiki.wikisearch.js\n # onSearchWikisClicked:");
-	//DEBUG
 			$("#page_number").hide();
 			$("#wiki_details").hide();
 			$("#wiki_search").wikiSearch("gotoWikiSearchResult");
@@ -183,11 +162,8 @@ alert("wiki.application.js\n # onEditWikiClicked: editDialog(open, wiki)");
 	/* -------------------------------------------------------------- */
 	/*  DELETE - Instanziierung "wiki.deletedialog.js" .deleteDialog  */
 	/* -------------------------------------------------------------- */
-	$("#delete_dialog").deleteDialog( {									// Instanzierung des Widgets für den Löschdialog
+	$("#delete_dialog").deleteDialog( {								
 		onWikiDeleted: function() {
-	//DEBUG
-	alert("wiki.application.js\n # onWikiDeleted: .wikiList(reload)");
-	//DEBUG
 			$("#wiki_statistic").wikiStatistic("reload");
 			$("#page_number").pageNumber("reload");
 			$("#wiki_list").wikiList("reload");	
@@ -201,12 +177,8 @@ alert("wiki.application.js\n # onEditWikiClicked: editDialog(open, wiki)");
 	/* -------------------------------------------- */
 	/*  EDIT - Instanziierung "wiki.editdialog.js"  */
 	/* -------------------------------------------- */
-	$("#edit_dialog").editDialog( {										// Das # versteckt das HTML Element beim ersten Aufruf
+	$("#edit_dialog").editDialog( {										
 		onWikiEdited: function() {	
-//DEBUG
-alert("wiki.application.js\n # onWikiEdited: .wikiList(reload)");
-//DEBUG		
-
 			$("#wiki_statistic").wikiStatistic("reload");
 			$("#page_number").pageNumber("reload");
 			$("#wiki_list").wikiList("reload");	
@@ -220,16 +192,12 @@ alert("wiki.application.js\n # onWikiEdited: .wikiList(reload)");
 	/* ------------------------------------------------ */
 	/*  CREATE - Instanziierung "wiki.createdialog.js"  */
 	/* ------------------------------------------------ */
-	$("#create_dialog").createDialog( {										// Das # versteckt das HTML Element beim ersten Aufruf
+	$("#create_dialog").createDialog( {										
 		onWikiCreated: function() {	
-//DEBUG
-alert("wiki.application.js\n # onWikiCreated: .wikiList(reload)");
-//DEBUG	1	
-
 			$("#wiki_details").hide();
 			$("#wiki_statistic").wikiStatistic("reload");
 			$("#page_number").pageNumber("reload");
-			$("#wiki_list").wikiList("reload");								// Reload der Seite - Aufruf aus "wiki.createdialog.js"
+			$("#wiki_list").wikiList("reload");								
 			$("#wiki_list").show();
 			$("#wiki_header").show();
 			$("#wiki_footer").show();
@@ -248,13 +216,6 @@ alert("wiki.application.js\n # onWikiCreated: .wikiList(reload)");
 		/*  onWikiPageClicked  */
 		/* ------------------- */
 		onWikiPageClicked: function(event, pagenumber) {						// pagenumber nimmt event.data (den Text) des <a class="page" href="#"> entgegen.
-			
-//DEBUG
-alert(pagenumber);
-alert("wiki.application.js\n # onWikiPageClicked: pageNumber(reload)");
-alert("wiki.application.js\n # onWikiPageClicked: wikiList(reload, pagenumber)");
-//DEBUG
-
 			$("#wiki_details").hide();
 			$("#page_number").pageNumber("reload");	
 			$("#wiki_list").wikiList("reload", pagenumber);

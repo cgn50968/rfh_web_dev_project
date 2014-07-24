@@ -8,73 +8,59 @@ $.widget("wiki.deleteDialog", $.ui.dialog, {
 		modal: true
 	},
 	
-	//----------------------
-	// Widget wird geöffnet
-	//----------------------
-	open: function(wiki) {								// Übergabe der Werte aus wiki - Aus wiki wird das Attribut url ausgelesen, damit der richtige Datensatz gelöscht werdenn kann.
-//DEBUG
-alert("wiki.deletedialog.js\n # open: deleteDialog");
-//DEBUG
+	/* ---------------------- */
+	/*  Widget wird geöffnet  */ 
+	/* ---------------------- */
+	open: function(wiki) {													// Übergabe der Werte aus wiki - Aus wiki wird das Attribut url ausgelesen, damit der richtige Datensatz gelöscht werdenn kann.
 		this._wiki = wiki;
 		this._super();
 	},
 	
-	//------------------------------------
-	// Widget erstellen und konfigurieren
-	//------------------------------------
-	_create: function() {								// Button konfigurieren
-//DEBUG
-alert("wiki.deletedialog.js\n # _create: Buttons");
-//DEBUG
-		var that = this;								// Übergabe des Objektes this an that (that hat einen anderen Wert ... WARUM NUR??)
+	
+	/* ------------------------------------ */
+	/*  Widget erstellen und konfigurieren  */
+	/* ------------------------------------ */
+	_create: function() {													// Button konfigurieren
+	
+		var that = this;													// Übergabe des Objektes this an that (that hat einen anderen Wert ... WARUM NUR??)
 		
 		this.options.buttons = [
-			//----
-			// OK
-			//----
+			/* ---------- */
+			/*  OK Button */
+			/* ---------- */
 			{
 				text: "OK",
-				click: function() {						// click = reagiert auf Benutzerinteraktion
-					that._deleteWiki();					// Wiki löschen
-//DEBUG
-alert("wiki.deletedialog.js\n # _create: OK: _deleteWiki");
-//DEBUG
+				click: function() {											// click = reagiert auf Benutzerinteraktion
+					that._deleteWiki();										// Wiki löschen
 				}
 			},
 			
-			//-----------
-			// Abbrechen
-			//-----------
+			/* ------------------ */
+			/*  Abbrechen Button  */
+			/* ------------------ */
 			{
 				text: "Abbrechen",
-				click: function() {						// click = reagiert auf Benutzerinteraktion
-//DEBUG
-alert("wiki.deletedialog.js\n # _create: CANCLE: .close");
-//DEBUG
-					that.close();						// Fehlerdialog schließen
+				click: function() {											// click = reagiert auf Benutzerinteraktion
+					that.close();											// Fehlerdialog schließen
 				}
 			}
 		];	
-		this._super();									// Aufruf des übergeordneten jQuery-Widgets (in diesem Fall _create)
+		this._super();														// Aufruf des übergeordneten jQuery-Widgets (in diesem Fall _create)
 	},
 	
-	//-------------------
-	// Löschen des Wikis (Aufruf bei OK - click: function [_deleteWiki()])
-	//-------------------
+	/* -------------- */
+	/*  Wiki Löschen  */
+	/* ---------------*/
 	_deleteWiki: function() {
 
 		this.close();
 		$.ajax({
-			type: "DELETE",								// HTML Methode - DELETE
+			type: "DELETE",													// HTML Methode - DELETE
 			url: this._wiki.url,
 			success: function() {
-//DEBUG
-alert("wiki.deletedialog.js\n # _deleteWiki: DELETE: DeleteWikiCommand");
-alert("wiki.deletedialog.js\n # _deleteWiki: success: onWikiDeleted");
-//DEBUG
-				this._trigger("onWikiDeleted");			// Aufruf onWikiDeleted in application.js
+				this._trigger("onWikiDeleted");								// Aufruf onWikiDeleted in application.js
 			},
-			context: this								// 
+			context: this								 
 		});
 	}
 	

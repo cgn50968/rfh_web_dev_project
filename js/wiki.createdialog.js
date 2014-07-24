@@ -1,35 +1,30 @@
-//--------------------
-// Widget: createDialog
-//--------------------
-
+/* ---------------------- */
+/*  Widget: createDialog  */
+/* ---------------------- */
 $.widget("wiki.createDialog",$.ui.dialog, {
  
-	//--------------------------------------------------
-	// Festlegung der Standard Optionen (Konfiguration)
-	//--------------------------------------------------
+	/* -------------------------------------------------- */
+	/*  Festlegung der Standard Optionen (Konfiguration)  */
+	/* -------------------------------------------------- */
 	options: {
-		autoOpen: false,		// Soll nicht automatisch geöffnet werden.
-		modal: true,			// "modal" bedeutet, wenn der Anwender neben den Dialog klickt, behält das Objekt dennoch den Focus
-		width: 800				// Festlegen der Breite in Pixel (Da Dialog sonst zu klein)
+		autoOpen: false,																			// Soll nicht automatisch geöffnet werden.
+		modal: true,																				// "modal" bedeutet, wenn der Anwender neben den Dialog klickt, behält das Objekt dennoch den Focus
+		width: 800																					// Festlegen der Breite in Pixel (Da Dialog sonst zu klein)
 	},
   
-	//-------------------
-	//Öffnen des Widgets
-	//-------------------
+	/* -------------------- */
+	/*  Öffnen des Widgets  */
+	/* -------------------- */
 	open: function() {
 
-//DEBUG		
-alert("wiki.createdialog.js\n # open: createDialog");
-//DEBUG		
-		
 		/* ------------------------------------------- */
 		/*  Werte für validation_message zurücksetzen  */
 		/* ------------------------------------------- */
 		this.element.find(".validation_message").empty(); 					
 		
-		//---------------------------------
-		// ui-state-error Klasse entfernen
-		//---------------------------------
+		/* --------------------------------- */
+		/*  ui-state-error Klasse entfernen  */
+		/* --------------------------------- */
 		this.element.find("#category_field").removeClass("ui-state-error").focus();	
 		this.element.find("#title_field").removeClass("ui-state-error");
 		this.element.find("#notes_field").removeClass("ui-state-error");
@@ -54,81 +49,59 @@ alert("wiki.createdialog.js\n # open: createDialog");
 	/* ---------------------------- */
 	_create: function() {	
 	
-//DEBUG		
-alert("wiki.createdialog.js\n # _create:  Buttons");
-//DEBUG		
-	
 		var that = this;			
 		
 		//-------------------
 		// Buttons erstellen
 		//-------------------
 		this.options.buttons = [						
-			//-----------
-			// Speichern Button
-			//-----------
+			/* ------------------ */
+			/*  Speichern Button  */
+			/* ------------------ */
 			{
 				text: "Speichern",
-				click: function() {						// click = reagiert auf Benutzerinteraktion
-//DEBUG		
-alert("wiki.createdialog.js\n # _create:  Speichern: _createWiki");
-//DEBUG		
-					that._createWiki();					// Aufruf: _updateWiki
+				click: function() {																	// click = reagiert auf Benutzerinteraktion	
+					that._createWiki();																// Aufruf: _updateWiki
 				}
 			},
 			
-			//------------------
-			// Abbrechen Button
-			//------------------
+			/*------------------- */ 
+			/*  Abbrechen Button  */
+			/*------------------- */
 			{					
 				text: "Abbrechen",
-				click: function() {						// click = reagiert auf Benutzerinteraktion
-//DEBUG		
-alert("wiki.createdialog.js\n # _create: Abbrechen: .close");
-//DEBUG	
-					that.close();						// Fehlerdialog schließen
+				click: function() {																	// click = reagiert auf Benutzerinteraktion
+					that.close();																	// Fehlerdialog schließen
 				}
 			}
 		];
-		this._super();									// Aufruf des übergeordneten jQuery-Widgets (in diesem Fall _create)
+		this._super();																				// Aufruf des übergeordneten jQuery-Widgets (in diesem Fall _create)
 	},
 	
-	//-----------------------------------------------------
-	// Funktion: updateWiki - Änderungen speichern
-	//-----------------------------------------------------
-	_createWiki: function() {	
-
-//DEBUG		
-alert("wiki.createdialog.js\n # _createWiki: read <input>");
-//DEBUG	
 	
-		var wiki = {											// Übergabe der Werte aus dem Widget an das Objekt "wiki"
-
+	
+	/* ---------------------- */
+	/*  Funktion: updateWiki  */
+	/* ---------------------- */
+	_createWiki: function() {	
+	
+		var wiki = {																				// Übergabe der Werte aus dem Widget an das Objekt "wiki"
 			title: this.element.find("#title_field").val(),							
 			category: this.element.find("#category_field").val(),
 			notes: this.element.find("#notes_field").val(),
-			postMethod: "create",								// RequestHandler - Entscheidung
+			postMethod: "create",																	// RequestHandler - Entscheidung
 		};
 
-		
-//DEBUG		
-alert("wiki.createdialog.js\n # POST: CreateWikiCommand");
-//DEBUG	
 		$.ajax({
-			type: "POST",								// HTML Übergabe Typ festlegen
+			type: "POST",																			// HTML POST Method
 			url: "/wiki/service/wikis",						
-			data: wiki,									// wiki (mit Datenfeldern) wird an das data Attribut übergeben
-			
-			success: function() {						// Bei Erfolg, function ausführen
-				this.close();							// Widget schließen
-				
-//DEBUG		
-alert("wiki.createdialog.js\n # _createWiki: onWikiCreated");
-//DEBUG	
-				this._trigger("onWikiCreated");			// Aufruf, um Liste neu zu laden
+			data: wiki,																				// wiki (mit Datenfeldern) wird an das data Attribut übergeben
+			success: function() {																	// Bei Erfolg, function ausführen
+				this.close();																		// Widget schließen
+				this._trigger("onWikiCreated");														// Aufruf, um Liste neu zu laden
 			},
 			
-			
+		
 			/* ------------------------------ */
 			/*  SPEZIFISCHE FEHLERBEHANDLUNG  */
 			/* ------------------------------ */

@@ -1,46 +1,41 @@
-//--------------------
-// Widget: editDialog
-//--------------------
-
+/* -------------------- */
+/*  Widget: editDialog  */
+/* -------------------- */
 $.widget("wiki.editDialog",$.ui.dialog, {
  
-	//--------------------------------------------------
-	// Festlegung der Standard Optionen (Konfiguration)
-	//--------------------------------------------------
+	/* -------------------------------------------------- */
+	/*  Festlegung der Standard Optionen (Konfiguration)  */
+	/* -------------------------------------------------- */
 	options: {
-		autoOpen: false,		// Soll nicht automatisch geöffnet werden.
-		modal: true,			// "modal" bedeutet, wenn der Anwender neben den Dialog klickt, behält das Objekt dennoch den Focus
-		width: 800				// Festlegen der Breite in Pixel (Da Dialog sonst zu klein)
+		autoOpen: false,																			// Soll nicht automatisch geöffnet werden.
+		modal: true,																				// "modal" bedeutet, wenn der Anwender neben den Dialog klickt, behält das Objekt dennoch den Focus
+		width: 800																					// Festlegen der Breite in Pixel (Da Dialog sonst zu klein)
 	},
   
-	//-------------------
-	//Öffnen des Widgets
-	//-------------------
+	/* -------------------- */
+	/*  Öffnen des Widgets  */
+	/* -------------------- */
 	open: function(wiki) {
-
-//DEBUG		
-alert("wiki.editdialog.js\n # open: editDialog");
-//DEBUG		
 
 		this._wiki = wiki;															
 		
-		//-------------------------------------------
-		// Werte für validation_message zurücksetzen
-		//-------------------------------------------
+		/* ------------------------------------------- */
+		/*  Werte für validation_message zurücksetzen  */
+		/* ------------------------------------------- */
 		this.element.find(".validation_message").empty(); 					
 		
-		//---------------------------------
-		// ui-state-error Klasse entfernen
-		//---------------------------------
+		/* --------------------------------- */
+		/*  ui-state-error Klasse entfernen  */
+		/* --------------------------------- */
 		this.element.find("#category_field").removeClass("ui-state-error").focus();	
 		this.element.find("#title_field").removeClass("ui-state-error");
 		this.element.find("#notes_field").removeClass("ui-state-error");
 		
-		//----------------------------------------------------------------------------------------------
-		// Übergabe der Werte aus Array "wiki"
-		// val() weist Eingabefeldern Werte zu.
-		// Bei Aufruf ohne Übergabeparameter werden die aktuellen Werte der Eingabefelder zurückgegeben.
-		//-----------------------------------------------------------------------------------------------
+		/* ----------------------------------------------------------------------------------------------- */
+		/*  Übergabe der Werte aus Array "wiki" 														   */
+		/*  val() weist Eingabefeldern Werte zu.  														   */
+		/*  Bei Aufruf ohne Übergabeparameter werden die aktuellen Werte der Eingabefelder zurückgegeben.  */
+		/* ----------------------------------------------------------------------------------------------- */
 		this.element.find("#author_field").val(wiki.author);		
 		this.element.find("#title_field").val(wiki.title);							
 		this.element.find("#creation_date_field").val(wiki.creation_date);			
@@ -50,46 +45,38 @@ alert("wiki.editdialog.js\n # open: editDialog");
 		this._super();								
 	},
   
-	//----------------------------
-	// Widget: Buttons hinzufügen
-	//----------------------------
+	/* ---------------------------- */
+	/*  Widget: Buttons hinzufügen  */
+	/* ---------------------------- */
 	_create: function() {	
-//DEBUG		
-alert("wiki.editdialog.js\n # _create:  Buttons");
-//DEBUG		
+	
 		var that = this;			
 		
-		//-------------------
-		// Buttons erstellen
-		//-------------------
+		/* ------------------- */
+		/*  Buttons erstellen  */
+		/* ------------------- */
 		this.options.buttons = [						
-			//-----------
-			// OK Button
-			//-----------
+			/* ----------- */
+			/*  OK Button  */
+			/* ----------- */
 			{
 				text: "OK",
-				click: function() {						// click = reagiert auf Benutzerinteraktion
-//DEBUG		
-alert("wiki.editdialog.js\n # _create:  OK: _updateWiki");
-//DEBUG		
-					that._updateWiki();					// Aufruf: _updateWiki
+				click: function() {																		
+					that._updateWiki();																//  Aufruf: _updateWiki
 				}
 			},
 			
-			//------------------
-			// Abbrechen Button
-			//------------------
+			/* ------------------ */
+			/*  Abbrechen Button  */
+			/* ------------------ */
 			{					
 				text: "Abbrechen",
-				click: function() {						// click = reagiert auf Benutzerinteraktion
-//DEBUG		
-alert("wiki.editdialog.js\n # _create: CANCLE: .close");
-//DEBUG	
-					that.close();						// Fehlerdialog schließen
+				click: function() {																	
+					that.close();																	// Fehlerdialog schließen
 				}
 			}
 		];
-		this._super();									// Aufruf des übergeordneten jQuery-Widgets (in diesem Fall _create)
+		this._super();																				// Aufruf des übergeordneten jQuery-Widgets (in diesem Fall _create)
 	},
 	
 	/* --------------------------------------------- */
@@ -97,12 +84,7 @@ alert("wiki.editdialog.js\n # _create: CANCLE: .close");
 	/* --------------------------------------------- */
 	_updateWiki: function() {	
 
-//DEBUG		
-alert("wiki.editdialog.js\n # _updateWiki: read <input>");
-//DEBUG	
-	
-		var wiki = {									// Übergabe der Werte aus dem Widget an das Objekt "wiki"
-
+		var wiki = {																				// Übergabe der Werte aus dem Widget an das Objekt "wiki"
 			title: this.element.find("#title_field").val(),							
 			creation_date: this.element.find("#creation_date_field").val(),			
 			expiration_date: this.element.find("#expiration_date_field").val(),
@@ -110,22 +92,16 @@ alert("wiki.editdialog.js\n # _updateWiki: read <input>");
 			notes: this.element.find("#notes_field").val()	
 		};
 
-//DEBUG		
-alert("wiki.editdialog.js\n # PUT: UpdateWikiCommand");
-//DEBUG	
+		
 		$.ajax({
-			type: "PUT",								// HTML Übergabe Typ festlegen
-			url: this._wiki.url,						// Ruft die in wiki gespeicherte URL auf (die URL wird in wiki.wikilist.js festgelegt)
-			headers: {"If-Match": this._wiki.version },	// Definierung des If-Match Wertes im Header (wird vom "Service" erwartet.
-			data: wiki,									// wiki wird an das data Attribut übergeben
+			type: "PUT",																			// HTML Übergabe Typ festlegen
+			url: this._wiki.url,																	// Ruft die in wiki gespeicherte URL auf (die URL wird in wiki.wikilist.js festgelegt)
+			headers: {"If-Match": this._wiki.version },												// Definierung des If-Match Wertes im Header (wird vom "Service" erwartet.
+			data: wiki,																				// wiki wird an das data Attribut übergeben
 			
-			success: function() {						// Bei Erfolg, function ausführen
-				this.close();							// Widget schließen
-				
-//DEBUG		
-alert("wiki.editdialog.js\n # _updateWiki: onWikiEdited");
-//DEBUG	
-				this._trigger("onWikiEdited");			// Aufruf, um Liste neu zu laden
+			success: function() {																	// Bei Erfolg, function ausführen
+				this.close();																		// Widget schließen
+				this._trigger("onWikiEdited");														// Aufruf, um Liste neu zu laden
 			},
 			
 			
