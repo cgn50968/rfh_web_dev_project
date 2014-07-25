@@ -192,7 +192,8 @@ class WikiService {
 			
 			$affected_rows = $link->affected_rows;													// Wieviele Datensätze sind betroffen
 			if($affected_rows == 0)																	// Fehlermeldung: sofern keine Datensätze gefunden wurden	
-			{									
+			{			
+				header("HTTP/1.1 404");				
 				return self::NOT_FOUND;
 			}
 			
