@@ -156,6 +156,12 @@ class WikiService {
 	{
 		if (isset($_POST['name']))
 		{
+			if ($_POST['name']	== "")																// Fehlermeldung: sofern keine Datensätze gefunden wurden	
+			{			
+				header("HTTP/1.1 404");				
+				return self::NOT_FOUND;
+			}
+		
 			$suchwort = $_POST['name'];		
 			$abfrage = "";
 			$abfrage2 = "";
