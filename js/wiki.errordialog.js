@@ -24,6 +24,7 @@ $.widget("wiki.errorDialog", $.ui.dialog, {
 		this.options.buttons = [ {
 			text: "Schliessen",
 			click: function() {							// click = reagiert auf Benutzerinteraktion
+				$("#page_number").show();				// Anzeigen der Page Numbers, die zuvor versteckt wurden.
 				that.close();							// Fehlerdialog schließen
 			}
 		} ];
