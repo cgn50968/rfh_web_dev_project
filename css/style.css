@@ -168,7 +168,9 @@ a:hover, a:active {												/*Links generell*/
 	text-align: left;
 }
 
-
+#Los_Warnung { 
+	color: red;
+}
 
 /*---Seitenzahlen-Gestaltung------------------------------------ */
 #page_number{
